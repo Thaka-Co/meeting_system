@@ -1,18 +1,22 @@
 import {
   Avatar,
-  Box, Center, Collapse,
+  Box,
+  Collapse,
   Drawer,
   DrawerContent,
   DrawerOverlay,
-  Flex, Heading, Icon,
+  Flex,
+  Heading,
+  Icon,
   IconButton,
-  InputGroup, Menu,
-  MenuButton, MenuItem, MenuList, Table,
-  Tbody,
+  InputGroup,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Text,
-  Th,
-  Thead, Tr, useColorModeValue,
-  useDisclosure
+  useColorModeValue,
+  useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
 import { AiFillGift } from "react-icons/ai";
@@ -22,15 +26,13 @@ import { FiMenu } from "react-icons/fi";
 import { HiCode, HiCollection } from "react-icons/hi";
 import { MdDashboard, MdKeyboardArrowRight } from "react-icons/md";
 import { ItemContent } from "../components/ItemContent";
-import Status from '../components/stats/status';
-import DashboardTableRow from '../components/Tables/DashboardTableRow';
+import Status from "../components/stats/status";
 import TodayMeetings from "../components/Tables/TodayMeetings";
-import { dashboardTableData } from '../Faker/general';
-
+import MyMeeting from "../components/Tables/MyMeeting";
+import Link from "next/link";
 export default function Swibc() {
   const sidebar = useDisclosure();
   const integrations = useDisclosure();
-  const textColor = useColorModeValue("gray.700", "white");
 
   const NavItem = (props) => {
     const { icon, children, ...rest } = props;
@@ -100,8 +102,12 @@ export default function Swibc() {
         color="gray.600"
         aria-label="Main Navigation"
       >
-        <NavItem icon={MdDashboard}>Dashboard</NavItem>
-        <NavItem icon={FaRss}>Articles</NavItem>
+        <Link href="/dashbord">
+          <NavItem icon={MdDashboard}>Dashboard</NavItem>
+        </Link>
+        <Link href="/meeting">
+          <NavItem icon={FaRss}>Add meeting</NavItem>
+        </Link>
         <NavItem icon={HiCollection}>Collections</NavItem>
         <NavItem icon={FaClipboardCheck}>Checklists</NavItem>
         <NavItem icon={HiCode} onClick={integrations.onToggle}>
@@ -128,8 +134,6 @@ export default function Swibc() {
       </Flex>
     </Box>
   );
-
-
 
   return (
     <Box
@@ -167,95 +171,61 @@ export default function Swibc() {
             icon={<FiMenu />}
             size="sm"
           />
-          <InputGroup w="96" display={{ base: "none", md: "flex" }}>
-          </InputGroup>
+          <InputGroup
+            w="96"
+            display={{ base: "none", md: "flex" }}
+          ></InputGroup>
           <Flex align="center">
             <Menu>
-        <MenuButton>
-        <Icon color="gray.500" as={FaBell} cursor="pointer" />
-        </MenuButton>
-        <MenuList p="16px 8px">
-          <Flex flexDirection="column">
-            <MenuItem borderRadius="8px" mb="10px">
-              <ItemContent
-                time="13 minutes ago"
-                info="AT 12 PM"
-                boldInfo="Meeting"
-                aName="Alicia"
-                aSrc={'avatar1'}
-              />
-            </MenuItem>
-            <MenuItem borderRadius="8px" mb="10px">
-              <ItemContent
-                time="2 days ago"
-                info="Due Date"
-                boldInfo="Task"
-                aName="Josh Henry"
-                aSrc={'avatar2'}
-              />
-            </MenuItem>
-            <MenuItem borderRadius="8px">
-              <ItemContent
-                time="3 days ago"
-                info='you missing a task'
-                boldInfo="Uncomplated Task"
-                aName="Kara"
-                aSrc={'avatar3'}
-              />
-            </MenuItem>
-          </Flex>
-        </MenuList>
-      </Menu>
-            <Avatar
-              ml="4"
-              size="sm"
-              name="Solid"
-              src=""
-              cursor="pointer"
-            />
+              <MenuButton>
+                <Icon color="gray.500" as={FaBell} cursor="pointer" />
+              </MenuButton>
+              <MenuList p="16px 8px">
+                <Flex flexDirection="column">
+                  <MenuItem borderRadius="8px" mb="10px">
+                    <ItemContent
+                      time="13 minutes ago"
+                      info="AT 12 PM"
+                      boldInfo="Meeting"
+                      aName="Alicia"
+                      aSrc={"avatar1"}
+                    />
+                  </MenuItem>
+                  <MenuItem borderRadius="8px" mb="10px">
+                    <ItemContent
+                      time="2 days ago"
+                      info="Due Date"
+                      boldInfo="Task"
+                      aName="Josh Henry"
+                      aSrc={"avatar2"}
+                    />
+                  </MenuItem>
+                  <MenuItem borderRadius="8px">
+                    <ItemContent
+                      time="3 days ago"
+                      info="you missing a task"
+                      boldInfo="Uncomplated Task"
+                      aName="Kara"
+                      aSrc={"avatar3"}
+                    />
+                  </MenuItem>
+                </Flex>
+              </MenuList>
+            </Menu>
+            <Avatar ml="4" size="sm" name="Solid" src="" cursor="pointer" />
           </Flex>
         </Flex>
         <Box as="main" p="4">
           <Status />
-          <Heading m='10'>ToDay Meetings</Heading>
-
-          <TodayMeetings/>
-          <Heading m='10'>My Meetings</Heading>
-          {
-            /*
+          <Heading m="10">ToDay Meetings</Heading>
+          {/* today meetings */}
+          <TodayMeetings />
+          <Heading m="10">My Meetings</Heading>
+          {/*
             My Meetings Table
-            */
-          }
-{         dashboardTableData.length !=0? <Table variant="simple" color={textColor}>
-            <Thead>
-              <Tr my=".8rem" ps="0px">
-                <Th ps="0px" color="gray.400">
-                  Topics
-                </Th>
-                <Th color="gray.400">Members</Th>
-                <Th color="gray.400">Time Frame</Th>
-                <Th color="gray.400">Due Date</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              {dashboardTableData.map((row) => {
-                return (
-                  <DashboardTableRow
-                    name={row.name}
-                    logo={row.logo}
-                    members={row.members}
-                    budget={row.budget}
-                    progression={row.progression}
-                  />
-                );
-              })}
-            </Tbody>
-          </Table>
-                :        <Box borderWidth="4px" borderStyle="dashed" rounded="md" h="96" m='10' >
-                <Center>          <Heading m='10'>You Don't Have Any Meetings</Heading>
-        </Center>
-              </Box>
-}        </Box>
+            */}
+          <MyMeeting />
+        </Box>
       </Box>
     </Box>
   );
