@@ -30,6 +30,7 @@ function addMeeting(props) {
   const [endH, setEndH] = useState("");
   const [endMin, setEndMin] = useState("");
   const [cyclic, setCyclic] = useState(false);
+  const textColor = useColorModeValue("gray.700", "white");
   console.log("starting", startH, startMin);
   console.log("ending", endH, endMin);
   const rooms = [
@@ -62,9 +63,8 @@ function addMeeting(props) {
   };
   console.log(cyclic);
   return (
-    <>
-      <Box bg={useColorModeValue("gray.50", "inherit")} p={10}>
-        <Box bgColor={"white"} p={15} m={10} borderRadius={7}>
+      <Box bg={useColorModeValue("gray.50", "inherit")}>
+        <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
           <Datetime
             onChange={selectDate}
             isValidDate={valid}
@@ -105,8 +105,8 @@ function addMeeting(props) {
       )} */}
         </Box>
         <>
-          <Box bgColor={"white"} p={15} m={10} borderRadius={7}>
-            <Text fontFamily={"cursive"} fontSize={"3rem"} p={5}>
+          <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
+            <Text fontSize="lg" color={textColor} fontWeight="bold" >
               Select the meeting room
             </Text>
             <RadioGroup onChange={selectRoom}>
@@ -144,8 +144,8 @@ function addMeeting(props) {
               })}
             </RadioGroup>
           </Box>
-          <Box bgColor={"white"} p={15} m={10} borderRadius={7}>
-            <Text fontFamily={"cursive"} fontSize={"3rem"} p={5}>
+          <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
+            <Text fontSize="lg" color={textColor} fontWeight="bold" >
               Choose attendance
             </Text>
             <CheckboxGroup onChange={selectUser}>
@@ -159,8 +159,8 @@ function addMeeting(props) {
             </CheckboxGroup>
             <Button mt={4}>Invite</Button>
           </Box>
-          <Box bgColor={"white"} p={15} m={10} borderRadius={7}>
-            <Text fontFamily={"cursive"} fontSize={"3rem"} p={5}>
+          <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
+            <Text fontSize="lg" color={textColor} fontWeight="bold">
               Meeting items
             </Text>
             {/*  */}
@@ -229,7 +229,6 @@ function addMeeting(props) {
           </Box>
         </>
       </Box>
-    </>
   );
 }
 
