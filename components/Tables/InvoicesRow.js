@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Flex,
+  HStack,
   Icon,
   Spacer,
   Text,
@@ -11,7 +12,7 @@ import React from "react";
 
 function InvoicesRow(props) {
   const textColor = useColorModeValue("gray.700", "white");
-  const { date, code, price, format, logo } = props;
+  const { date, upArrow, downArrow, up, down, price, format, logo } = props;
 
   return (
     <Flex my={{ sm: "1rem", xl: "10px" }} alignItems="center">
@@ -19,9 +20,16 @@ function InvoicesRow(props) {
         <Text fontSize="md" color={textColor} fontWeight="bold">
           {date}
         </Text>
-        <Text fontSize="sm" color="gray.400" fontWeight="semibold" me="16px">
-          {code}
-        </Text>
+        <HStack>
+          <Icon as={upArrow} w="20px" h="auto" me="5px" color={"green"} />
+          <Text fontSize="sm" color="gray.400" fontWeight="semibold" me="16px">
+            {up}
+          </Text>
+          <Icon as={downArrow} w="20px" h="auto" me="5px" color={"red"} />
+          <Text fontSize="sm" color="gray.400" fontWeight="semibold" me="16px">
+            {down}
+          </Text>
+        </HStack>
       </Flex>
       <Spacer />
       <Box me="12px">

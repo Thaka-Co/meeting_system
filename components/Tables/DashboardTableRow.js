@@ -49,15 +49,9 @@ function DashboardTableRow(props) {
       </Td>
       <Td>
         <Flex direction="column">
-          <Text
-            fontSize="md"
-            color="teal.300"
-            fontWeight="bold"
-            pb=".2rem"
-          >
-            {`${progression}`}</Text>
-            
-
+          <Text fontSize="md" color="teal.300" fontWeight="bold" pb=".2rem">
+            {`${progression}`}
+          </Text>
         </Flex>
       </Td>
     </Tr>
