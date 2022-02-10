@@ -1,10 +1,10 @@
 import React from 'react';
 import MeetingDetails from '../components/MeetingDetails';
-
+import MainNavBar from '../components/navBar/navbar';
 function meetingDetails(props) {
     return (
         <div>
-            <MeetingDetails/>
+            <MainNavBar><MeetingDetails/></MainNavBar>
         </div>
     );
 }
