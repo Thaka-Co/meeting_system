@@ -3,7 +3,7 @@ import {
   Badge,
   Button,
   Flex,
-  Td,
+  Td, 
   Text,
   Tr,
   useColorModeValue,
@@ -63,7 +63,7 @@ function TablesTableRow(props) {
           {date}
         </Text>
       </Td>
-      <Td>
+      {/* <Td>
         <Button p="0px" bg="transparent" variant="no-hover">
           <Text
             fontSize="md"
@@ -74,7 +74,7 @@ function TablesTableRow(props) {
             Edit
           </Text>
         </Button>
-      </Td>
+      </Td> */}
     </Tr>
   );
 }
