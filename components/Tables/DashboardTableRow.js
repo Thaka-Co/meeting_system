@@ -3,7 +3,7 @@ import {
   AvatarGroup,
   Flex,
   Icon,
-  Progress,
+  Link,
   Td,
   Text,
   Tr,
@@ -19,6 +19,7 @@ function DashboardTableRow(props) {
       <Td minWidth={{ sm: "250px" }} pl="0px">
         <Flex align="center" py=".8rem" minWidth="100%" flexWrap="nowrap">
           <Icon as={logo} h={"24px"} w={"24px"} pe="5px" />
+          <Link href="/meetingDetails">
           <Text
             fontSize="md"
             color={textColor}
@@ -27,6 +28,7 @@ function DashboardTableRow(props) {
           >
             {name}
           </Text>
+          </Link>
         </Flex>
       </Td>
       <Td>
