@@ -242,6 +242,7 @@ export const tablesTableData = [
     date: "04/09/20",
   },
 ];
+export const test ='hello wrold'
 
 export const tablesProjectData = [
   {

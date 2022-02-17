@@ -9,6 +9,7 @@ import {
   Th,
   Td,
   Box,
+  Link,
   Heading,
   Center,
   Tbody,
@@ -18,13 +19,13 @@ import { BsBoxArrowUpRight, BsFillTrashFill } from "react-icons/bs";
 
 export default function TodayMeetings() {
   const data = [
-    { name: "Daggy", created: "7 days ago" },
-    { name: "Anubra", created: "23 hours ago" },
-    { name: "Josef", created: "A few seconds ago" },
-    { name: "Sage", created: "A few hours ago" },
-    { name: "Sage", created: "A few hours ago" },
+    { name: "Purity UI Version", created: "10 AM" },
+    { name: "Fix Platform Errors", created: "8 PM" },
+    { name: "Launch our Mobile App", created: "12 PM" },
+    { name: "Add the New Pricing Page", created: "5 PM" },
+    { name: "Redesign New Online Shop", created: "3 PM" },
   ];
-  const header = ["Topic", "created", "actions"];
+  const header = ["Topic", "Time", "actions"];
   return data.length != 0 ? (
     <Table
       w="full"
@@ -136,7 +137,9 @@ export default function TodayMeetings() {
               </Td>
               <Td>
                 <ButtonGroup variant="solid" size="sm" spacing={3}>
+                  <Link href='/meetingSession'>
                   <IconButton colorScheme="blue" icon={<BsBoxArrowUpRight />} />
+                  </Link>
                   <IconButton colorScheme="green" icon={<AiFillEdit />} />
                   <IconButton
                     colorScheme="red"
@@ -146,7 +149,7 @@ export default function TodayMeetings() {
                 </ButtonGroup>
               </Td>
             </Tr>
-          );
+          );  
         })}
       </Tbody>
     </Table>

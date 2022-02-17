@@ -6,7 +6,6 @@ import {
     DrawerContent,
     DrawerOverlay,
     Flex,
-    Heading,
     Icon,
     IconButton,
     InputGroup,
@@ -18,6 +17,12 @@ import {
     useColorModeValue,
     useDisclosure,
   } from "@chakra-ui/react";
+  import {
+  AutoComplete,
+  AutoCompleteInput,
+  AutoCompleteItem,
+  AutoCompleteList,
+} from '@choc-ui/chakra-autocomplete';
   import React from "react";
   import { AiFillGift } from "react-icons/ai";
   import { BsGearFill } from "react-icons/bs";
@@ -26,15 +31,15 @@ import {
   import { HiCode, HiCollection } from "react-icons/hi";
   import { MdDashboard, MdKeyboardArrowRight } from "react-icons/md";
   import { ItemContent } from "../ItemContent";
-
   import Link from "next/link";
-  
+  import {dashboardTableData} from '../../Faker/general' 
   
   
   export default function MainNavBar(props) {
     const sidebar = useDisclosure();
     const integrations = useDisclosure();
-  
+    const options = ["apple", "appoint", "zap", "cap", "japan"];
+
     const NavItem = (props) => {
       const { icon, children, ...rest } = props;
       return (
@@ -165,6 +170,21 @@ import {
             borderColor={useColorModeValue("inherit", "gray.700")}
             h="14"
           >
+                  <AutoComplete rollNavigation>
+        <AutoCompleteInput variant="filled" placeholder="Search..." autoFocus />
+        <AutoCompleteList>
+          {dashboardTableData.map((option, oid) => (
+            <AutoCompleteItem
+              key={`option-${oid}`}
+              value={option.name}
+              textTransform="capitalize"
+            >
+              {option.name}
+            </AutoCompleteItem>
+          ))}
+        </AutoCompleteList>
+      </AutoComplete>
+
             <IconButton
               aria-label="Menu"
               display={{ base: "inline-flex", md: "none" }}
@@ -176,6 +196,7 @@ import {
               w="96"
               display={{ base: "none", md: "flex" }}
             ></InputGroup>
+            
             <Flex align="center">
               <Menu>
                 <MenuButton>
