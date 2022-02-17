@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Heading } from "@chakra-ui/react";
 import MainNavBar from "../components/navBar/navbar";
 import Status from "../components/stats/status";
