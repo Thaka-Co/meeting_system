@@ -3,7 +3,7 @@ import React from 'react';
 function CyclicMeeting(props) {
     return (
         <div>
-            <h1>hi from cyclic</h1>
+            <h1>hi</h1>
         </div> 
     );
 }

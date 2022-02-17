@@ -284,7 +284,23 @@ export const tablesProjectData = [
 export const invoicesData = [
   {
     date: "Add Progress Track",
-    code: "#MS-415646",
+    votes: [
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+         and publishing industries for previewing layouts and visual mockups.`,
+      },
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+       and publishing industries for previewing layouts and visual mockups.`,
+      },
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+       and publishing industries for previewing layouts and visual mockups.`,
+      },
+    ],
     downArrow: VscTriangleDown,
     upArrow: VscTriangleUp,
     up: 10,
@@ -294,7 +310,23 @@ export const invoicesData = [
   },
   {
     date: "Add the New Pricing Page",
-    code: "#RV-126749",
+    votes: [
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+         and publishing industries for previewing layouts and visual mockups.`,
+      },
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+       and publishing industries for previewing layouts and visual mockups.`,
+      },
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+       and publishing industries for previewing layouts and visual mockups.`,
+      },
+    ],
     downArrow: VscTriangleDown,
     upArrow: VscTriangleUp,
     up: 10,
@@ -304,7 +336,23 @@ export const invoicesData = [
   },
   {
     date: "Fix Platform Errors",
-    code: "#FB-212562",
+    votes: [
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+         and publishing industries for previewing layouts and visual mockups.`,
+      },
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+       and publishing industries for previewing layouts and visual mockups.`,
+      },
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+       and publishing industries for previewing layouts and visual mockups.`,
+      },
+    ],
     downArrow: VscTriangleDown,
     upArrow: VscTriangleUp,
     up: 10,
@@ -314,7 +362,23 @@ export const invoicesData = [
   },
   {
     date: "Add Progress Track",
-    code: "#QW-103578",
+    votes: [
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+         and publishing industries for previewing layouts and visual mockups.`,
+      },
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+       and publishing industries for previewing layouts and visual mockups.`,
+      },
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+       and publishing industries for previewing layouts and visual mockups.`,
+      },
+    ],
     downArrow: VscTriangleDown,
     upArrow: VscTriangleUp,
     up: 10,
@@ -324,7 +388,23 @@ export const invoicesData = [
   },
   {
     date: "Add the New Pricing Page",
-    code: "#AR-803481",
+    votes: [
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+         and publishing industries for previewing layouts and visual mockups.`,
+      },
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+       and publishing industries for previewing layouts and visual mockups.`,
+      },
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+       and publishing industries for previewing layouts and visual mockups.`,
+      },
+    ],
     downArrow: VscTriangleDown,
     upArrow: VscTriangleUp,
     up: 10,
@@ -395,4 +475,14 @@ export const olderTransactions = [
     price: "- $987",
     logo: FaArrowDown,
   },
+];
+export const roomsData = [
+  { id: 1, location: "first floor", size: 6, tools: ["board", "screen"] },
+  { id: 2, location: "second floor", size: 8, tools: ["board", "screen"] },
+  { id: 3, location: "third floor", size: 10, tools: ["board", "screen"] },
+];
+export const usersData = [
+  { id: 1, name: "Mareem", position: "IT manager", email: "m@m.com" },
+  { id: 2, name: "Safiah", position: "IT manager", email: "s@s.com" },
+  { id: 3, name: "Najla", position: "IT manager", email: "s@s.com" },
 ];
