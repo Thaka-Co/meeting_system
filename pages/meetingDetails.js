@@ -4,7 +4,7 @@ import MainNavBar from '../components/navBar/navbar';
 function meetingDetails(props) {
     return (
         <div>
-            <MainNavBar><MeetingDetails/>  </MainNavBar>
+            <MainNavBar><MeetingDetails/></MainNavBar>
         </div>
     );
 }

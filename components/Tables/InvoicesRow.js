@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   Flex,
-  HStack,
   Icon,
   Spacer,
   Text,
@@ -76,7 +75,7 @@ function InvoicesRow(props) {
           </Flex>
         </Button>
         <Button
-        ml={3}
+          ml={3}
           p="0px"
           backgroundColor={"#add8e6"}
           variant="no-hover"
@@ -84,7 +83,7 @@ function InvoicesRow(props) {
             console.log("ll");
           }}
         >
-          <Flex alignItems="center" p="12px" onClick={onOpen}>
+          <Flex alignItems="center" p="12px">
             <Text fontSize="md" color={textColor} fontWeight="bold">
               delay
             </Text>
