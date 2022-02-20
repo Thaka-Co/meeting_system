@@ -1,12 +1,7 @@
 import React from "react";
 import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
-import {
-  Box,
-  Checkbox,
-  useColorModeValue,
-  Select,
-} from "@chakra-ui/react";
+import { Box, Checkbox, useColorModeValue, Select } from "@chakra-ui/react";
 import moment from "moment";
 import { useState } from "react";
 import AddItems from "./AddItems";
@@ -81,7 +76,7 @@ function addMeeting(props) {
       </Box>
       <MeetingRooms />
       <>
-        <UserData/>
+        <UserData />
         <MeetingItems />
         <AddItems />
       </>

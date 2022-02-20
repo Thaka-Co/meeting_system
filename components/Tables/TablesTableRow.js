@@ -1,9 +1,9 @@
 import {
   Avatar,
   Badge,
-  Button,
   Flex,
-  Td, 
+  Select,
+  Td,
   Text,
   Tr,
   useColorModeValue,
@@ -11,7 +11,7 @@ import {
 import React from "react";
 
 function TablesTableRow(props) {
-  const { logo, name, email, subdomain, domain, status, date } = props;
+  const { logo, name, email, subdomain, domain, status, date, attend } = props;
   const textColor = useColorModeValue("gray.700", "white");
   const bgStatus = useColorModeValue("gray.400", "#1a202c");
   const colorStatus = useColorModeValue("white", "gray.400");
@@ -48,15 +48,22 @@ function TablesTableRow(props) {
         </Flex>
       </Td>
       <Td>
-        <Badge
-          bg={status === "Online" ? "green.400" : bgStatus}
-          color={status === "Online" ? "white" : colorStatus}
-          fontSize="16px"
-          p="3px 10px"
-          borderRadius="8px"
-        >
-          {status}
-        </Badge>
+        {attend ? (
+          <Select>
+            <option>present</option>
+            <option>absent</option>
+          </Select>
+        ) : (
+          <Badge
+            bg={status === "present" ? "green.400" : bgStatus}
+            color={status === "absent" ? "white" : colorStatus}
+            fontSize="16px"
+            p="3px 10px"
+            borderRadius="8px"
+          >
+            {status}
+          </Badge>
+        )}
       </Td>
       <Td>
         <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">

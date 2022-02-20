@@ -1,7 +1,7 @@
 // chakra imports
 import { Avatar, Flex, Text, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
-
+// for navBar items
 export function ItemContent(props) {
   const navbarIcon = useColorModeValue("gray.500", "gray.200");
   const notificationColor = useColorModeValue("gray.700", "white");
