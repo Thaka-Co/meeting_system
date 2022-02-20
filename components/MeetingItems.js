@@ -6,7 +6,6 @@ import CardBody from "../components/Card/CardBody.js";
 import { invoicesData } from "../Faker/general";
 import InvoicesRow from "../components/Tables/InvoicesRow";
 function MeetingItems(props) {
-  const textColor = useColorModeValue("gray.700", "white");
   return (
     <div><Heading m="10"> Meeting items</Heading>
       <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
