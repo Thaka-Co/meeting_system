@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 
-export default function  CountDown  ({ hours = 0, minutes = 0, seconds = 0 }) {
+export default function CountDown({ hours = 0, minutes = 0, seconds = 0 }) {
   const [paused, setPaused] = React.useState(false);
   const [over, setOver] = React.useState(false);
   const [[h, m, s], setTime] = React.useState([hours, minutes, seconds]);
-  
+
   const tick = () => {
     if (paused || over) return;
     if (h === 0 && m === 0 && s === 0) setOver(true);
@@ -24,14 +24,14 @@ export default function  CountDown  ({ hours = 0, minutes = 0, seconds = 0 }) {
 
   return (
     <div>
-        {
-        !over?
-      <p>{`${h.toString().padStart(2, '0')}:${m
-        .toString()
-        .padStart(2, '0')}:${s.toString().padStart(2, '0')}`}</p>
-        :<></>
-      }
-      <div>{over ? "Meeting Started" : ''}</div>
+      {!over ? (
+        <p>{`${h.toString().padStart(2, "0")}:${m
+          .toString()
+          .padStart(2, "0")}:${s.toString().padStart(2, "0")}`}</p>
+      ) : (
+        <></>
+      )}
+      <div>{over ? "Meeting Started" : ""}</div>
     </div>
   );
-};
+}

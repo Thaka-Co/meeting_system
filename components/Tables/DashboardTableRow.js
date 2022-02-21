@@ -20,14 +20,14 @@ function DashboardTableRow(props) {
         <Flex align="center" py=".8rem" minWidth="100%" flexWrap="nowrap">
           <Icon as={logo} h={"24px"} w={"24px"} pe="5px" />
           <Link href="/meetingDetails">
-          <Text
-            fontSize="md"
-            color={textColor}
-            fontWeight="bold"
-            minWidth="100%"
-          >
-            {name}
-          </Text>
+            <Text
+              fontSize="md"
+              color={textColor}
+              fontWeight="bold"
+              minWidth="100%"
+            >
+              {name}
+            </Text>
           </Link>
         </Flex>
       </Td>

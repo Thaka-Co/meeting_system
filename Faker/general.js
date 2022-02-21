@@ -65,7 +65,6 @@ export const dashboardTableData = [
     progression: "21 DEC 11:21 PM",
   },
 ];
-
 export const timelineData = [
   {
     logo: FaBell,
@@ -147,7 +146,6 @@ export const rtlDashboardTableData = [
     progression: 40,
   },
 ];
-
 export const rtlTimelineData = [
   {
     logo: FaBell,
@@ -185,7 +183,6 @@ export const rtlTimelineData = [
     date: "18 DEC 4:41 PM",
   },
 ];
-
 export const tablesTableData = [
   {
     logo: avatar1,
@@ -193,7 +190,7 @@ export const tablesTableData = [
     email: "alexa@simmmple.com",
     subdomain: "Manager",
     domain: "Organization",
-    status: "Online",
+    status: "present",
     date: "14/06/21",
   },
   {
@@ -202,7 +199,7 @@ export const tablesTableData = [
     email: "laurent@simmmple.com",
     subdomain: "Programmer",
     domain: "Developer",
-    status: "Offline",
+    status: "absent",
     date: "12/05/21",
   },
   {
@@ -211,7 +208,7 @@ export const tablesTableData = [
     email: "laurent@simmmple.com",
     subdomain: "Executive",
     domain: "Projects",
-    status: "Online",
+    status: "present",
     date: "07/06/21",
   },
   {
@@ -220,7 +217,7 @@ export const tablesTableData = [
     email: "freduardo@simmmple.com",
     subdomain: "Manager",
     domain: "Organization",
-    status: "Online",
+    status: "present",
     date: "14/11/21",
   },
   {
@@ -229,7 +226,7 @@ export const tablesTableData = [
     email: "daniel@simmmple.com",
     subdomain: "Programmer",
     domain: "Developer",
-    status: "Offline",
+    status: "absent",
     date: "21/01/21",
   },
   {
@@ -238,11 +235,11 @@ export const tablesTableData = [
     email: "mark@simmmple.com",
     subdomain: "Designer",
     domain: "UI/UX Design",
-    status: "Offline",
+    status: "absent",
     date: "04/09/20",
   },
 ];
-export const test ='hello wrold'
+export const test = "hello wrold";
 
 export const tablesProjectData = [
   {
@@ -281,11 +278,26 @@ export const tablesProjectData = [
     progression: 25,
   },
 ];
-
 export const invoicesData = [
   {
     date: "Add Progress Track",
-    code: "#MS-415646",
+    votes: [
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+         and publishing industries for previewing layouts and visual mockups.`,
+      },
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+       and publishing industries for previewing layouts and visual mockups.`,
+      },
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+       and publishing industries for previewing layouts and visual mockups.`,
+      },
+    ],
     downArrow: VscTriangleDown,
     upArrow: VscTriangleUp,
     up: 10,
@@ -295,7 +307,23 @@ export const invoicesData = [
   },
   {
     date: "Add the New Pricing Page",
-    code: "#RV-126749",
+    votes: [
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+         and publishing industries for previewing layouts and visual mockups.`,
+      },
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+       and publishing industries for previewing layouts and visual mockups.`,
+      },
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+       and publishing industries for previewing layouts and visual mockups.`,
+      },
+    ],
     downArrow: VscTriangleDown,
     upArrow: VscTriangleUp,
     up: 10,
@@ -305,7 +333,23 @@ export const invoicesData = [
   },
   {
     date: "Fix Platform Errors",
-    code: "#FB-212562",
+    votes: [
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+         and publishing industries for previewing layouts and visual mockups.`,
+      },
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+       and publishing industries for previewing layouts and visual mockups.`,
+      },
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+       and publishing industries for previewing layouts and visual mockups.`,
+      },
+    ],
     downArrow: VscTriangleDown,
     upArrow: VscTriangleUp,
     up: 10,
@@ -315,7 +359,23 @@ export const invoicesData = [
   },
   {
     date: "Add Progress Track",
-    code: "#QW-103578",
+    votes: [
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+         and publishing industries for previewing layouts and visual mockups.`,
+      },
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+       and publishing industries for previewing layouts and visual mockups.`,
+      },
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+       and publishing industries for previewing layouts and visual mockups.`,
+      },
+    ],
     downArrow: VscTriangleDown,
     upArrow: VscTriangleUp,
     up: 10,
@@ -325,7 +385,23 @@ export const invoicesData = [
   },
   {
     date: "Add the New Pricing Page",
-    code: "#AR-803481",
+    votes: [
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+         and publishing industries for previewing layouts and visual mockups.`,
+      },
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+       and publishing industries for previewing layouts and visual mockups.`,
+      },
+      {
+        title: "vote title",
+        desc: ` Lorem ipsum is placeholder text commonly used in the graphic, print,
+       and publishing industries for previewing layouts and visual mockups.`,
+      },
+    ],
     downArrow: VscTriangleDown,
     upArrow: VscTriangleUp,
     up: 10,
@@ -334,7 +410,6 @@ export const invoicesData = [
     format: "PDF",
   },
 ];
-
 export const billingData = [
   {
     name: "Board Meeting",
@@ -355,7 +430,6 @@ export const billingData = [
     number: "AL- ZAKRI REAL ESTATE CO",
   },
 ];
-
 export const newestTransactions = [
   {
     name: "Netflix",
@@ -370,7 +444,6 @@ export const newestTransactions = [
     logo: FaArrowUp,
   },
 ];
-
 export const olderTransactions = [
   {
     name: "Stripe",
@@ -395,5 +468,29 @@ export const olderTransactions = [
     date: "25 March 2021, at 16:30 PM",
     price: "- $987",
     logo: FaArrowDown,
+  },
+];
+export const roomsData = [
+  { id: 1, location: "first floor", size: 6, tools: ["board", "screen"] },
+  { id: 2, location: "second floor", size: 8, tools: ["board", "screen"] },
+  { id: 3, location: "third floor", size: 10, tools: ["board", "screen"] },
+];
+export const usersData = [
+  { id: 1, name: "Mareem", position: "IT manager", email: "m@m.com" },
+  { id: 2, name: "Safiah", position: "IT manager", email: "s@s.com" },
+  { id: 3, name: "Najla", position: "IT manager", email: "s@s.com" },
+];
+export const comments = [
+  {
+    name: "Esthera Jackson",
+    value: "Lorem ipsum is placeholder text commonly used in the graphic",
+  },
+  {
+    name: "Esthera Jackson",
+    value: "Lorem ipsum is placeholder text commonly used in the graphic",
+  },
+  {
+    name: "Esthera Jackson",
+    value: "Lorem ipsum is placeholder text commonly used in the graphic",
   },
 ];
