@@ -12,17 +12,24 @@ import {
   Input,
   Heading,
 } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import en from "../locales/en";
+import ar from "../locales/ar";
 function AddItems(props) {
   const textColor = useColorModeValue("gray.700", "white");
+  const router = useRouter();
+  const { locale } = router;
+  let t=locale== 0 ? en : ar;
+  // t = locale === 0 ? en : ar;
   return (
     <div>
-      <Heading m={10}>Add item</Heading>
+      <Heading m={10}>{t.addItem}</Heading>
       <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
         {/* <Text fontSize="lg" color={textColor} fontWeight="bold">
           Meeting items
         </Text> */}
         {/*  */}
-        <Input placeholder="title" mb={4}></Input>
+        <Input placeholder={t.title} mb={4}></Input>
         <Flex
           mt={1}
           justify="center"
@@ -67,12 +74,12 @@ function AddItems(props) {
                   color: useColorModeValue("brand.400", "brand.300"),
                 }}
               >
-                <span>Upload a file</span>
+                <span>{t.uploadFile}</span>
                 <VisuallyHidden>
                   <input id="file-upload" name="file-upload" type="file" />
                 </VisuallyHidden>
               </chakra.label>
-              <Text pl={1}>or drag and drop</Text>
+              <Text pl={1}>{t.dragDrop}</Text>
             </Flex>
             <Text
               fontSize="xs"
@@ -83,9 +90,9 @@ function AddItems(props) {
           </Stack>
         </Flex>
         {/*  */}
-        <Button mt={4}>Add items</Button>
+        <Button mt={4}>{t.addItem}</Button>
         <Button ml={4} mt={4}>
-          delayed items
+          {t.delayedItem}
         </Button>
       </Box>
     </div>

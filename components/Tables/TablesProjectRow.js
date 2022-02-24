@@ -10,12 +10,16 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { FaEllipsisV } from "react-icons/fa";
-
+import { useRouter } from "next/router";
 function DashboardTableRow(props) {
   const { logo, name, status, budget, progression } = props;
   const textColor = useColorModeValue("gray.700", "white");
+  const router = useRouter();
+  const showDetails = () => {
+    router.push("/taskDetails");
+  };
   return (
-    <Tr>
+    <Tr onClick={showDetails}>
       <Td minWidth={{ sm: "250px" }} pl="0px">
         <Flex alignItems="center" py=".8rem" minWidth="100%" flexWrap="nowrap">
           <Icon as={logo} h={"24px"} w={"24px"} me="18px" />

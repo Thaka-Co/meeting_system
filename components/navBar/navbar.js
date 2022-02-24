@@ -16,6 +16,7 @@ import {
   Text,
   useColorModeValue,
   useDisclosure,
+  Select,
 } from "@chakra-ui/react";
 import {
   AutoComplete,
@@ -33,14 +34,25 @@ import { MdDashboard, MdKeyboardArrowRight } from "react-icons/md";
 import { ItemContent } from "../ItemContent";
 import Link from "next/link";
 import { dashboardTableData } from "../../Faker/general";
-
+import { useRouter } from "next/router";
+import en from "../../locales/en";
+import ar from "../../locales/ar";
 export default function MainNavBar(props) {
   const sidebar = useDisclosure();
   const integrations = useDisclosure();
   const options = ["apple", "appoint", "zap", "cap", "japan"];
-
+  const router = useRouter();
+  const { locale } = router;
+  const t = locale == 0 ? en : ar;
+  const selectLanguage = (e) => {
+    console.log(e.target.value);
+    const locale = e.target.value;
+    router.push(router.pathname, router.asPath, { locale });
+    // localStorage.setItem("language", e.target.value);
+  };
   const NavItem = (props) => {
     const { icon, children, ...rest } = props;
+    // sidebar icons and text style left nav
     return (
       <Flex
         align="center"
@@ -202,6 +214,17 @@ export default function MainNavBar(props) {
 
           <Flex align="center">
             <Menu>
+              {/* <MenuButton> */}
+              <Select
+                w={100}
+                m={4}
+                onChange={selectLanguage}
+                defaultValue={locale}
+              >
+                <option value={0}>English</option>
+                <option value={1}>Arabic</option>
+              </Select>
+              {/* </MenuButton> */}
               <MenuButton>
                 <Icon color="gray.500" as={FaBell} cursor="pointer" />
               </MenuButton>

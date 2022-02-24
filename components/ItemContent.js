@@ -1,5 +1,11 @@
 // chakra imports
-import { Avatar, Flex, Text, useColorModeValue } from "@chakra-ui/react";
+import {
+  Avatar,
+  Flex,
+  Select,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import React from "react";
 // for navBar items
 export function ItemContent(props) {
