@@ -6,8 +6,14 @@ import { Text, useColorModeValue } from "@chakra-ui/react";
 import { invoicesData } from "../Faker/general";
 import ItemDetails from "../components/ItemDetails";
 import { Attendance } from "./Attendance.js";
+import { useRouter } from "next/router";
+import en from "../locales/en";
+import ar from "../locales/ar";
 function MeetingDetails(props) {
   const textColor = useColorModeValue("gray.700", "white");
+  const router = useRouter();
+  const { locale } = router;
+  let t=locale== 'en' ? en : ar;
   return (
     <Box bg={useColorModeValue("gray.50", "inherit")}>
       <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
@@ -16,18 +22,18 @@ function MeetingDetails(props) {
         </Text>
         <HStack>
           <Text fontFamily={"cursive"} fontSize={"1rem"}>
-            location
+            {t.location}
           </Text>
           <Text p={3}>first floor</Text>
         </HStack>
         <HStack>
           <Text fontFamily={"cursive"} fontSize={"1rem"}>
-            Time
+            {t.time}
           </Text>
           <Text p={3}>21 DEC 11:21 PM</Text>
         </HStack>
       </Box>
-      <Heading m="10">Meeting Items</Heading>
+      <Heading m="10">{t.meetingItems}</Heading>
       {invoicesData.map((row) => {
         return (
           <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
@@ -45,7 +51,7 @@ function MeetingDetails(props) {
           </Box>
         );
       })}
-      <Heading m="10">Attendance</Heading>
+      <Heading m="10">{t.attendance}</Heading>
       {/* <Box bgColor={"white"} p={15} m={5} borderRadius={7}> */}
       {/* <Card overflowX={{ sm: "scroll", xl: "hidden" }}> */}
       {/* <CardHeader p="6px 0px 22px 0px"> */}

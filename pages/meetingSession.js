@@ -16,7 +16,13 @@ import CardBody from "../components/Card/CardBody";
 import TablesProjectRow from "../components/Tables/TablesProjectRow";
 import { tablesProjectData } from "../Faker/general";
 import CountDown from "../components/Timer/timer";
+import { useRouter } from "next/router";
+import en from "../locales/en";
+import ar from "../locales/ar";
 export default function MeetingSession() {
+  const router = useRouter();
+  const { locale } = router;
+  let t = locale == "en" ? en : ar;
   let isAcive = true;
   return (
     <MainNavBar>
@@ -34,7 +40,7 @@ export default function MeetingSession() {
           <CardHeader p="6px 0px 22px 0px">
             <Flex direction="column">
               <Text fontSize="lg" fontWeight="bold" pb=".5rem">
-                Tasks
+                {t.Tasks}
               </Text>
             </Flex>
           </CardHeader>
@@ -43,11 +49,11 @@ export default function MeetingSession() {
               <Thead>
                 <Tr my=".8rem" pl="0px">
                   <Th pl="0px" color="gray.400">
-                    Topic
+                    {t.topic}
                   </Th>
-                  <Th color="gray.400">Budget</Th>
-                  <Th color="gray.400">Status</Th>
-                  <Th color="gray.400">Completion</Th>
+                  <Th color="gray.400">{t.budget}</Th>
+                  <Th color="gray.400">{t.status}</Th>
+                  <Th color="gray.400">{t.completion}</Th>
                   <Th></Th>
                 </Tr>
               </Thead>

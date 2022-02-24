@@ -9,11 +9,16 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-
+import { useRouter } from "next/router";
+import en from "../locales/en";
+import ar from "../locales/ar";
 function ItemDetails(props) {
   const textColor = useColorModeValue("gray.700", "white");
   const { date, upArrow, downArrow, up, down, votes, price, format, logo } =
     props;
+  const router = useRouter();
+  const { locale } = router;
+  let t = locale == "en" ? en : ar;
   return (
     <Flex my={{ sm: "1rem", xl: "10px" }} bgColor={"white"} alignItems="center">
       <Flex direction="column" p={3}>
@@ -82,7 +87,7 @@ function ItemDetails(props) {
           })}
           <Button mt={4} bg={"#add8e6"}>
             {" "}
-            delayed
+            {t.delayed}
           </Button>
         </Box>
       </Flex>

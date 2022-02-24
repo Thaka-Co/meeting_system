@@ -10,9 +10,15 @@ import {
   Tr,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import en from "../../locales/en";
+import ar from "../../locales/ar";
 import { dashboardTableData } from "../../Faker/general";
 import DashboardTableRow from "../Tables/DashboardTableRow";
 function MyMeeting(props) {
+  const router = useRouter();
+  const { locale } = router;
+  let t=locale== 'en' ? en : ar;
   const textColor = useColorModeValue("gray.700", "white");
   return (
     <div>
@@ -21,11 +27,11 @@ function MyMeeting(props) {
           <Thead>
             <Tr my=".8rem" ps="0px">
               <Th ps="0px" color="gray.400">
-                Topics
+                {t.topic}
               </Th>
-              <Th color="gray.400">Members</Th>
-              <Th color="gray.400">Time Frame</Th>
-              <Th color="gray.400">Due Date</Th>
+              <Th color="gray.400">{t.members}</Th>
+              <Th color="gray.400">{t.timeFrame}</Th>
+              <Th color="gray.400">{t.dueDate}</Th>
             </Tr>
           </Thead>
           <Tbody>

@@ -9,13 +9,17 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
-
+import { useRouter } from "next/router";
+import en from "../../locales/en";
+import ar from "../../locales/ar";
 function TablesTableRow(props) {
   const { logo, name, email, subdomain, domain, status, date, attend } = props;
   const textColor = useColorModeValue("gray.700", "white");
   const bgStatus = useColorModeValue("gray.400", "#1a202c");
   const colorStatus = useColorModeValue("white", "gray.400");
-
+  const router = useRouter();
+  const { locale } = router;
+  let t = locale == "en" ? en : ar;
   return (
     <Tr>
       <Td minWidth={{ sm: "250px" }} pl="0px">
@@ -50,8 +54,8 @@ function TablesTableRow(props) {
       <Td>
         {attend ? (
           <Select>
-            <option>present</option>
-            <option>absent</option>
+            <option>{t.present}</option>
+            <option>{t.absent}</option>
           </Select>
         ) : (
           <Badge

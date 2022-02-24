@@ -14,10 +14,15 @@ import {
   Center,
   Tbody,
 } from "@chakra-ui/react";
+import en from "../../locales/en";
+import ar from "../../locales/ar";
 import { AiFillEdit } from "react-icons/ai";
 import { BsBoxArrowUpRight, BsFillTrashFill } from "react-icons/bs";
-
+import { useRouter } from "next/router";
 export default function TodayMeetings() {
+  const router = useRouter();
+  const { locale } = router;
+  let t = locale == "en" ? en : ar;
   const data = [
     { name: "Purity UI Version", created: "10 AM" },
     { name: "Fix Platform Errors", created: "8 PM" },
@@ -25,7 +30,7 @@ export default function TodayMeetings() {
     { name: "Add the New Pricing Page", created: "5 PM" },
     { name: "Redesign New Online Shop", created: "3 PM" },
   ];
-  const header = ["Topic", "Time", "actions"];
+  const header = [t.topic, t.time, t.actions];
   return data.length != 0 ? (
     <Table
       w="full"
@@ -133,12 +138,15 @@ export default function TodayMeetings() {
                   fontFamily: "heading",
                 }}
               >
-                Actions
+                {/* {t.actions} */}
               </Td>
               <Td>
                 <ButtonGroup variant="solid" size="sm" spacing={3}>
-                  <Link href='/meetingSession'>
-                  <IconButton colorScheme="blue" icon={<BsBoxArrowUpRight />} />
+                  <Link href="/meetingSession">
+                    <IconButton
+                      colorScheme="blue"
+                      icon={<BsBoxArrowUpRight />}
+                    />
                   </Link>
                   <IconButton colorScheme="green" icon={<AiFillEdit />} />
                   <IconButton
@@ -149,7 +157,7 @@ export default function TodayMeetings() {
                 </ButtonGroup>
               </Td>
             </Tr>
-          );  
+          );
         })}
       </Tbody>
     </Table>

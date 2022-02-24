@@ -15,13 +15,18 @@ import {
   Th,
   Input,
 } from "@chakra-ui/react";
-
+import { useRouter } from "next/router";
+import en from "../../locales/en";
+import ar from "../../locales/ar";
 export const UserData = (props) => {
   const textColor = useColorModeValue("gray.700", "white");
   const [attendance, setAttendance] = useState("");
   const [speakers, setSpeakers] = useState("");
   const [writer, setWriter] = useState("");
   const [time, setTime] = useState("");
+  const router = useRouter();
+  const { locale } = router;
+  let t = locale == "en" ? en : ar;
   //setUsers
   const selectUser = (e) => {
     console.log(e.target.value);
@@ -63,9 +68,9 @@ export const UserData = (props) => {
         {/* <CheckboxGroup  > */}{" "}
         <Table>
           <Thead>
-            <Th>attendance</Th>
-            <Th>speakers</Th>
-            <Th>writer</Th>
+            <Th>{t.attendance}</Th>
+            <Th>{t.speakers}</Th>
+            <Th>{t.writter}</Th>
           </Thead>
           {usersData.map((item, index) => {
             return (
@@ -108,7 +113,7 @@ export const UserData = (props) => {
           })}
         </Table>
         {/* </CheckboxGroup> */}
-        <Button mt={4}>Invite</Button>
+        <Button mt={4}>{t.invite}</Button>
       </Box>
     </div>
   );

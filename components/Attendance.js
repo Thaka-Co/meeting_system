@@ -12,9 +12,15 @@ import {
 } from "@chakra-ui/react";
 import TablesTableRow from "./Tables/TablesTableRow";
 import { tablesTableData } from "../Faker/general";
+import { useRouter } from "next/router";
+import en from "../locales/en";
+import ar from "../locales/ar";
 export const Attendance = (props) => {
   const { attend } = props;
   const textColor = useColorModeValue("gray.700", "white");
+  const router = useRouter();
+  const { locale } = router;
+  let t = locale == "en" ? en : ar;
   return (
     <div>
       {" "}
@@ -25,11 +31,11 @@ export const Attendance = (props) => {
             <Thead>
               <Tr my=".8rem" pl="0px">
                 <Th pl="0px" color="gray.400">
-                  Memeber
+                  {t.members}
                 </Th>
-                <Th color="gray.400">Function</Th>
-                <Th color="gray.400">Status</Th>
-                <Th color="gray.400">Employed</Th>
+                <Th color="gray.400">{t.function}</Th>
+                <Th color="gray.400">{t.status}</Th>
+                <Th color="gray.400">{t.employed}</Th>
                 <Th></Th>
               </Tr>
             </Thead>
