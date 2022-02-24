@@ -1,15 +1,13 @@
 // @flow
 import * as React from "react";
-import { MeetingRecored } from "../components/MeetingRecored";
+import { Setting } from "../components/Setting";
 import MainNavBar from "../components/navBar/navbar";
-function comments(props) {
+export default function setting(props) {
   return (
     <div>
-      {/* <AddComments /> */}
       <MainNavBar>
-        <MeetingRecored />
+        <Setting />
       </MainNavBar>
     </div>
   );
 }
-export default comments;

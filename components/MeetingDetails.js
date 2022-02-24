@@ -47,13 +47,13 @@ function MeetingDetails(props) {
       })}
       <Heading m="10">Attendance</Heading>
       {/* <Box bgColor={"white"} p={15} m={5} borderRadius={7}> */}
-        {/* <Card overflowX={{ sm: "scroll", xl: "hidden" }}> */}
-          {/* <CardHeader p="6px 0px 22px 0px"> */}
-            {/* <Text fontSize="xl" color={textColor} fontWeight="bold">
+      {/* <Card overflowX={{ sm: "scroll", xl: "hidden" }}> */}
+      {/* <CardHeader p="6px 0px 22px 0px"> */}
+      {/* <Text fontSize="xl" color={textColor} fontWeight="bold">
             </Text> */}
-          {/* </CardHeader> */}
-          <Attendance />
-        {/* </Card> */}
+      {/* </CardHeader> */}
+      <Attendance />
+      {/* </Card> */}
       {/* </Box> */}
       {/* <MeetingItems /> */}
       {/* <AddItems /> */}

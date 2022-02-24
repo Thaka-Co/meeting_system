@@ -10,12 +10,16 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
-
+import { useRouter } from "next/router";
 function DashboardTableRow(props) {
   const { logo, name, members, budget, progression } = props;
   const textColor = useColorModeValue("gray.700", "white");
+  const router = useRouter();
+  const showMeetingDetails=()=>{
+    router.push('/meetingDetails')
+  }
   return (
-    <Tr>
+    <Tr onClick={showMeetingDetails}>
       <Td minWidth={{ sm: "250px" }} pl="0px">
         <Flex align="center" py=".8rem" minWidth="100%" flexWrap="nowrap">
           <Icon as={logo} h={"24px"} w={"24px"} pe="5px" />

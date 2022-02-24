@@ -1,13 +1,22 @@
 import React from "react";
 import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
-import { Box, Checkbox, useColorModeValue, Select } from "@chakra-ui/react";
+import {
+  Box,
+  Checkbox,
+  useColorModeValue,
+  Select,
+  Text,
+} from "@chakra-ui/react";
 import moment from "moment";
 import { useState } from "react";
 import AddItems from "./AddItems";
 import MeetingItems from "./MeetingItems";
 import MeetingRooms from "./MeetingRooms";
 import { UserData } from "./Tables/UserData";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+
 function addMeeting(props) {
   const [date, setDate] = useState("");
   const [startH, setStartH] = useState("");
@@ -57,6 +66,7 @@ function addMeeting(props) {
           timeFormat="HH:mm:ss"
           timeConstraints={{ hours: { min: 8, max: 17 } }}
         />
+        {/* <Calendar className={"calendar"} /> */}
         <Checkbox
           onChange={(e) => {
             !cyclic ? setCyclic(true) : setCyclic(false);
@@ -79,6 +89,14 @@ function addMeeting(props) {
         <UserData />
         <MeetingItems />
         <AddItems />
+        <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
+          <Text mb={4}>record meeting type</Text>
+          <Select>
+            <option>type 1</option>
+            <option>type 2</option>
+            <option>type 3</option>
+          </Select>
+        </Box>
       </>
     </Box>
   );
