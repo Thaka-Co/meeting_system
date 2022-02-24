@@ -16,7 +16,6 @@ import CardBody from "../components/Card/CardBody";
 import TablesProjectRow from "../components/Tables/TablesProjectRow";
 import { tablesProjectData } from "../Faker/general";
 import CountDown from "../components/Timer/timer";
-
 export default function MeetingSession() {
   let isAcive = true;
   return (

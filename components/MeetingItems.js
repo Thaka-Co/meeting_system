@@ -7,7 +7,8 @@ import { invoicesData } from "../Faker/general";
 import InvoicesRow from "../components/Tables/InvoicesRow";
 function MeetingItems(props) {
   return (
-    <div><Heading m="10"> Meeting items</Heading>
+    <div>
+      <Heading m="10"> Meeting items</Heading>
       <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
         <Card>
           <CardHeader p="0px 0px 0px 0px">

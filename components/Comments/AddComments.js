@@ -7,13 +7,14 @@ import {
   useColorModeValue,
   Button,
   Stack,
+  Input,
 } from "@chakra-ui/react";
 export const AddComments = (props) => {
   return (
     <Box bg={useColorModeValue("gray.50", "inherit")}>
       <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
         <Text mb={3}>User name</Text>
-        <Flex
+        {/* <Flex
           mt={1}
           justify="center"
           px={6}
@@ -25,7 +26,8 @@ export const AddComments = (props) => {
           rounded="md"
         >
           <Stack spacing={1} textAlign="center"></Stack>
-        </Flex>
+        </Flex> */}
+        <Input type={"text"} />
         <Button mt={4}>reply</Button>
       </Box>
     </Box>

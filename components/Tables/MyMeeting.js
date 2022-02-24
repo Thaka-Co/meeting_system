@@ -17,7 +17,7 @@ function MyMeeting(props) {
   return (
     <div>
       {dashboardTableData.length != 0 ? (
-        <Table variant="simple" color={textColor}>
+        <Table variant="simple" color={textColor} >
           <Thead>
             <Tr my=".8rem" ps="0px">
               <Th ps="0px" color="gray.400">
