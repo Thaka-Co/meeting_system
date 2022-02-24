@@ -1,15 +1,13 @@
 // @flow
 import * as React from "react";
-import {
-  Box,
-  Flex,
-  Text,
-  useColorModeValue,
-  Button,
-  Stack,
-  Input,
-} from "@chakra-ui/react";
+import { Box, Text, useColorModeValue, Button, Input } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import en from "../../locales/en";
+import ar from "../../locales/ar";
 export const AddComments = (props) => {
+  const router = useRouter();
+  const { locale } = router;
+  let t = locale == "en" ? en : ar;
   return (
     <Box bg={useColorModeValue("gray.50", "inherit")}>
       <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
@@ -28,7 +26,7 @@ export const AddComments = (props) => {
           <Stack spacing={1} textAlign="center"></Stack>
         </Flex> */}
         <Input type={"text"} />
-        <Button mt={4}>reply</Button>
+        <Button mt={4}>{t.reply}</Button>
       </Box>
     </Box>
   );

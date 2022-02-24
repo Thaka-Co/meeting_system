@@ -2,7 +2,7 @@
 import * as React from "react";
 import { MeetingRecored } from "../components/MeetingRecored";
 import MainNavBar from "../components/navBar/navbar";
-function comments(props) {
+function meetingRecord(props) {
   return (
     <div>
       {/* <AddComments /> */}
@@ -12,4 +12,4 @@ function comments(props) {
     </div>
   );
 }
-export default comments;
+export default meetingRecord;

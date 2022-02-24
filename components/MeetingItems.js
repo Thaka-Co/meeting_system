@@ -5,10 +5,16 @@ import CardHeader from "../components/Card/CardHeader.js";
 import CardBody from "../components/Card/CardBody.js";
 import { invoicesData } from "../Faker/general";
 import InvoicesRow from "../components/Tables/InvoicesRow";
+import { useRouter } from "next/router";
+import en from "../locales/en";
+import ar from "../locales/ar";
 function MeetingItems(props) {
+  const router = useRouter();
+  const { locale } = router;
+  let t=locale== 'en' ? en : ar;
   return (
     <div>
-      <Heading m="10"> Meeting items</Heading>
+      <Heading m="10">{t.meetingItems}</Heading>
       <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
         <Card>
           <CardHeader p="0px 0px 0px 0px">

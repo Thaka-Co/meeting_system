@@ -43,7 +43,8 @@ export default function MainNavBar(props) {
   const options = ["apple", "appoint", "zap", "cap", "japan"];
   const router = useRouter();
   const { locale } = router;
-  const t = locale == 0 ? en : ar;
+  const t = locale == "en" ? en : ar;
+  let ditLang = locale == "en" ? "ltr" : "rtl";
   const selectLanguage = (e) => {
     console.log(e.target.value);
     const locale = e.target.value;
@@ -55,6 +56,7 @@ export default function MainNavBar(props) {
     // sidebar icons and text style left nav
     return (
       <Flex
+        dir={ditLang}
         align="center"
         px="4"
         pl="4"
@@ -87,6 +89,7 @@ export default function MainNavBar(props) {
 
   const SidebarContent = (props) => (
     <Box
+      dir={ditLang}
       as="nav"
       pos="fixed"
       top="0"
@@ -120,10 +123,10 @@ export default function MainNavBar(props) {
         aria-label="Main Navigation"
       >
         <Link href="/dashbord">
-          <NavItem icon={MdDashboard}>Dashboard</NavItem>
+          <NavItem icon={MdDashboard}>{t.dashboard}</NavItem>
         </Link>
         <Link href="/meeting">
-          <NavItem icon={FaRss}>Add meeting</NavItem>
+          <NavItem icon={FaRss}>{t.addMeeting}</NavItem>
         </Link>
         <NavItem icon={HiCollection}>Collections</NavItem>
         <NavItem icon={FaClipboardCheck}>Checklists</NavItem>
@@ -147,13 +150,14 @@ export default function MainNavBar(props) {
           </NavItem>
         </Collapse>
         <NavItem icon={AiFillGift}>Changelog</NavItem>
-        <NavItem icon={BsGearFill}>Settings</NavItem>
+        <NavItem icon={BsGearFill}>{t.setting}</NavItem>
       </Flex>
     </Box>
   );
 
   return (
     <Box
+      dir={ditLang}
       as="section"
       bg={useColorModeValue("gray.50", "gray.700")}
       minH="100vh"
@@ -221,8 +225,8 @@ export default function MainNavBar(props) {
                 onChange={selectLanguage}
                 defaultValue={locale}
               >
-                <option value={0}>English</option>
-                <option value={1}>Arabic</option>
+                <option value={"en"}>English</option>
+                <option value={"ar"}>Arabic</option>
               </Select>
               {/* </MenuButton> */}
               <MenuButton>

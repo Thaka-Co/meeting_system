@@ -12,14 +12,20 @@ import { IoLocationOutline } from "react-icons/io5";
 import { BsPeople } from "react-icons/bs";
 import { CgToolbox } from "react-icons/cg";
 import { roomsData } from "../Faker/general";
+import { useRouter } from "next/router";
+import en from "../locales/en";
+import ar from "../locales/ar";
 function MeetingRooms(props) {
   const textColor = useColorModeValue("gray.700", "white");
   const selectRoom = (e) => {
     console.log(e);
   };
+  const router = useRouter();
+  const { locale } = router;
+  let t=locale== 'en' ? en : ar;
   return (
     <div>
-      <Heading m="10">Meeting room</Heading>
+      <Heading m="10">{t.meetingRoom}</Heading>
       <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
         {/* <Text fontSize="lg" color={textColor} fontWeight="bold">
           Select the meeting room

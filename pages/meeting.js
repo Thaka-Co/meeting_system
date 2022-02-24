@@ -10,5 +10,4 @@ function meeting(props) {
     </div>
   );
 }
-
 export default meeting;
