@@ -19,7 +19,7 @@ function AddItems(props) {
   const textColor = useColorModeValue("gray.700", "white");
   const router = useRouter();
   const { locale } = router;
-  let t=locale== 0 ? en : ar;
+  let t=locale== 'en' ? en : ar;
   // t = locale === 0 ? en : ar;
   return (
     <div>

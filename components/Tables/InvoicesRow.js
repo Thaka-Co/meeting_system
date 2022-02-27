@@ -22,8 +22,15 @@ import {
 import { useDisclosure } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { usersData } from "../../Faker/general";
+import { useRouter } from "next/router";
+import en from "../../locales/en";
+import ar from "../../locales/ar";
 function InvoicesRow(props) {
   const [checkedBox, setCheckedBox] = useState("");
+  const router = useRouter();
+  const { locale } = router;
+  let t = locale == "en" ? en : ar;
+  let ditLang = locale == "en" ? "ltr" : "rtl";
   const selectUser = (e) => {
     console.log(e.target.value);
     e.target.checked
@@ -75,7 +82,7 @@ function InvoicesRow(props) {
             >
               <Flex alignItems="center" p="12px" onClick={onOpen}>
                 <Text fontSize="md" color={textColor} fontWeight="bold">
-                  add vote
+                  {t.addVote}
                 </Text>
               </Flex>
             </Button>
@@ -90,7 +97,7 @@ function InvoicesRow(props) {
             >
               <Flex alignItems="center" p="12px">
                 <Text fontSize="md" color={textColor} fontWeight="bold">
-                  delay
+                  {t.delay}
                 </Text>
               </Flex>
             </Button>
@@ -108,22 +115,18 @@ function InvoicesRow(props) {
         {/* {clicked ? ( */}
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Vote info</ModalHeader>
+          <ModalContent dir={ditLang}>
+            <ModalHeader>{t.voteInfo}</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-              <Input type={"text"} placeholder={"Title"} mt={4}></Input>
-              <Textarea
-                resize={"none"}
-                placeholder="Description"
-                mt={4}
-              ></Textarea>
+              <Input type={"text"} placeholder={t.title} mt={4}></Input>
+              <Textarea resize={"none"} placeholder={t.desc} mt={4}></Textarea>
               <Select mt={4}>
-                <option value="">vote type</option>
-                <option value={0}>private</option>
-                <option value={1}>public</option>
+                <option value="">{t.voteType}</option>
+                <option value={0}>{t.private}</option>
+                <option value={1}>{t.public}</option>
               </Select>
-              <Text mt={4}>how can vote ?</Text>
+              <Text mt={4}>{t.canVote}</Text>
               {/* <CheckboxGroup  name='hi'> */}
               {usersData.map((item, index) => {
                 return (
@@ -144,7 +147,7 @@ function InvoicesRow(props) {
             </ModalBody>
             <ModalFooter>
               <Button colorScheme="blue" mr={3} onClick={onClose}>
-                Invite
+                {t.invite}
               </Button>
               {/* <Button variant='ghost'>Secondary Action</Button> */}
             </ModalFooter>
@@ -159,11 +162,11 @@ function InvoicesRow(props) {
           <Textarea
             display={"block"}
             resize={"none"}
-            placeholder="Description"
+            placeholder={t.desc}
             mt={4}
           ></Textarea>
           <Button mt={5} bg={"#c5e1a5"} _hover={"none"}>
-            Save
+            {t.save}
           </Button>
         </>
       ) : (

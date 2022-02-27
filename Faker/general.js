@@ -21,6 +21,8 @@ import {
 } from "react-icons/fa";
 import { SiDropbox } from "react-icons/si";
 import { VscTriangleUp, VscTriangleDown } from "react-icons/vsc";
+
+
 export const dashboardTableData = [
   {
     logo: "AdobexdLogo",
@@ -190,7 +192,7 @@ export const tablesTableData = [
     email: "alexa@simmmple.com",
     subdomain: "Manager",
     domain: "Organization",
-    status: "present",
+    status:`present`,
     date: "14/06/21",
   },
   {

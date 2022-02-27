@@ -3,9 +3,6 @@ import {
   SimpleGrid,
   Button,
   useDisclosure,
-  Modal,
-  ModalContent,
-  ModalCloseButton,
   useColorModeValue as mode,
 } from "@chakra-ui/react";
 import * as React from "react";
@@ -18,8 +15,13 @@ import {
   FaClipboardList,
   FaClipboardCheck,
 } from "react-icons/fa";
-
+import { useRouter } from "next/router";
+import en from "../../locales/en";
+import ar from "../../locales/ar";
 export default function Status() {
+  const router = useRouter();
+  const { locale } = router;
+  let t = locale == "en" ? en : ar;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [show, setShow] = React.useState(false);
   const open = () => {
@@ -54,25 +56,25 @@ export default function Status() {
               spacing="6"
             >
               <Stat key="Meetings">
-                <StatLabel>Meetings</StatLabel>
+                <StatLabel>{t.Meetings}</StatLabel>
                 <FaCalendarAlt />
                 <StatNumber>10</StatNumber>
               </Stat>
 
               <Stat key="CompletedMeetings">
-                <StatLabel>CompletedMeetings</StatLabel>
+                <StatLabel>{t.CompletedMeetings}</StatLabel>
                 <FaRegCalendarCheck />
                 <StatNumber>10</StatNumber>
               </Stat>
 
               <Stat key="Tasks">
-                <StatLabel>Tasks</StatLabel>
+                <StatLabel>{t.Tasks}</StatLabel>
                 <FaClipboardList />
                 <StatNumber>10</StatNumber>
               </Stat>
 
               <Stat key="Complated Ta">
-                <StatLabel>Complated Tasks</StatLabel>
+                <StatLabel>{t.complatedTasks}</StatLabel>
                 <FaClipboardCheck />
                 <StatNumber>10</StatNumber>
               </Stat>

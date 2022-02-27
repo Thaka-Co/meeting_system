@@ -3,7 +3,7 @@ import * as React from "react";
 import { VoteDetails } from "../components/VoteDetails";
 import { invoicesData } from "../Faker/general";
 import MainNavBar from "../components/navBar/navbar";
-function voteDetsils(props) {
+function voteDetails(props) {
   return (
     <div>
       <MainNavBar>
@@ -12,4 +12,4 @@ function voteDetsils(props) {
     </div>
   );
 }
-export default voteDetsils;
+export default voteDetails;

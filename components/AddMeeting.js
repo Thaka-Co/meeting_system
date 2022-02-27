@@ -16,7 +16,9 @@ import MeetingRooms from "./MeetingRooms";
 import { UserData } from "./Tables/UserData";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-
+import { useRouter } from "next/router";
+import en from "../locales/en";
+import ar from "../locales/ar";
 function addMeeting(props) {
   const [date, setDate] = useState("");
   const [startH, setStartH] = useState("");
@@ -24,8 +26,12 @@ function addMeeting(props) {
   const [endH, setEndH] = useState("");
   const [endMin, setEndMin] = useState("");
   const [cyclic, setCyclic] = useState(false);
+  const router = useRouter();
+  const { locale } = router;
+  let t = locale == "en" ? en : ar;
   console.log("starting", startH, startMin);
   console.log("ending", endH, endMin);
+
   const meetings = [];
   const selectDate = (e) => {
     console.log(e._d, "date");
@@ -45,14 +51,14 @@ function addMeeting(props) {
           onChange={selectDate}
           isValidDate={valid}
           timeFormat={false}
-          inputProps={{ placeholder: "select date please" }}
+          inputProps={{ placeholder: t.selectDate }}
         />
         <Datetime
           onChange={(e) => {
             setStartH(e._d.getHours()), setStartMin(e._d.getMinutes());
           }}
           dateFormat={false}
-          inputProps={{ placeholder: "Start Time" }}
+          inputProps={{ placeholder: t.startDate }}
           timeFormat="HH:mm:ss"
           timeConstraints={{ hours: { min: 8, max: 17 } }}
         />
@@ -62,7 +68,7 @@ function addMeeting(props) {
             setEndMin(e._d.getMinutes());
           }}
           dateFormat={false}
-          inputProps={{ placeholder: "End Time" }}
+          inputProps={{ placeholder: t.endTime }}
           timeFormat="HH:mm:ss"
           timeConstraints={{ hours: { min: 8, max: 17 } }}
         />
@@ -72,13 +78,13 @@ function addMeeting(props) {
             !cyclic ? setCyclic(true) : setCyclic(false);
           }}
         >
-          Cyclic meeting
+          {t.cyclicMeeting}
         </Checkbox>
         {cyclic ? (
           <Select>
-            <option>Daily</option>
-            <option>weekly</option>
-            <option>monthly</option>
+            <option>{t.Daily}</option>
+            <option>{t.weekly}</option>
+            <option>{t.monthly}</option>
           </Select>
         ) : (
           ""
@@ -90,7 +96,7 @@ function addMeeting(props) {
         <MeetingItems />
         <AddItems />
         <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
-          <Text mb={4}>record meeting type</Text>
+          <Text mb={4}>{t.recordMeetingType}</Text>
           <Select>
             <option>type 1</option>
             <option>type 2</option>

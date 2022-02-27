@@ -21,9 +21,16 @@ import MeetingItems from "./MeetingItems";
 import { invoicesData } from "../Faker/general";
 import InvoicesRow from "../components/Tables/InvoicesRow";
 import Swal from "sweetalert2";
+import { useRouter } from "next/router";
+import en from "../locales/en";
+import ar from "../locales/ar";
 export const MeetingRecored = (props) => {
   const [i, setI] = React.useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const router = useRouter();
+  const { locale } = router;
+  let t = locale == "en" ? en : ar;
+  let ditLang = locale == "en" ? "ltr" : "rtl";
   const showChooses = () => {
     setI(true);
   };
@@ -68,7 +75,7 @@ export const MeetingRecored = (props) => {
                   </ModalBody>
                   <ModalFooter>
                     <Button colorScheme="blue" mr={140} onClick={onClose}>
-                      Download
+                      {t.downlodas}
                     </Button>
                     {/* <Button variant='ghost'>Secondary Action</Button> */}
                   </ModalFooter>
