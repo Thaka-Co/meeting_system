@@ -16,9 +16,11 @@ import {
 
 import * as React from 'react'
 import { PasswordField } from '../components/forms/passwordFiled'
-
+import Header from '../components/navBar/landingHeader'
 export default function App  () {
   return (
+ <>
+ <Header/>
   <Container
     maxW="lg"
     py={{
@@ -49,9 +51,12 @@ export default function App  () {
           </Heading>
           <HStack spacing="1" justify="center">
             <Text color="muted">You have an account?</Text>
+            <a href='/signin'>
+
             <Button variant="link" colorScheme="blue">
         Sign in
             </Button>
+            </a>
           </HStack>
         </Stack>
       </Stack>
@@ -99,5 +104,7 @@ export default function App  () {
       </Box>
     </Stack>
   </Container>
+
+    </>
 )
       }

@@ -14,10 +14,12 @@ import {
 } from '@chakra-ui/react'
 import * as React from 'react'
 import { PasswordField } from '../components/forms/passwordFiled'
-
+import Header from '../components/navBar/landingHeader'
 
 export default function App  () {
   return (
+    <>
+  <Header/>   
   <Container
     maxW="lg"
     py={{
@@ -48,9 +50,11 @@ export default function App  () {
           </Heading>
           <HStack spacing="1" justify="center">
             <Text color="muted">Don't have an account?</Text>
+            <a href='/signup'>  
             <Button variant="link" colorScheme="blue">
               Sign up
             </Button>
+            </a>
           </HStack>
         </Stack>
       </Stack>
@@ -97,5 +101,7 @@ export default function App  () {
       </Box>
     </Stack>
   </Container>
+
+    </>
 )
       } 
