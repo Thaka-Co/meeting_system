@@ -2,7 +2,7 @@
 
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
-import rtl from "stylis-plugin-rtl";
+import rtl from 'stylis-plugin-rtl';
 import { useRouter } from "next/router";
 // NB: A unique `key` is important for it to work!
 const options = {
