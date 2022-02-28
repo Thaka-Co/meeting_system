@@ -9,7 +9,7 @@ import ar from "../locales/ar";
 export default function dashbord() {
   const router = useRouter();
   const { locale } = router;
-  let t=locale== 'en' ? en : ar;
+  let t = locale == "en" ? en : ar;
   return (
     <MainNavBar>
       <Status />

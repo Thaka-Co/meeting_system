@@ -11,7 +11,7 @@ import ar from "../locales/ar";
 function MeetingItems(props) {
   const router = useRouter();
   const { locale } = router;
-  let t=locale== 'en' ? en : ar;
+  let t = locale == "en" ? en : ar;
   return (
     <div>
       <Heading m="10">{t.meetingItems}</Heading>
