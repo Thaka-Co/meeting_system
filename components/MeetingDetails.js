@@ -13,7 +13,7 @@ function MeetingDetails(props) {
   const textColor = useColorModeValue("gray.700", "white");
   const router = useRouter();
   const { locale } = router;
-  let t=locale== 'en' ? en : ar;
+  let t = locale == "en" ? en : ar;
   return (
     <Box bg={useColorModeValue("gray.50", "inherit")}>
       <Box bgColor={"white"} p={15} m={5} borderRadius={7}>

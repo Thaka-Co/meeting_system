@@ -18,12 +18,12 @@ import DashboardTableRow from "../Tables/DashboardTableRow";
 function MyMeeting(props) {
   const router = useRouter();
   const { locale } = router;
-  let t=locale== 'en' ? en : ar;
+  let t = locale == "en" ? en : ar;
   const textColor = useColorModeValue("gray.700", "white");
   return (
     <div>
       {dashboardTableData.length != 0 ? (
-        <Table variant="simple" color={textColor} >
+        <Table variant="simple" color={textColor}>
           <Thead>
             <Tr my=".8rem" ps="0px">
               <Th ps="0px" color="gray.400">

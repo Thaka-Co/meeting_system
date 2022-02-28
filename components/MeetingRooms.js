@@ -22,7 +22,7 @@ function MeetingRooms(props) {
   };
   const router = useRouter();
   const { locale } = router;
-  let t=locale== 'en' ? en : ar;
+  let t = locale == "en" ? en : ar;
   return (
     <div>
       <Heading m="10">{t.meetingRoom}</Heading>

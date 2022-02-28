@@ -15,9 +15,9 @@ function DashboardTableRow(props) {
   const { logo, name, members, budget, progression } = props;
   const textColor = useColorModeValue("gray.700", "white");
   const router = useRouter();
-  const showMeetingDetails=()=>{
-    router.push('/meetingDetails')
-  }
+  const showMeetingDetails = () => {
+    router.push("/meetingDetails");
+  };
   return (
     <Tr onClick={showMeetingDetails}>
       <Td minWidth={{ sm: "250px" }} pl="0px">

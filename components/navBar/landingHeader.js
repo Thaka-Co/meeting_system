@@ -264,9 +264,7 @@ export default function Header() {
           <Flex align="flex-start">
             <Link href="/">
               <HStack>
-            <Text>
-             حوكمة 
-              </Text> 
+                <Text>حوكمة</Text>
               </HStack>
             </Link>
           </Flex>
@@ -322,15 +320,14 @@ export default function Header() {
           <Flex justify="flex-end" align="center" color="gray.400">
             <HStack spacing="5" display={{ base: "none", md: "flex" }}>
               <a href="signin">
-                
-              <Button colorScheme="brand" variant="ghost" size="sm">
-                Sign in
-              </Button>
+                <Button colorScheme="brand" variant="ghost" size="sm">
+                  Sign in
+                </Button>
               </a>
               <a href="/signup">
-              <Button colorScheme="brand" variant="ghost" size="sm">
-                Sign up
-              </Button>
+                <Button colorScheme="brand" variant="ghost" size="sm">
+                  Sign up
+                </Button>
               </a>
             </HStack>
             <IconButton

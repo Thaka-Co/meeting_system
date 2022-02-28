@@ -23,7 +23,7 @@ export const VoteDetails = (props) => {
   // let ditLang = locale == "en" ? "ltr" : "rtl";
   return (
     <div>
-      <Box bg={useColorModeValue("gray.50", "inherit")} >
+      <Box bg={useColorModeValue("gray.50", "inherit")}>
         <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
           <Input value={votes.title} disabled mb={4} />
           <Textarea disabled resize={"none"}>
