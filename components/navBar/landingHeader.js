@@ -26,7 +26,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { AiFillHome, AiOutlineInbox, AiOutlineMenu } from "react-icons/ai";
 import { BsFillCameraVideoFill } from "react-icons/bs";
 import { FaMoon, FaSun } from "react-icons/fa";
-
+import { useSession,signOut } from "next-auth/react";
 export default function Header() {
   const { toggleColorMode: toggleMode } = useColorMode();
   const text = useColorModeValue("dark", "light");
@@ -35,15 +35,17 @@ export default function Header() {
   const ref = React.useRef();
   const [y, setY] = React.useState(0);
   const { height = 0 } = ref.current ? ref.current.getBoundingClientRect() : {};
-
+  const {data:session} = useSession();
   const { scrollY } = useViewportScroll();
   React.useEffect(() => {
     return scrollY.onChange(() => setY(scrollY.get()));
   }, [scrollY]);
   const cl = useColorModeValue("gray.800", "white");
   const mobileNav = useDisclosure();
+  const clickHandler = () => {signOut()}
 
-  const Section = (props) => {
+  
+      const Section = (props) => {
     const ic = useColorModeValue("brand.600", "brand.50");
     const hbg = useColorModeValue("gray.50", "brand.400");
     const tcl = useColorModeValue("gray.900", "gray.50");
@@ -130,7 +132,7 @@ export default function Header() {
           p={{ sm: 8 }}
         >
           {sections.map(({ title, icon, description }) => (
-            <Section title={title} icon={icon}>
+            <Section title={title} key={title} icon={icon}>
               {description}
             </Section>
           ))}
@@ -318,18 +320,28 @@ export default function Header() {
             </HStack>
           </Flex>
           <Flex justify="flex-end" align="center" color="gray.400">
+            {
+              session?
+              
             <HStack spacing="5" display={{ base: "none", md: "flex" }}>
-              <a href="signin">
+                <Button colorScheme="brand" variant="ghost" size="sm" onClick={clickHandler} >
+                  Sign Out
+                </Button>
+            </HStack>
+              :
+            <HStack spacing="5" display={{ base: "none", md: "flex" }}>
+              <Link href="/signin">
                 <Button colorScheme="brand" variant="ghost" size="sm">
                   Sign in
                 </Button>
-              </a>
-              <a href="/signup">
+              </Link>
+              <Link href="/signup">
                 <Button colorScheme="brand" variant="ghost" size="sm">
                   Sign up
                 </Button>
-              </a>
+              </Link>
             </HStack>
+            }
             <IconButton
               size="md"
               fontSize="lg"

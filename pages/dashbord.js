@@ -6,11 +6,18 @@ import TodayMeetings from "../components/Tables/TodayMeetings";
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
-export default function dashbord() {
+import { useSession } from "next-auth/react";
+import { redirect } from "next/dist/server/api-utils";
+export default  function dashbord() {
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
+   const { data: session } =   useSession()
+  console.log(session)
+
   return (
+    <>
+    {session?
     <MainNavBar>
       <Status />
       <Heading m="10">{t.ToDayMeetings}</Heading>
@@ -20,5 +27,8 @@ export default function dashbord() {
       {/* My Meetings Table */}
       <MyMeeting />
     </MainNavBar>
-  );
+    :<></>
+}
+    </>
+    )
 }
