@@ -1,9 +1,8 @@
-import NextAuth from "next-auth"
-import CredentialsProvider from "next-auth/providers/credentials"
+import NextAuth from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
 // import registerUser from "../../../lib/services/user/registerUser"
-import Users from '../../../lib/models/user/userModel'
+import Users from "../../../lib/models/user/userModel";
 export default NextAuth({
-
   providers: [
     // ...add more providers here
     CredentialsProvider({
@@ -17,52 +16,49 @@ export default NextAuth({
         email: {
           label: "Username",
           type: "text",
-          placeholder: "jsmith"
+          placeholder: "jsmith",
         },
         password: {
           label: "Password",
-          type: "password"
-        }
+          type: "password",
+        },
       },
 
       async authorize(credentials, req) {
-        const data = await Users.find({})
-        console.log( credentials.email)
-        console.log( credentials.password)
+        const data = await Users.find({});
+        console.log(credentials.email);
+        console.log(credentials.password);
         // console.log(data)
         // registerUser('ali','ali@gg.com','1234')
 
         const user = {
           id: data[0].id,
           name: data[0].name,
-          email: data[0].email
+          email: data[0].email,
+        };
+        if (
+          credentials.email === data[0].email &&
+          credentials.password === data[0].password
+        ) {
+          return user;
         }
-        if (credentials.email === data[0].email && credentials.password === data[0].password) {
-        return user
-        }
-        return null
-      }
-    })
+        return null;
+      },
+    }),
   ],
   callbacks: {
-    jwt: async ({
-      token,
-      user
-    }) => {
+    jwt: async ({ token, user }) => {
       if (user) {
-        token.id = user.id
+        token.id = user.id;
       }
-      return token
+      return token;
     },
-    session: ({
-      session,
-      token
-    }) => {
+    session: ({ session, token }) => {
       if (token) {
-        session.id = token.id
+        session.id = token.id;
       }
-      return session
-    }
+      return session;
+    },
   },
   secret: "test",
   jwt: {
@@ -70,6 +66,6 @@ export default NextAuth({
     encryption: true,
   },
   pages: {
-    signIn:'/signin'
-  }
-})
+    signIn: "/signin",
+  },
+});

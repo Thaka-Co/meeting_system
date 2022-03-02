@@ -29,15 +29,18 @@ export default function MeetingSession() {
   return (
     <MainNavBar>
       {!isAcive ? (
-        session?
-        <Flex d="row">
-          <Center>
-            <Heading>
-              Meeting Soon
-              <CountDown seconds={10} />
-            </Heading>
-          </Center>
-        </Flex>:''
+        session ? (
+          <Flex d="row">
+            <Center>
+              <Heading>
+                Meeting Soon
+                <CountDown seconds={10} />
+              </Heading>
+            </Center>
+          </Flex>
+        ) : (
+          ""
+        )
       ) : (
         <Card my="22px" overflowX={{ sm: "scroll", xl: "hidden" }}>
           <CardHeader p="6px 0px 22px 0px">
