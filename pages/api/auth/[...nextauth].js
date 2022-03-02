@@ -2,6 +2,7 @@ import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 // import registerUser from "../../../lib/services/user/registerUser"
 import Users from '../../../lib/models/user/userModel'
+const crypto = require('crypto');
 export default NextAuth({
 
   providers: [
@@ -26,19 +27,22 @@ export default NextAuth({
       },
 
       async authorize(credentials, req) {
-        const data = await Users.find({})
-        console.log( credentials.email)
-        console.log( credentials.password)
-        // console.log(data)
+        const data = await Users.find({}).where('email').equals(credentials.email)
+        console.log(credentials.email)
+        console.log(credentials.password)
+        console.log(data)
         // registerUser('ali','ali@gg.com','1234')
-
-        const user = {
+        const isData = data.length > 0;
+        const user = isData ? {
           id: data[0].id,
           name: data[0].name,
           email: data[0].email
-        }
-        if (credentials.email === data[0].email && credentials.password === data[0].password) {
-        return user
+        } : null
+
+        const hashedPasswrod = crypto.Hash('sha256', credentials.password).update('hello wrold ').digest('hex')
+
+        if (isData && credentials.email === data[0].email && hashedPasswrod === data[0].password) {
+          return user
         }
         return null
       }
@@ -70,6 +74,6 @@ export default NextAuth({
     encryption: true,
   },
   pages: {
-    signIn:'/signin'
+    signIn: '/signin'
   }
 })
