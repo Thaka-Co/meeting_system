@@ -1,4 +1,4 @@
-const roomModel = require("../../lib/models/Rooms/roomsModel");
+const roomModel = require("../../../lib/models/Rooms/roomsModel");
 
 export default async function getRoom(req, res) {
   try {

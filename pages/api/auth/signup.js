@@ -9,8 +9,9 @@ export default async function handler(req, res) {
             console.log(name, email, password)
             const hashedPasswrod = crypto.Hash('sha256', password).update('hello wrold ').digest('hex')
             const data = await Users.find({}).where('email').equals(email)
+            console.log(data);
             const isData = data.length > 0;
-
+            console.log(isData);
             if (!isData) {
                 //register the user and redirect him to signin page
                 console.log('registerd')

@@ -1,12 +1,8 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 // import registerUser from "../../../lib/services/user/registerUser"
-<<<<<<< HEAD
-import Users from "../../../lib/models/user/userModel";
-=======
 import Users from '../../../lib/models/user/userModel'
 const crypto = require('crypto');
->>>>>>> 2b40437e24f871855c40fa1784b54632fa41e319
 export default NextAuth({
   providers: [
     // ...add more providers here
