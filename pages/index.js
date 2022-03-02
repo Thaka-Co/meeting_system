@@ -2,11 +2,18 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
 import Header from "../components/navBar/landingHeader";
-import {useSession} from 'next-auth/react'
 export default function Home() {
   const { locale, locales, asPath } = useRouter();
+<<<<<<< HEAD
   const {data:session} = useSession()
   console.log(session)
+=======
+
+  const t = locale === 0 ? en : ar;
+
+
+
+>>>>>>> 2b40437e24f871855c40fa1784b54632fa41e319
   return (
     <>
       <Header />

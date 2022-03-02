@@ -17,7 +17,14 @@ import Link from "next/link";
 import * as React from "react";
 import { PasswordField } from "../components/forms/passwordFiled";
 import Header from "../components/navBar/landingHeader";
+<<<<<<< HEAD
 import { getCsrfToken, getSession } from "next-auth/react";
+=======
+import { getCsrfToken, getSession } from "next-auth/react"
+
+
+
+>>>>>>> 2b40437e24f871855c40fa1784b54632fa41e319
 export default function App({ csrfToken }) {
   return (
     <>
@@ -85,11 +92,35 @@ export default function App({ csrfToken }) {
             >
               <Stack spacing="6">
                 <Stack spacing="5">
+<<<<<<< HEAD
                   <input
                     name="csrfToken"
                     type="hidden"
                     defaultValue={csrfToken}
                   />
+=======
+                  <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+
+                  <FormControl>
+                    <FormLabel htmlFor="email">Email</FormLabel>
+                    <Input id="email" name="email" type="email" />
+                  </FormControl>
+                  <PasswordField />
+                </Stack>
+                <HStack justify="space-between">
+                  <Checkbox defaultIsChecked>Remember me</Checkbox>
+                  <Button variant="link" colorScheme="blue" size="sm">
+                    Forgot password?
+                  </Button>
+                </HStack>
+                <Stack spacing="6">
+                  <Button variant="primary" type="submit" >Sign in</Button>
+                </Stack>
+              </Stack>
+            </Box>
+
+          </form>
+>>>>>>> 2b40437e24f871855c40fa1784b54632fa41e319
 
                   <FormControl>
                     <FormLabel htmlFor="email">Email</FormLabel>
@@ -119,10 +150,18 @@ export default function App({ csrfToken }) {
 export async function getServerSideProps(context) {
   const { req, res } = context;
   const session = await getSession({ req });
+<<<<<<< HEAD
   if (session && res) {
     console.log("working");
     res.writeHead(301, {
       Location: "/",
+=======
+  // console.log(session)
+  if (session && res) {
+    console.log('working')
+    res.writeHead(302, {
+      Location: '/'
+>>>>>>> 2b40437e24f871855c40fa1784b54632fa41e319
     });
     res.end();
   }
