@@ -16,7 +16,6 @@ import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
 function MeetingRooms(props) {
-  const textColor = useColorModeValue("gray.700", "white");
   const selectRoom = (e) => {
     console.log(e);
   };

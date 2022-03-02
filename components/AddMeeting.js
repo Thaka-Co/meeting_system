@@ -19,6 +19,8 @@ import "react-calendar/dist/Calendar.css";
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
+import DatePicker from "react-datepicker";
+// import "../styles/calendar.css";
 function addMeeting(props) {
   const [date, setDate] = useState("");
   const [startH, setStartH] = useState("");
@@ -47,12 +49,15 @@ function addMeeting(props) {
   return (
     <Box bg={useColorModeValue("gray.50", "inherit")}>
       <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
-        <Datetime
+        {/* <Datetime
           onChange={selectDate}
           isValidDate={valid}
           timeFormat={false}
-          inputProps={{ placeholder: t.selectDate }}
-        />
+          inputP
+          rops={{ placeholder: t.selectDate }}
+        /> */}
+        {/* <DatePicker controls={["time"]} select="range" touchUi={true} /> */}
+        <Calendar className={"calendar"} onChange={selectDate} />
         <Datetime
           onChange={(e) => {
             setStartH(e._d.getHours()), setStartMin(e._d.getMinutes());
@@ -72,7 +77,7 @@ function addMeeting(props) {
           timeFormat="HH:mm:ss"
           timeConstraints={{ hours: { min: 8, max: 17 } }}
         />
-        {/* <Calendar className={"calendar"} /> */}
+
         <Checkbox
           onChange={(e) => {
             !cyclic ? setCyclic(true) : setCyclic(false);

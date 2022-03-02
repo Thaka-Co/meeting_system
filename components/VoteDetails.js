@@ -1,9 +1,7 @@
 // @flow
 import * as React from "react";
-import { invoicesData } from "../Faker/general";
 import {
   Input,
-  Text,
   Textarea,
   Box,
   useColorModeValue,

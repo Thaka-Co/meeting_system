@@ -12,7 +12,7 @@ export default {
   dueDate: "DUE DATE",
   // Add meeting
   meetingRoom: "Meeting room",
-  attendance: `ATTENDANCE`,
+  attendance: `Attendance`,
   speakers: `SPEAKERS`,
   writter: `WRITER`,
   meetingItems: `Meeting items`,
@@ -67,7 +67,7 @@ export default {
   password: "Password",
   confirmPassword: "Confirm Password",
   endTime: "End Time",
-  startDate: "Start Date",
+  startDate: "Start Time",
   selectDate: " Date",
   save: "Save",
   downlodas: "Download",

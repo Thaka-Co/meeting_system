@@ -7,7 +7,6 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
   ModalFooter,
   ModalBody,
   ModalCloseButton,
@@ -17,10 +16,8 @@ import { GrDownload, GrDocumentPdf } from "react-icons/gr";
 import { AiFillPrinter } from "react-icons/ai";
 import { Icon } from "@chakra-ui/react";
 import { BsFillFileEarmarkWordFill } from "react-icons/bs";
-import MeetingItems from "./MeetingItems";
 import { invoicesData } from "../Faker/general";
 import InvoicesRow from "../components/Tables/InvoicesRow";
-import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";

@@ -1,18 +1,6 @@
 import React, { useEffect } from "react";
 import Swal from "sweetalert2";
-import {
-  Text,
-  Radio,
-  RadioGroup,
-  HStack,
-  Box,
-  CheckboxGroup,
-  Lorem,
-  Checkbox,
-  Stack,
-  Button,
-} from "@chakra-ui/react";
-import { useDisclosure } from "@chakra-ui/react";
+import { Checkbox, Stack, Button } from "@chakra-ui/react";
 function AddVote(props) {
   const users = [
     { id: 1, name: "Mareem", position: "IT manager", email: "m@m.com" },
