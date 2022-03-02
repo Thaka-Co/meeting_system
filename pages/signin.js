@@ -13,11 +13,12 @@ import {
   useBreakpointValue,
   useColorModeValue,
 } from "@chakra-ui/react";
+import Link from "next/link";
 import * as React from "react";
 import { PasswordField } from "../components/forms/passwordFiled";
 import Header from "../components/navBar/landingHeader";
-
-export default function App() {
+import { getCsrfToken, getSession } from "next-auth/react";
+export default function App({ csrfToken }) {
   return (
     <>
       <Header />
@@ -51,57 +52,83 @@ export default function App() {
               </Heading>
               <HStack spacing="1" justify="center">
                 <Text color="muted">Don't have an account?</Text>
-                <a href="/signup">
+                <Link href="/signup">
                   <Button variant="link" colorScheme="blue">
                     Sign up
                   </Button>
-                </a>
+                </Link>
               </HStack>
             </Stack>
           </Stack>
-          <Box
-            py={{
-              base: "0",
-              sm: "8",
-            }}
-            px={{
-              base: "4",
-              sm: "10",
-            }}
-            bg={useBreakpointValue({
-              base: "transparent",
-              sm: "bg-surface",
-            })}
-            boxShadow={{
-              base: "none",
-              sm: useColorModeValue("md", "md-dark"),
-            }}
-            borderRadius={{
-              base: "none",
-              sm: "xl",
-            }}
-          >
-            <Stack spacing="6">
-              <Stack spacing="5">
-                <FormControl>
-                  <FormLabel htmlFor="email">Email</FormLabel>
-                  <Input id="email" type="email" />
-                </FormControl>
-                <PasswordField />
-              </Stack>
-              <HStack justify="space-between">
-                <Checkbox defaultIsChecked>Remember me</Checkbox>
-                <Button variant="link" colorScheme="blue" size="sm">
-                  Forgot password?
-                </Button>
-              </HStack>
+          <form method="post" action="/api/auth/callback/credentials">
+            <Box
+              py={{
+                base: "0",
+                sm: "8",
+              }}
+              px={{
+                base: "4",
+                sm: "10",
+              }}
+              bg={useBreakpointValue({
+                base: "transparent",
+                sm: "bg-surface",
+              })}
+              boxShadow={{
+                base: "none",
+                sm: useColorModeValue("md", "md-dark"),
+              }}
+              borderRadius={{
+                base: "none",
+                sm: "xl",
+              }}
+            >
               <Stack spacing="6">
-                <Button variant="primary">Sign in</Button>
+                <Stack spacing="5">
+                  <input
+                    name="csrfToken"
+                    type="hidden"
+                    defaultValue={csrfToken}
+                  />
+
+                  <FormControl>
+                    <FormLabel htmlFor="email">Email</FormLabel>
+                    <Input id="email" name="email" type="email" />
+                  </FormControl>
+                  <PasswordField />
+                </Stack>
+                <HStack justify="space-between">
+                  <Checkbox defaultIsChecked>Remember me</Checkbox>
+                  <Button variant="link" colorScheme="blue" size="sm">
+                    Forgot password?
+                  </Button>
+                </HStack>
+                <Stack spacing="6">
+                  <Button variant="primary" type="submit">
+                    Sign in
+                  </Button>
+                </Stack>
               </Stack>
-            </Stack>
-          </Box>
+            </Box>
+          </form>
         </Stack>
       </Container>
     </>
   );
+}
+export async function getServerSideProps(context) {
+  const { req, res } = context;
+  const session = await getSession({ req });
+  if (session && res) {
+    console.log("working");
+    res.writeHead(301, {
+      Location: "/",
+    });
+    res.end();
+  }
+  return {
+    props: {
+      csrfToken: await getCsrfToken(context),
+    },
+  };
 }

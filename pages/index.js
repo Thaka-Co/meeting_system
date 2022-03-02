@@ -1,7 +1,12 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+import { useRouter } from "next/router";
 import Header from "../components/navBar/landingHeader";
+import {useSession} from 'next-auth/react'
 export default function Home() {
+  const { locale, locales, asPath } = useRouter();
+  const {data:session} = useSession()
+  console.log(session)
   return (
     <>
       <Header />

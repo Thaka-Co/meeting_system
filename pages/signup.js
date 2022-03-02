@@ -13,10 +13,12 @@ import {
   useBreakpointValue,
   useColorModeValue,
 } from "@chakra-ui/react";
-
 import * as React from "react";
+import Link from "next/link";
 import { PasswordField } from "../components/forms/passwordFiled";
 import Header from "../components/navBar/landingHeader";
+import { getCsrfToken, getSession } from "next-auth/react";
+
 export default function App() {
   return (
     <>
@@ -51,14 +53,15 @@ export default function App() {
               </Heading>
               <HStack spacing="1" justify="center">
                 <Text color="muted">You have an account?</Text>
-                <a href="/signin">
+                <Link href="/signin">
                   <Button variant="link" colorScheme="blue">
                     Sign in
                   </Button>
-                </a>
+                </Link>
               </HStack>
             </Stack>
           </Stack>
+
           <Box
             py={{
               base: "0",
@@ -97,7 +100,9 @@ export default function App() {
                 <Checkbox defaultIsChecked>Remember me</Checkbox>
               </HStack>
               <Stack spacing="6">
-                <Button variant="primary">Sign up</Button>
+                <Button variant="primary" type="submit">
+                  Sign up
+                </Button>
               </Stack>
             </Stack>
           </Box>
@@ -105,4 +110,21 @@ export default function App() {
       </Container>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const { req, res } = context;
+  const session = await getSession({ req });
+  if (session && res) {
+    console.log("working");
+    res.writeHead(301, {
+      Location: "/",
+    });console.log('done');
+    res.end();
+  }
+  return {
+    props: {
+      csrfToken: await getCsrfToken(context),
+    },
+  };
 }

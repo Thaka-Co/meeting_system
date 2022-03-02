@@ -7,6 +7,8 @@ import {
   useColorModeValue,
   Select,
   Text,
+  Icon,
+  HStack,
 } from "@chakra-ui/react";
 import moment from "moment";
 import { useState } from "react";
@@ -21,6 +23,7 @@ import en from "../locales/en";
 import ar from "../locales/ar";
 import DatePicker from "react-datepicker";
 // import "../styles/calendar.css";
+import { AiOutlineClockCircle } from "react-icons/ai";
 function addMeeting(props) {
   const [date, setDate] = useState("");
   const [startH, setStartH] = useState("");
@@ -58,27 +61,33 @@ function addMeeting(props) {
         /> */}
         {/* <DatePicker controls={["time"]} select="range" touchUi={true} /> */}
         <Calendar className={"calendar"} onChange={selectDate} />
-        <Datetime
-          onChange={(e) => {
-            setStartH(e._d.getHours()), setStartMin(e._d.getMinutes());
-          }}
-          dateFormat={false}
-          inputProps={{ placeholder: t.startDate }}
-          timeFormat="HH:mm:ss"
-          timeConstraints={{ hours: { min: 8, max: 17 } }}
-        />
-        <Datetime
-          onChange={(e) => {
-            setEndH(e._d.getHours());
-            setEndMin(e._d.getMinutes());
-          }}
-          dateFormat={false}
-          inputProps={{ placeholder: t.endTime }}
-          timeFormat="HH:mm:ss"
-          timeConstraints={{ hours: { min: 8, max: 17 } }}
-        />
-
+        <HStack mt={10}>
+          <Icon as={AiOutlineClockCircle} />
+          <Datetime
+            onChange={(e) => {
+              setStartH(e._d.getHours()), setStartMin(e._d.getMinutes());
+            }}
+            dateFormat={false}
+            inputProps={{ placeholder: t.startDate }}
+            timeFormat="HH:mm:ss"
+            timeConstraints={{ hours: { min: 8, max: 17 } }}
+          />
+        </HStack>
+        <HStack>
+          <Icon as={AiOutlineClockCircle} />
+          <Datetime
+            onChange={(e) => {
+              setEndH(e._d.getHours());
+              setEndMin(e._d.getMinutes());
+            }}
+            dateFormat={false}
+            inputProps={{ placeholder: t.endTime }}
+            timeFormat="HH:mm:ss"
+            timeConstraints={{ hours: { min: 8, max: 17 } }}
+          />
+        </HStack>
         <Checkbox
+          mt={10}
           onChange={(e) => {
             !cyclic ? setCyclic(true) : setCyclic(false);
           }}
