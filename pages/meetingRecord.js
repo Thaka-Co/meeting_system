@@ -2,13 +2,19 @@
 import * as React from "react";
 import { MeetingRecored } from "../components/MeetingRecored";
 import MainNavBar from "../components/navBar/navbar";
+import { useSession } from "next-auth/react";
 function meetingRecord(props) {
+  const { data: session } = useSession();
   return (
     <div>
       {/* <AddComments /> */}
-      <MainNavBar>
-        <MeetingRecored />
-      </MainNavBar>
+      {session ? (
+        <MainNavBar>
+          <MeetingRecored />
+        </MainNavBar>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

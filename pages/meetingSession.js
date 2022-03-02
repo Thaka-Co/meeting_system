@@ -19,22 +19,28 @@ import CountDown from "../components/Timer/timer";
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
+import { useSession } from "next-auth/react";
 export default function MeetingSession() {
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
   let isAcive = true;
+  const { data: session } = useSession();
   return (
     <MainNavBar>
       {!isAcive ? (
-        <Flex d="row">
-          <Center>
-            <Heading>
-              Meeting Soon
-              <CountDown seconds={10} />
-            </Heading>
-          </Center>
-        </Flex>
+        session ? (
+          <Flex d="row">
+            <Center>
+              <Heading>
+                Meeting Soon
+                <CountDown seconds={10} />
+              </Heading>
+            </Center>
+          </Flex>
+        ) : (
+          ""
+        )
       ) : (
         <Card my="22px" overflowX={{ sm: "scroll", xl: "hidden" }}>
           <CardHeader p="6px 0px 22px 0px">

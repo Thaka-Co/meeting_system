@@ -41,8 +41,7 @@ function InvoicesRow(props) {
   console.log(checkedBox);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const textColor = useColorModeValue("gray.700", "white");
-  const { date, upArrow, downArrow, up, down, price, format, logo, record } =
-    props;
+  const { date, price, format, logo, record } = props;
   const addVote = () => {};
   return (
     <>

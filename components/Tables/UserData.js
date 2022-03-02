@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import { usersData } from "../../Faker/general";
 import {
-  Text,
   Box,
   Checkbox,
-  Stack,
   Tr,
   Button,
-  useColorModeValue,
   HStack,
   Table,
   Td,
@@ -19,7 +16,6 @@ import { useRouter } from "next/router";
 import en from "../../locales/en";
 import ar from "../../locales/ar";
 export const UserData = (props) => {
-  const textColor = useColorModeValue("gray.700", "white");
   const [attendance, setAttendance] = useState("");
   const [speakers, setSpeakers] = useState("");
   const [writer, setWriter] = useState("");

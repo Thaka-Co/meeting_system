@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Box, Heading, useColorModeValue } from "@chakra-ui/react";
+import { Flex, Box, Heading } from "@chakra-ui/react";
 import Card from "../components/Card/Card.js";
 import CardHeader from "../components/Card/CardHeader.js";
 import CardBody from "../components/Card/CardBody.js";

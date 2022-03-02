@@ -14,7 +14,7 @@ import en from "../locales/en";
 import ar from "../locales/ar";
 function ItemDetails(props) {
   const textColor = useColorModeValue("gray.700", "white");
-  const { date, upArrow, downArrow, up, down, votes, price, format, logo } =
+  const { date, upArrow, downArrow, up, down, votes, format, logo } =
     props;
   const router = useRouter();
   const { locale } = router;

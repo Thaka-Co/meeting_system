@@ -8,14 +8,13 @@ import {
   Heading,
   HStack,
   Input,
-  Form,
   Stack,
   Text,
   useBreakpointValue,
   useColorModeValue,
 } from "@chakra-ui/react";
 import * as React from "react";
-import Link from 'next/link'
+import Link from "next/link";
 import { PasswordField } from "../components/forms/passwordFiled";
 import Header from "../components/navBar/landingHeader";
 import { getCsrfToken, getSession } from "next-auth/react"

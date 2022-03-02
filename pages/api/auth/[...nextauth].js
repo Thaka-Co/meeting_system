@@ -1,10 +1,9 @@
-import NextAuth from "next-auth"
-import CredentialsProvider from "next-auth/providers/credentials"
+import NextAuth from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
 // import registerUser from "../../../lib/services/user/registerUser"
 import Users from '../../../lib/models/user/userModel'
 const crypto = require('crypto');
 export default NextAuth({
-
   providers: [
     // ...add more providers here
     CredentialsProvider({
@@ -18,12 +17,12 @@ export default NextAuth({
         email: {
           label: "Username",
           type: "text",
-          placeholder: "jsmith"
+          placeholder: "jsmith",
         },
         password: {
           label: "Password",
-          type: "password"
-        }
+          type: "password",
+        },
       },
 
       async authorize(credentials, req) {
@@ -49,24 +48,18 @@ export default NextAuth({
     })
   ],
   callbacks: {
-    jwt: async ({
-      token,
-      user
-    }) => {
+    jwt: async ({ token, user }) => {
       if (user) {
-        token.id = user.id
+        token.id = user.id;
       }
-      return token
+      return token;
     },
-    session: ({
-      session,
-      token
-    }) => {
+    session: ({ session, token }) => {
       if (token) {
-        session.id = token.id
+        session.id = token.id;
       }
-      return session
-    }
+      return session;
+    },
   },
   secret: "test",
   jwt: {

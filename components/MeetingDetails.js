@@ -1,7 +1,5 @@
 import React from "react";
 import { Box, HStack, Heading } from "@chakra-ui/react";
-import Card from "../components/Card/Card.js";
-import CardHeader from "../components/Card/CardHeader.js";
 import { Text, useColorModeValue } from "@chakra-ui/react";
 import { invoicesData } from "../Faker/general";
 import ItemDetails from "../components/ItemDetails";

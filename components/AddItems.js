@@ -16,7 +16,6 @@ import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
 function AddItems(props) {
-  const textColor = useColorModeValue("gray.700", "white");
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;

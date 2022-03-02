@@ -13,17 +13,14 @@ import {
   useBreakpointValue,
   useColorModeValue,
 } from "@chakra-ui/react";
-import Link from 'next/link'
+import Link from "next/link";
 import * as React from "react";
 import { PasswordField } from "../components/forms/passwordFiled";
 import Header from "../components/navBar/landingHeader";
 import { getCsrfToken, getSession } from "next-auth/react"
 
 
-
 export default function App({ csrfToken }) {
-
-
   return (
     <>
       <Header />
@@ -112,7 +109,27 @@ export default function App({ csrfToken }) {
 
           </form>
 
-        </Stack>
+                  <FormControl>
+                    <FormLabel htmlFor="email">Email</FormLabel>
+                    <Input id="email" name="email" type="email" />
+                  </FormControl>
+                  <PasswordField />
+                </Stack>
+                <HStack justify="space-between">
+                  <Checkbox defaultIsChecked>Remember me</Checkbox>
+                  <Button variant="link" colorScheme="blue" size="sm">
+                    Forgot password?
+                  </Button>
+                </HStack>
+                <Stack spacing="6">
+                  <Button variant="primary" type="submit">
+                    Sign in
+                  </Button>
+                </Stack>
+              {/* </Stack> */}
+            {/* </Box> */}
+          {/* </form> */}
+        {/* </Stack> */}
       </Container>
     </>
   );
@@ -132,5 +149,5 @@ export async function getServerSideProps(context) {
     props: {
       csrfToken: await getCsrfToken(context),
     },
-  }
+  };
 }
