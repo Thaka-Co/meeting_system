@@ -11,7 +11,7 @@ function meetingDetails(props) {
           <MeetingDetails />
         </MainNavBar>
       ) : (
-        ""
+        <></>
       )}
     </div>
   );
