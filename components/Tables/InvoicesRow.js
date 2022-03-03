@@ -28,9 +28,12 @@ import ar from "../../locales/ar";
 function InvoicesRow(props) {
   const [checkedBox, setCheckedBox] = useState("");
   const router = useRouter();
+  const [choose, setChoose] = useState("");
+  // for language and rtl
   const { locale } = router;
   let t = locale == "en" ? en : ar;
   let ditLang = locale == "en" ? "ltr" : "rtl";
+  // for checkbox to select user
   const selectUser = (e) => {
     console.log(e.target.value);
     e.target.checked
@@ -43,6 +46,31 @@ function InvoicesRow(props) {
   const textColor = useColorModeValue("gray.700", "white");
   const { date, price, format, logo, record } = props;
   const addVote = () => {};
+  const addPost = async (e) => {
+    e.preventDefault();                                          
+    fetch("/api/votes/addVote", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: e.target.title.value,
+        desc: e.target.desc.value,
+        users: checkedBox,
+        type: choose,
+      }),
+    })
+      .then((res) => res.json())
+      // .then((data) => {
+      //   router.push("/");
+      // });
+    
+    // e.preventDefault();s
+    console.log(e.target.title.value);
+    console.log(e.target.desc.value);
+    console.log(checkedBox);
+    console.log(choose);
+  };
   return (
     <>
       <Flex my={{ sm: "1rem", xl: "10px" }} alignItems="center">
@@ -115,41 +143,58 @@ function InvoicesRow(props) {
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent dir={ditLang}>
-            <ModalHeader>{t.voteInfo}</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-              <Input type={"text"} placeholder={t.title} mt={4}></Input>
-              <Textarea resize={"none"} placeholder={t.desc} mt={4}></Textarea>
-              <Select mt={4}>
-                <option value="">{t.voteType}</option>
-                <option value={0}>{t.private}</option>
-                <option value={1}>{t.public}</option>
-              </Select>
-              <Text mt={4}>{t.canVote}</Text>
-              {/* <CheckboxGroup  name='hi'> */}
-              {usersData.map((item, index) => {
-                return (
-                  <Stack key={index} p={4}>
-                    <Checkbox
-                      onChange={(e) => {
-                        selectUser(e);
-                      }}
-                      value={item.id}
-                    >
-                      {item.name}
-                    </Checkbox>
-                  </Stack>
-                );
-              })}
-              {/* </CheckboxGroup> */}
-              {/* <Button mt={4}>Invite</Button> */}
-            </ModalBody>
-            <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={onClose}>
-                {t.invite}
-              </Button>
-              {/* <Button variant='ghost'>Secondary Action</Button> */}
-            </ModalFooter>
+            <form onSubmit={addPost}>
+              <ModalHeader>{t.voteInfo}</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <Input
+                  type={"text"}
+                  name={"title"}
+                  placeholder={t.title}
+                  mt={4}
+                ></Input>
+                <Textarea
+                  resize={"none"}
+                  name={"desc"}
+                  placeholder={t.desc}
+                  mt={4}
+                ></Textarea>
+                <Select
+                  mt={4}
+                  onChange={(e) => {
+                    setChoose(e.target.value);
+                  }}
+                >
+                  <option value="">{t.voteType}</option>
+                  <option value={0}>{t.private}</option>
+                  <option value={1}>{t.public}</option>
+                </Select>
+                <Text mt={4}>{t.canVote}</Text>
+                {/* <CheckboxGroup  name='hi'> */}
+                {usersData.map((item, index) => {
+                  return (
+                    <Stack key={index} p={4}>
+                      <Checkbox
+                        onChange={(e) => {
+                          selectUser(e);
+                        }}
+                        value={item.id}
+                      >
+                        {item.name}
+                      </Checkbox>
+                    </Stack>
+                  );
+                })}
+                {/* </CheckboxGroup> */}
+                {/* <Button mt={4}>Invite</Button> */}
+              </ModalBody>
+              <ModalFooter>
+                <Button colorScheme="blue" mr={3} type={"submit"}>
+                  {t.invite}
+                </Button>
+                {/* <Button variant='ghost'>Secondary Action</Button> */}
+              </ModalFooter>
+            </form>
           </ModalContent>
         </Modal>
         {/* ) : (

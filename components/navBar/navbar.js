@@ -150,7 +150,9 @@ export default function MainNavBar(props) {
           </NavItem>
         </Collapse>
         <NavItem icon={AiFillGift}>Changelog</NavItem>
-        <NavItem icon={BsGearFill}>{t.setting}</NavItem>
+        <Link href={"/setting"}>
+          <NavItem icon={BsGearFill}>{t.setting}</NavItem>
+        </Link>
       </Flex>
     </Box>
   );
