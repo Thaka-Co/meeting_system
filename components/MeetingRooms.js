@@ -15,11 +15,11 @@ import { roomsData } from "../Faker/general";
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
-function MeetingRooms({rooms}) {
+function MeetingRooms({ rooms }) {
   const selectRoom = (e) => {
     console.log(e);
   };
-  console.log(rooms);
+  console.log(rooms,'popopop');
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
@@ -69,13 +69,11 @@ function MeetingRooms({rooms}) {
   );
 }
 
-export async function getStaticProps(context) {
+export const getStaticProps =async () => {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  const res = await fetch("/api/rooms/getRoom");
+  const res = await fetch("http://localhost:3000/api/rooms/getRoom");
   const rooms = await res.json();
-  console.log("ppppppppppp");
-  console.log(res);
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time
   return {
@@ -83,5 +81,5 @@ export async function getStaticProps(context) {
       rooms,
     },
   };
-}
+};
 export default MeetingRooms;
