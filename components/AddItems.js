@@ -67,7 +67,7 @@ function AddItems(props) {
   return (
     <div>
       <Heading m={10}>{t.addItem}</Heading>
-      <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
+      <Box bg={useColorModeValue("white", "gray.800")}  p={15} m={5} borderRadius={7}>
         {/* <Text fontSize="lg" color={textColor} fontWeight="bold">
           Meeting items
         </Text> */}

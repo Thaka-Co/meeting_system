@@ -26,7 +26,7 @@ function MeetingRooms({ rooms }) {
   return (
     <div>
       <Heading m="10">{t.meetingRoom}</Heading>
-      <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
+      <Box bg={useColorModeValue("white", "gray.800")} p={15} m={5} borderRadius={7}>
         {/* <Text fontSize="lg" color={textColor} fontWeight="bold">
           Select the meeting room
         </Text> */}
