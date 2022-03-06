@@ -19,8 +19,9 @@ import CountDown from "../components/Timer/timer";
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
-import { useState } from 'react'
+import { useState } from "react";
 import { useSession } from "next-auth/react";
+import { getCsrfToken, getSession } from "next-auth/react";
 export default function MeetingSession() {
   const router = useRouter();
   const { locale } = router;
@@ -29,12 +30,11 @@ export default function MeetingSession() {
   const { data: session } = useSession();
   const startMeeting = async () => {
     await active;
-    setActive(false)
-  }
+    setActive(false);
+  };
   return (
     <MainNavBar>
       {!active ? (
-
         session ? (
           <Flex d="row">
             <Center>
@@ -88,4 +88,21 @@ export default function MeetingSession() {
       )}
     </MainNavBar>
   );
+}
+export async function getServerSideProps(context) {
+  const { req, res } = context;
+  const session = await getSession({ req });
+  console.log(session);
+  if (!session && res) {
+    console.log("working");
+    res.writeHead(302, {
+      Location: "/signin",
+    });
+    res.end();
+  }
+  return {
+    props: {
+      csrfToken: await getCsrfToken(context),
+    },
+  };
 }

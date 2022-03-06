@@ -4,18 +4,17 @@ import fs from "fs";
 
 export const config = {
   api: {
-    bodyParser: false
-  }
+    bodyParser: false,
+  },
 };
-
 
 export default async function postAttach(req, res) {
   try {
     // const { file, itemId, meetingId } = req.body;
-    console.log('file');
+    console.log("file");
     const form = new formidable.IncomingForm();
     form.parse(req, async function (err, fields, files) {
-      console.log('hheeeree',files);
+      console.log("hheeeree", files);
       await saveFile(files.file);
       //return res.status(201).send("");
     });
@@ -41,7 +40,7 @@ export default async function postAttach(req, res) {
 
 const saveFile = async (file) => {
   const data = fs.readFileSync(file.path);
-  console.log('reaached');
+  console.log("reaached");
   fs.writeFileSync(`./public/${file.name}`, data);
   await fs.unlinkSync(file.path);
   return;
