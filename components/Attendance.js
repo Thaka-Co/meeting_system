@@ -24,7 +24,7 @@ export const Attendance = (props) => {
   return (
     <div>
       {" "}
-      <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
+      <Box bg={useColorModeValue("white", "gray.800")} p={15} m={5} borderRadius={7}>
         {/* <Box bg={useColorModeValue("gray.50", "inherit")}> */}
         <CardBody>
           <Table variant="simple" color={textColor}>

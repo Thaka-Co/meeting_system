@@ -15,7 +15,12 @@ function MeetingDetails(props) {
   let t = locale == "en" ? en : ar;
   return (
     <Box bg={useColorModeValue("gray.50", "inherit")}>
-      <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
+      <Box
+        bg={useColorModeValue("white", "gray.800")}
+        p={15}
+        m={5}
+        borderRadius={7}
+      >
         <Text fontSize="xl" color={textColor} fontWeight="bold">
           Meeting title
         </Text>
@@ -35,7 +40,12 @@ function MeetingDetails(props) {
       <Heading m="10">{t.meetingItems}</Heading>
       {invoicesData.map((row) => {
         return (
-          <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
+          <Box
+            bg={useColorModeValue("white", "gray.800")}
+            p={15}
+            m={5}
+            borderRadius={7}
+          >
             <ItemDetails
               date={row.date}
               votes={row.votes}

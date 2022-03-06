@@ -20,7 +20,7 @@ function ItemDetails(props) {
   const { locale } = router;
   let t = locale == "en" ? en : ar;
   return (
-    <Flex my={{ sm: "1rem", xl: "10px" }} bgColor={"white"} alignItems="center">
+    <Flex my={{ sm: "1rem", xl: "10px" }}  alignItems="center">
       <Flex direction="column" p={3}>
         <HStack>
           <Text fontSize="lg" color={textColor} fontWeight="bold">
