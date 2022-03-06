@@ -7,6 +7,7 @@ import { Attendance } from "./Attendance.js";
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
+
 function MeetingDetails(props) {
   const textColor = useColorModeValue("gray.700", "white");
   const router = useRouter();

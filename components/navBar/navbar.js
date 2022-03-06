@@ -128,7 +128,7 @@ export default function MainNavBar(props) {
         <Link href="/meeting">
           <NavItem icon={FaRss}>{t.addMeeting}</NavItem>
         </Link>
-        <NavItem icon={HiCollection}>Collections</NavItem>
+        {/* <NavItem icon={HiCollection}>Collections</NavItem>
         <NavItem icon={FaClipboardCheck}>Checklists</NavItem>
         <NavItem icon={HiCode} onClick={integrations.onToggle}>
           Integrations
@@ -149,8 +149,8 @@ export default function MainNavBar(props) {
             Zapier
           </NavItem>
         </Collapse>
-        <NavItem icon={AiFillGift}>Changelog</NavItem>
-        <Link href={"/setting"}>
+        <NavItem icon={AiFillGift}>Changelog</NavItem> */}
+        <Link href='/setting'>
           <NavItem icon={BsGearFill}>{t.setting}</NavItem>
         </Link>
       </Flex>
