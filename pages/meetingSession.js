@@ -19,16 +19,22 @@ import CountDown from "../components/Timer/timer";
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
+import { useState } from 'react'
 import { useSession } from "next-auth/react";
 export default function MeetingSession() {
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
-  let isAcive = true;
+  const [active, setActive] = useState(true);
   const { data: session } = useSession();
+  const startMeeting = async () => {
+    await active;
+    setActive(false)
+  }
   return (
     <MainNavBar>
-      {!isAcive ? (
+      {!active ? (
+
         session ? (
           <Flex d="row">
             <Center>

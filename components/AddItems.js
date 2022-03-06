@@ -15,21 +15,24 @@ import {
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
+import { useState } from "react";
+
 function AddItems(props) {
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
   // t = locale === 0 ? en : ar;
+
   return (
     <div>
-      <Heading m={10}>{t.addItem}</Heading>
+      {/* <Heading m={10}>{t.addItem}</Heading> */}
       <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
         {/* <Text fontSize="lg" color={textColor} fontWeight="bold">
           Meeting items
-        </Text> */}
-        {/*  */}
-        <Input placeholder={t.title} mb={4}></Input>
-        <Flex
+
+{/*  */}
+        <Input name={props.name} placeholder={props.title || t.title} mb={4} onChange={props.onChange} ></Input>
+        {/* <Flex
           mt={1}
           justify="center"
           px={6}
@@ -87,14 +90,14 @@ function AddItems(props) {
               PNG, JPG, GIF up to 10MB
             </Text>
           </Stack>
-        </Flex>
+        </Flex> */}
         {/*  */}
-        <Button mt={4}>{t.addItem}</Button>
-        <Button ml={4} mt={4}>
-          {t.delayedItem}
-        </Button>
+        <Button mt={4} onClick={props.onClick} type={props.type}>{props.lable || t.addItem}</Button>
+        {/* <Button ml={4} mt={4}>
+        {t.delayedItem}
+      </Button> */}
       </Box>
-    </div>
+    </div >
   );
 }
 
