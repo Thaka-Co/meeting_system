@@ -6,13 +6,13 @@ function meetingDetails(props) {
   const { data: session } = useSession();
   return (
     <div>
-      {session ? (
+      {/* {session ? ( */}
         <MainNavBar>
           <MeetingDetails />
         </MainNavBar>
-      ) : (
+      {/* ) : (
         <></>
-      )}
+      )} */}
     </div>
   );
 }
