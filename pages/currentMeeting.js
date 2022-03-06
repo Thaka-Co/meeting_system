@@ -7,13 +7,13 @@ function currentMeeting(props) {
   const { data: session } =   useSession();
   return (
     <div>
-      {session ? (
+      {/* {session ? ( */}
         <MainNavBar>
           <CurrentMeeting />
         </MainNavBar>
-      ) : (
+      {/* ) : (
         ""
-      )}
+      )} */}
     </div>
   );
 }

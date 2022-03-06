@@ -8,13 +8,13 @@ function voteDetails(props) {
   const { data: session } = useSession();
   return (
     <div>
-      {session ? (
+      {/* {session ? ( */}
         <MainNavBar>
           <VoteDetails votes={invoicesData[0].votes[0]} />
         </MainNavBar>
-      ) : (
+      {/* ) : (
         ""
-      )}
+      )} */}
     </div>
   );
 }

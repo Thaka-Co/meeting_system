@@ -8,13 +8,13 @@ function meetingRecord(props) {
   return (
     <div>
       {/* <AddComments /> */}
-      {session ? (
+      {/* {session ? ( */}
         <MainNavBar>
           <MeetingRecored />
         </MainNavBar>
-      ) : (
+      {/* ) : (
         ""
-      )}
+      )} */}
     </div>
   );
 }

@@ -12,6 +12,7 @@ import {
   Input,
   Heading,
   Textarea,
+  HStack,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import en from "../locales/en";
@@ -28,8 +29,10 @@ function AddItems(props) {
     e.preventDefault();
     // save file to server
     const file = new FormData();
-    file.append("file", createObjectURL);
-    console.log(file);
+    console.log(image.name);
+    file.append("file", image);
+    // file='ooo'
+    console.log("this is file", file);
     const response = await fetch("/api/attachments/addAttachment", {
       method: "POST",
       file,
@@ -49,13 +52,12 @@ function AddItems(props) {
     // .then((data) => {
     //   router.push("/");
     // });
-    
   };
   const addAttach = async (e) => {
     e.preventDefault();
     setAttach(e.target.value);
-    console.log(e.target.files);
-    console.log(e.target.files[0]);
+    // console.log(e.target.files);
+    // console.log(e.target.files[0]);
     if (e.target.files && e.target.files[0]) {
       const i = e.target.files[0];
       setImage(i);

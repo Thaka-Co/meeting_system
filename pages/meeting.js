@@ -7,9 +7,9 @@ function meeting(props) {
   return (
     <div>
       {/* {session ? ( */}
-        <MainNavBar>
-          <AddMeeting />
-        </MainNavBar>
+      <MainNavBar>
+        <AddMeeting />
+      </MainNavBar>
       {/* ) : (
        ''
       )}  */}

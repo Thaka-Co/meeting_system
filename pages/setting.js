@@ -8,13 +8,13 @@ export default function setting(props) {
   const { data: session } =   useSession();
   return (
     <div>
-      {session ? (
+      {/* {session ? ( */}
         <MainNavBar>
           <Setting />
         </MainNavBar>
-      ) : (
+      {/* ) : (
         ""
-      )}
+      )} */}
     </div>
   );
 }
