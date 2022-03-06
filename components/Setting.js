@@ -50,7 +50,7 @@ export const Setting = (props) => {
   return (
     <div>
       <Box bg={useColorModeValue("gray.50", "inherit")}>
-        <Box bgColor={"white"} p={15} m={5} borderRadius={7} w={350} p={7}>
+        <Box bg={useColorModeValue("white", "gray.800")} p={15} m={5} borderRadius={7} w={350} >
           <Heading mb={10}>{t.profile}</Heading>
           <HStack spacing={30} mb={9}>
             <Input
