@@ -9,7 +9,7 @@ import {
   Table,
   Td,
   Thead,
-  Th,
+  Th,useColorModeValue,
   Input,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
@@ -55,7 +55,7 @@ export const UserData = (props) => {
   console.log(writer);
   return (
     <div>
-      <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
+      <Box bg={useColorModeValue("white", "gray.800")} p={15} m={5} borderRadius={7}>
         <HStack spacing={40}>
           {/* <Text fontSize="lg" color={textColor} fontWeight="bold">
             Choose 
