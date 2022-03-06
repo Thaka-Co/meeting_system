@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Flex,
   Text,
@@ -11,18 +11,20 @@ import {
   chakra,
   Input,
   Heading,
+  Textarea,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
-import { useState } from "react";
 
 function AddItems(props) {
   const router = useRouter();
+  const [attach, setAttach] = useState("");
+  const [image, setImage] = useState(null);
+  const [createObjectURL, setCreateObjectURL] = useState(null);
   const { locale } = router;
   let t = locale == "en" ? en : ar;
   // t = locale === 0 ? en : ar;
-
   return (
     <div>
       {/* <Heading m={10}>{t.addItem}</Heading> */}

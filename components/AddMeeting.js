@@ -49,7 +49,7 @@ function addMeeting(props) {
   let t = locale == "en" ? en : ar;
 
 
-  const [value, onCalendarChange] = useState(value);
+  const [value, onCalendarChange] = useState();
   console.log(value)
   // to get date of yesterday
   const yesterday = moment().subtract(1, "day");

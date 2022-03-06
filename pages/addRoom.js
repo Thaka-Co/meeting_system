@@ -20,7 +20,6 @@ export default function addRoom  (props)  {
                     projector
                   </Checkbox>
                 </CheckboxGroup>
-                
                 <Button variant="primary" type="submit" >Sign up</Button>
             </form>
         </div>
