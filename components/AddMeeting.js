@@ -25,11 +25,11 @@ import DatePicker from "react-datepicker";
 // import "../styles/calendar.css";
 import { AiOutlineClockCircle } from "react-icons/ai";
 function AddMeeting(props) {
-  // const [date, setDate] = useState("");
-  // const [startH, setStartH] = useState("");
-  // const [startMin, setStartMin] = useState("");
-  // const [endH, setEndH] = useState("");
-  // const [endMin, setEndMin] = useState("");
+  const [date, setDate] = useState("");
+  const [startH, setStartH] = useState("");
+  const [startMin, setStartMin] = useState("");
+  const [endH, setEndH] = useState("");
+  const [endMin, setEndMin] = useState("");
   const [cyclic, setCyclic] = useState(false);
   const router = useRouter();
   const { locale } = router;
@@ -122,4 +122,4 @@ function AddMeeting(props) {
   );
 }
 
-export default addMeeting;
+export default AddMeeting;

@@ -16,7 +16,7 @@ export default {
   speakers: `المتحدثين`,
   writter: `الكاتب`,
   meetingItems: `بنود الأجتماع`,
-  addItem: `أضافة أجتماع`,
+  addItem: `أضافة بند`,
   recordMeetingType: `نوع محضر الأجتماع`,
   title: `العنوان`,
   delayedItem: `البنود المؤجله`,
@@ -80,4 +80,5 @@ export default {
   dashboard: "لوحة تحكم",
   addMeeting: "أضافة أجتماع",
   setting: "أعدادات",
+  search:'بحث'
 };
