@@ -10,9 +10,9 @@ const options = {
   ltr: { key: "css-en" },
 };
 
-export function RtlProvider() {
+export function RtlProvider({ children }) {
   const { locale } = useRouter();
   const dir = locale == "ar" ? "rtl" : "ltr";
   const cache = createCache(options[dir]);
-  return <CacheProvider value={cache} />;
+  return <CacheProvider value={cache} children={children} />;
 }

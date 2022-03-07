@@ -121,7 +121,7 @@ export default function TodayMeetings() {
                   </React.Fragment>
                 );
               })}
-            
+
               <Td>
                 <ButtonGroup variant="solid" size="sm" spacing={3}>
                   <Link href="/meetingSession">

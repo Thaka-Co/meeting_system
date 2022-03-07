@@ -9,9 +9,9 @@ function App(props) {
   return (
     <SessionProvider>
       <ChakraProvider>
-        {/* <RtlProvider> */}
+        <RtlProvider>
         <Component {...pageProps} />
-        {/* </RtlProvider> */}
+        </RtlProvider>
       </ChakraProvider>
     </SessionProvider>
   );
