@@ -38,12 +38,10 @@ import { useRouter } from "next/router";
 import en from "../../locales/en";
 import ar from "../../locales/ar";
 
-
-
-
 export default function MainNavBar(props) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const router = useRouter();
+  const sidebar = useDisclosure();
   const { locale } = router;
   const t = locale == "en" ? en : ar;
   let ditLang = locale == "en" ? "ltr" : "rtl";
@@ -53,21 +51,29 @@ export default function MainNavBar(props) {
     router.push(router.pathname, router.asPath, { locale });
     // localStorage.setItem("language", e.target.value);
   };
+  const bg = useColorModeValue("gray.100", "gray.900");
+  const color = useColorModeValue("gray.900", "gray.200");
+  const iconHover = useColorModeValue("gray.600", "gray.300");
+  const sidebarBg = useColorModeValue("white", "gray.800");
+  const borderColor = useColorModeValue("inherit", "gray.700");
+  const textColor = useColorModeValue("brand.500", "white");
+  const flexColor = useColorModeValue("inherit", "gray.400");
   const NavItem = (props) => {
     const { icon, children, ...rest } = props;
     // sidebar icons and text style left nav
     return (
       <Flex
+        color={flexColor}
         dir={ditLang}
         align="center"
         px="4"
         pl="4"
         py="3"
         cursor="pointer"
-        // color='white'
         _hover={{
-          // bg: useColorModeValue("gray.100", "gray.900"),
-          // color: 'gray',
+          bg: bg,
+          color: color,
+
         }}
         role="group"
         fontWeight="semibold"
@@ -79,7 +85,8 @@ export default function MainNavBar(props) {
             mx="2"
             boxSize="4"
             _groupHover={{
-              // color: useColorModeValue("gray.600", "gray.300"),
+              color: iconHover,
+
             }}
             as={icon}
           />
@@ -101,19 +108,16 @@ export default function MainNavBar(props) {
       pb="10"
       overflowX="hidden"
       overflowY="auto"
-      // bg={useColorModeValue("white", "gray.800")}
-      // borderColor={useColorModeValue("inherit", "gray.700")}
+      bg={sidebarBg}
+      borderColor={borderColor}
+
       borderRightWidth="1px"
       w="60"
       {...props}
     >
       <Flex px="4" py="5" align="center">
-        <Text
-          fontSize="2xl"
-          ml="2"
-          // color={useColorModeValue("brand.500", "white")}
-          fontWeight="semibold"
-        >
+        <Text fontSize="2xl" ml="2" color={textColor} fontWeight="semibold">
+
           حوكمة
         </Text>
       </Flex>
@@ -152,7 +156,7 @@ export default function MainNavBar(props) {
           </NavItem>
         </Collapse>
         <NavItem icon={AiFillGift}>Changelog</NavItem> */}
-        <Link href='/setting'>
+        <Link href="/setting">
           <NavItem icon={BsGearFill}>{t.setting}</NavItem>
         </Link>
       </Flex>
@@ -184,9 +188,10 @@ export default function MainNavBar(props) {
           justify="space-between"
           w="full"
           px="4"
-          // bg={useColorModeValue("white", "gray.800")}
+          bg={sidebarBg}
           borderBottomWidth="1px"
-          // borderColor={useColorModeValue("inherit", "gray.700")}
+          borderColor={borderColor}
+
           h="14"
         >
           <AutoComplete rollNavigation>
