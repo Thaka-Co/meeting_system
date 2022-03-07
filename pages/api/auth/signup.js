@@ -18,6 +18,11 @@ export default async function handler(req, res) {
         //register the user and redirect him to signin page
         console.log("registerd");
         registerUser(name, email, hashedPasswrod);
+        res.writeHead(302, {
+          Location: "/signin",
+        });
+        res.end();
+
       } else {
         //response by : this email is alrady used
         res.writeHead(302, {

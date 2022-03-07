@@ -18,9 +18,12 @@ import * as React from "react";
 import { PasswordField } from "../components/forms/passwordFiled";
 import Header from "../components/navBar/landingHeader";
 import { getCsrfToken, getSession } from "next-auth/react"
-
-
+import { useRouter } from "next/router";
+import CredentialsError from "../components/Alerts/credentialsError";
 export default function App({ csrfToken }) {
+  const route = useRouter();
+  const error = route.asPath.includes('/signin&error=CredentialsSignin')
+  console.log(error)
   return (
     <>
       <Header />
@@ -88,7 +91,9 @@ export default function App({ csrfToken }) {
               <Stack spacing="6">
                 <Stack spacing="5">
                   <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-
+                  {
+                    error ? <CredentialsError /> : <></>
+                  }
                   <FormControl>
                     <FormLabel htmlFor="email">Email</FormLabel>
                     <Input id="email" name="email" type="email" />
