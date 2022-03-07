@@ -19,14 +19,19 @@ function MeetingRooms({ rooms }) {
   const selectRoom = (e) => {
     console.log(e);
   };
-  console.log(rooms,'popopop');
+  console.log(rooms, "popopop");
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
   return (
     <div>
       <Heading m="10">{t.meetingRoom}</Heading>
-      <Box bg={useColorModeValue("white", "gray.800")} p={15} m={5} borderRadius={7}>
+      <Box
+        bg={useColorModeValue("white", "gray.800")}
+        p={15}
+        m={5}
+        borderRadius={7}
+      >
         {/* <Text fontSize="lg" color={textColor} fontWeight="bold">
           Select the meeting room
         </Text> */}
@@ -69,7 +74,7 @@ function MeetingRooms({ rooms }) {
   );
 }
 
-export const getStaticProps =async () => {
+export const getStaticProps = async () => {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
   const res = await fetch("http://localhost:3000/api/rooms/getRoom");
