@@ -8,7 +8,7 @@ function App(props) {
   const { Component, pageProps } = props;
   return (
     <SessionProvider>
-      <ChakraProvider>
+      <ChakraProvider >
         <RtlProvider>
           <Component {...pageProps} />
         </RtlProvider>
