@@ -7,6 +7,7 @@ export default async function handler(req, res) {
     // Process a POST request
     if ((name, email, password)) {
       console.log(name, email, password);
+
       const hashedPasswrod = crypto
         .Hash("sha256", password)
         .digest("hex");

@@ -18,7 +18,7 @@ function TaskDetails(props) {
   let t = locale == "en" ? en : ar;
   return (
     <Box bg={useColorModeValue("gray.50", "inherit")}>
-      <Box bgColor={"white"} p={15} m={5} borderRadius={7} w={350}>
+      <Box bg={useColorModeValue("white", "gray.800")} p={15} m={5} borderRadius={7} w={350}>
         <Heading>Purity UI Version</Heading>
         <HStack mt={8} ml={12} spacing={8}>
           <VStack>

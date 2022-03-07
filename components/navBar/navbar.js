@@ -123,7 +123,7 @@ export default function MainNavBar(props) {
         color="gray.600"
         aria-label="Main Navigation"
       >
-        <Link href="/dashbord">
+        <Link href="/dashboard">
           <NavItem icon={MdDashboard}>{t.dashboard}</NavItem>
         </Link>
         <Link href="/meeting">
@@ -191,7 +191,7 @@ export default function MainNavBar(props) {
           <AutoComplete rollNavigation>
             <AutoCompleteInput
               variant="filled"
-              placeholder="Search..."
+              placeholder={t.search}
               autoFocus
             />
             <AutoCompleteList>
