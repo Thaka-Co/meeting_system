@@ -7,7 +7,10 @@ export default async function handler(req, res) {
     // Process a POST request
     if ((name, email, password)) {
       console.log(name, email, password);
-      const hashedPasswrod = crypto.Hash("sha256", password).digest("hex");
+
+      const hashedPasswrod = crypto
+        .Hash("sha256", password)
+        .digest("hex");
       const data = await Users.find({}).where("email").equals(email);
       console.log(data);
       const isData = data.length > 0;
@@ -16,6 +19,11 @@ export default async function handler(req, res) {
         //register the user and redirect him to signin page
         console.log("registerd");
         registerUser(name, email, hashedPasswrod);
+        res.writeHead(302, {
+          Location: "/signin",
+        });
+        res.end();
+
       } else {
         //response by : this email is alrady used
         res.writeHead(302, {

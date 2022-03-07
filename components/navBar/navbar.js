@@ -37,10 +37,11 @@ import { dashboardTableData } from "../../Faker/general";
 import { useRouter } from "next/router";
 import en from "../../locales/en";
 import ar from "../../locales/ar";
+
+
+
+
 export default function MainNavBar(props) {
-  const sidebar = useDisclosure();
-  const integrations = useDisclosure();
-  const options = ["apple", "appoint", "zap", "cap", "japan"];
   const router = useRouter();
   const { locale } = router;
   const t = locale == "en" ? en : ar;

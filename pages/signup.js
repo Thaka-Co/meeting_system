@@ -18,8 +18,12 @@ import Link from "next/link";
 import { PasswordField } from "../components/forms/passwordFiled";
 import Header from "../components/navBar/landingHeader";
 import { getCsrfToken, getSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import EmailFound from '../components/Alerts/emailFound'
 
 export default function App() {
+  const route = useRouter();
+  console.log(route.asPath)
   return (
     <>
       <Header />
@@ -87,6 +91,9 @@ export default function App() {
             >
               <Stack spacing="6">
                 <Stack spacing="5">
+                  {
+                    route.asPath == '/signup?used' ? <EmailFound /> : <></>
+                  }
                   <FormControl>
                     <FormLabel htmlFor="name">Name</FormLabel>
                     <Input id="name" type="text" name="name" required />
