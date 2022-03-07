@@ -51,7 +51,12 @@ function AddMeeting(props) {
   console.log(cyclic);
   return (
     <Box bg={useColorModeValue("gray.50", "inherit")}>
-      <Box bg={useColorModeValue("white", "gray.800")} p={15} m={5} borderRadius={7}>
+      <Box
+        bg={useColorModeValue("white", "gray.800")}
+        p={15}
+        m={5}
+        borderRadius={7}
+      >
         {/* <Datetime
           onChange={selectDate}
           isValidDate={valid}
@@ -109,7 +114,12 @@ function AddMeeting(props) {
         <UserData />
         <MeetingItems />
         <AddItems />
-        <Box bg={useColorModeValue("white", "gray.800")} p={15} m={5} borderRadius={7}>
+        <Box
+          bg={useColorModeValue("white", "gray.800")}
+          p={15}
+          m={5}
+          borderRadius={7}
+        >
           <Text mb={4}>{t.recordMeetingType}</Text>
           <Select>
             <option>type 1</option>

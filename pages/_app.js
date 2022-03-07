@@ -10,7 +10,8 @@ function App(props) {
     <SessionProvider>
       <ChakraProvider>
         <RtlProvider>
-          <Component {...pageProps} />
+        <Component {...pageProps} />
+
         </RtlProvider>
       </ChakraProvider>
     </SessionProvider>
