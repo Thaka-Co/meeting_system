@@ -40,25 +40,26 @@ function MeetingDetails(props) {
       <Heading m="10">{t.meetingItems}</Heading>
       {invoicesData.map((row, index) => {
         return (
-          <Box
+          // <Box
+          //   key={index}
+          //   bg={useColorModeValue("white", "gray.800")}
+          //   p={15}
+          //   m={5}
+          //   borderRadius={7}
+          // >
+          <ItemDetails
             key={index}
-            bg={useColorModeValue("white", "gray.800")}
-            p={15}
-            m={5}
-            borderRadius={7}
-          >
-            <ItemDetails
-              date={row.date}
-              votes={row.votes}
-              downArrow={row.downArrow}
-              upArrow={row.upArrow}
-              up={row.up}
-              down={row.down}
-              price={row.price}
-              logo={row.logo}
-              format={row.format}
-            />
-          </Box>
+            date={row.date}
+            votes={row.votes}
+            downArrow={row.downArrow}
+            upArrow={row.upArrow}
+            up={row.up}
+            down={row.down}
+            price={row.price}
+            logo={row.logo}
+            format={row.format}
+          />
+          // </Box>
         );
       })}
       <Heading m="10">{t.attendance}</Heading>

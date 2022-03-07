@@ -22,3 +22,4 @@ export default async function postRoom(req, res) {
 // module.exports = {
 //   addRoom,
 // };
+//import for what have been exported;
