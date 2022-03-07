@@ -14,13 +14,12 @@ import en from "../locales/en";
 import ar from "../locales/ar";
 function ItemDetails(props) {
   const textColor = useColorModeValue("gray.700", "white");
-  const { date, upArrow, downArrow, up, down, votes, format, logo } =
-    props;
+  const { date, upArrow, downArrow, up, down, votes, format, logo } = props;
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
   return (
-    <Flex my={{ sm: "1rem", xl: "10px" }}  alignItems="center">
+    <Flex my={{ sm: "1rem", xl: "10px" }} alignItems="center">
       <Flex direction="column" p={3}>
         <HStack>
           <Text fontSize="lg" color={textColor} fontWeight="bold">
@@ -28,9 +27,9 @@ function ItemDetails(props) {
           </Text>
         </HStack>
         <Box>
-          {votes.map((item) => {
+          {votes.map((item, index) => {
             return (
-              <Box pt={4}>
+              <Box pt={4} key={index}>
                 <Text
                   display={"block"}
                   fontSize="md"

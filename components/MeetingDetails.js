@@ -38,9 +38,10 @@ function MeetingDetails(props) {
         </HStack>
       </Box>
       <Heading m="10">{t.meetingItems}</Heading>
-      {invoicesData.map((row) => {
+      {invoicesData.map((row, index) => {
         return (
           <Box
+            key={index}
             bg={useColorModeValue("white", "gray.800")}
             p={15}
             m={5}
