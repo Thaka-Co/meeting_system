@@ -1,4 +1,4 @@
-import roomModel from "../../../lib/models/Rooms/roomsModel";
+import roomModel from '../../../lib/models/Rooms/roomsModel';
 
 export default async function getRoom(req, res) {
   try {

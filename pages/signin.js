@@ -109,26 +109,10 @@ export default function App({ csrfToken }) {
 
           </form>
 
-                  <FormControl>
-                    <FormLabel htmlFor="email">Email</FormLabel>
-                    <Input id="email" name="email" type="email" />
-                  </FormControl>
-                  <PasswordField />
-                </Stack>
-                <HStack justify="space-between">
-                  <Checkbox defaultIsChecked>Remember me</Checkbox>
-                  <Button variant="link" colorScheme="blue" size="sm">
-                    Forgot password?
-                  </Button>
-                </HStack>
-                <Stack spacing="6">
-                  <Button variant="primary" type="submit">
-                    Sign in
-                  </Button>
-                </Stack>
-              {/* </Stack> */}
-            {/* </Box> */}
-          {/* </form> */}
+        </Stack>
+        {/* </Stack> */}
+        {/* </Box> */}
+        {/* </form> */}
         {/* </Stack> */}
       </Container>
     </>
