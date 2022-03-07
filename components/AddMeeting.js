@@ -24,7 +24,7 @@ import ar from "../locales/ar";
 import DatePicker from "react-datepicker";
 // import "../styles/calendar.css";
 import { AiOutlineClockCircle } from "react-icons/ai";
-function addMeeting(props) {
+function AddMeeting(props) {
   // const [date, setDate] = useState("");
   // const [startH, setStartH] = useState("");
   // const [startMin, setStartMin] = useState("");

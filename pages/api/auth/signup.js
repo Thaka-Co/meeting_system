@@ -9,7 +9,6 @@ export default async function handler(req, res) {
       console.log(name, email, password);
       const hashedPasswrod = crypto
         .Hash("sha256", password)
-        .update("hello wrold ")
         .digest("hex");
       const data = await Users.find({}).where("email").equals(email);
       console.log(data);
