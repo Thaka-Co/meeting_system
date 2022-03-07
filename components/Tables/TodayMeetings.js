@@ -121,25 +121,7 @@ export default function TodayMeetings() {
                   </React.Fragment>
                 );
               })}
-              <Td
-                display={{
-                  base: "table-cell",
-                  md: "none",
-                }}
-                sx={{
-                  "@media print": {
-                    display: "none",
-                  },
-                  textTransform: "uppercase",
-                  color: useColorModeValue("gray.400", "gray.400"),
-                  fontSize: "xs",
-                  fontWeight: "bold",
-                  letterSpacing: "wider",
-                  fontFamily: "heading",
-                }}
-              >
-                {/* {t.actions} */}
-              </Td>
+            
               <Td>
                 <ButtonGroup variant="solid" size="sm" spacing={3}>
                   <Link href="/meetingSession">
