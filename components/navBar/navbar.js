@@ -14,7 +14,7 @@ import {
   MenuItem,
   MenuList,
   Text,
-  useColorModeValue,
+  // useColorModeValue,
   useDisclosure,
   Select,
 } from "@chakra-ui/react";
@@ -39,6 +39,7 @@ import en from "../../locales/en";
 import ar from "../../locales/ar";
 
 export default function MainNavBar(props) {
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const router = useRouter();
   const sidebar = useDisclosure();
   const { locale } = router;
@@ -72,6 +73,7 @@ export default function MainNavBar(props) {
         _hover={{
           bg: bg,
           color: color,
+
         }}
         role="group"
         fontWeight="semibold"
@@ -84,6 +86,7 @@ export default function MainNavBar(props) {
             boxSize="4"
             _groupHover={{
               color: iconHover,
+
             }}
             as={icon}
           />
@@ -107,12 +110,14 @@ export default function MainNavBar(props) {
       overflowY="auto"
       bg={sidebarBg}
       borderColor={borderColor}
+
       borderRightWidth="1px"
       w="60"
       {...props}
     >
       <Flex px="4" py="5" align="center">
         <Text fontSize="2xl" ml="2" color={textColor} fontWeight="semibold">
+
           حوكمة
         </Text>
       </Flex>
@@ -162,13 +167,13 @@ export default function MainNavBar(props) {
     <Box
       dir={ditLang}
       as="section"
-      bg={useColorModeValue("gray.50", "gray.700")}
+      // bg={useColorModeValue("gray.50", "gray.700")}
       minH="100vh"
     >
       <SidebarContent display={{ base: "none", md: "unset" }} />
       <Drawer
-        isOpen={sidebar.isOpen}
-        onClose={sidebar.onClose}
+        isOpen={isOpen}
+        onClose={onClose}
         placement="left"
       >
         <DrawerOverlay />
@@ -186,6 +191,7 @@ export default function MainNavBar(props) {
           bg={sidebarBg}
           borderBottomWidth="1px"
           borderColor={borderColor}
+
           h="14"
         >
           <AutoComplete rollNavigation>
@@ -210,7 +216,7 @@ export default function MainNavBar(props) {
           <IconButton
             aria-label="Menu"
             display={{ base: "inline-flex", md: "none" }}
-            onClick={sidebar.onOpen}
+            onClick={onOpen}
             icon={<FiMenu />}
             size="sm"
           />

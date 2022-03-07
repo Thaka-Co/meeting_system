@@ -11,6 +11,7 @@ function App(props) {
       <ChakraProvider>
         <RtlProvider>
         <Component {...pageProps} />
+
         </RtlProvider>
       </ChakraProvider>
     </SessionProvider>
