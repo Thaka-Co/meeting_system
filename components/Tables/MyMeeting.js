@@ -35,9 +35,10 @@ function MyMeeting(props) {
             </Tr>
           </Thead>
           <Tbody>
-            {dashboardTableData.map((row) => {
+            {dashboardTableData.map((row, index) => {
               return (
                 <DashboardTableRow
+                  key={index}
                   name={row.name}
                   logo={row.logo}
                   members={row.members}

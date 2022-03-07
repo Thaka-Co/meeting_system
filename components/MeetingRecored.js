@@ -36,9 +36,10 @@ export const MeetingRecored = (props) => {
       <Box bg={useColorModeValue("gray.50", "inherit")}>
         <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
           {/* <MeetingItems /> */}
-          {invoicesData.map((row) => {
+          {invoicesData.map((row, index) => {
             return (
               <InvoicesRow
+                key={index}
                 date={row.date}
                 code={row.downArrow}
                 downArrow={row.downArrow}

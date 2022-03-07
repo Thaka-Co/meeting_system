@@ -9,7 +9,8 @@ import {
   Table,
   Td,
   Thead,
-  Th,useColorModeValue,
+  Th,
+  useColorModeValue,
   Input,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
@@ -55,7 +56,12 @@ export const UserData = (props) => {
   console.log(writer);
   return (
     <div>
-      <Box bg={useColorModeValue("white", "gray.800")} p={15} m={5} borderRadius={7}>
+      <Box
+        bg={useColorModeValue("white", "gray.800")}
+        p={15}
+        m={5}
+        borderRadius={7}
+      >
         <HStack spacing={40}>
           {/* <Text fontSize="lg" color={textColor} fontWeight="bold">
             Choose 
@@ -64,49 +70,59 @@ export const UserData = (props) => {
         {/* <CheckboxGroup  > */}{" "}
         <Table>
           <Thead>
-            <Th>{t.attendance}</Th>
-            <Th>{t.speakers}</Th>
-            <Th>{t.writter}</Th>
+            <tr>
+              <Th>{t.attendance}</Th>
+              <Th>{t.speakers}</Th>
+              <Th>{t.writter}</Th>
+            </tr>
           </Thead>
-          {usersData.map((item, index) => {
-            return (
-              <Tr>
-                <Td>
-                  <Checkbox onChange={selectUser} value={item.id}>
-                    {item.name}
-                  </Checkbox>
-                </Td>
-                <Td>
-                  <Checkbox onChange={selectSpeaker} value={item.id}></Checkbox>
-                  {speakers &&
-                    speakers.map((ele, index) => {
-                      if (ele.speaker == item.id)
-                        return (
-                          // speakers[item.id-1].speaker ? (
-                          <Input
-                            type={"text"}
-                            ml={2}
-                            width={100}
-                            height={30}
-                            placeholder="time"
-                            name="time"
-                            onChange={(e) => {
-                              setTime(e.target.value);
-                              console.log(time);
-                            }}
-                          />
-                          // ) : (
-                          //   ""
-                          // )
-                        );
-                    })}
-                </Td>
-                <Td>
-                  <Checkbox onChange={selectWriter} value={item.id}></Checkbox>
-                </Td>
-              </Tr>
-            );
-          })}
+          <tbody>
+            {usersData.map((item, index) => {
+              return (
+                <Tr key={index}>
+                  <Td>
+                    <Checkbox onChange={selectUser} value={item.id}>
+                      {item.name}
+                    </Checkbox>
+                  </Td>
+                  <Td>
+                    <Checkbox
+                      onChange={selectSpeaker}
+                      value={item.id}
+                    ></Checkbox>
+                    {speakers &&
+                      speakers.map((ele, index) => {
+                        if (ele.speaker == item.id)
+                          return (
+                            // speakers[item.id-1].speaker ? (
+                            <Input
+                              type={"text"}
+                              ml={2}
+                              width={100}
+                              height={30}
+                              placeholder="time"
+                              name="time"
+                              onChange={(e) => {
+                                setTime(e.target.value);
+                                console.log(time);
+                              }}
+                            />
+                            // ) : (
+                            //   ""
+                            // )
+                          );
+                      })}
+                  </Td>
+                  <Td>
+                    <Checkbox
+                      onChange={selectWriter}
+                      value={item.id}
+                    ></Checkbox>
+                  </Td>
+                </Tr>
+              );
+            })}
+          </tbody>
         </Table>
         {/* </CheckboxGroup> */}
         <Button mt={4}>{t.invite}</Button>
