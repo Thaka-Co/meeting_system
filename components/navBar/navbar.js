@@ -14,7 +14,7 @@ import {
   MenuItem,
   MenuList,
   Text,
-  useColorModeValue,
+  // useColorModeValue,
   useDisclosure,
   Select,
 } from "@chakra-ui/react";
@@ -42,6 +42,7 @@ import ar from "../../locales/ar";
 
 
 export default function MainNavBar(props) {
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const router = useRouter();
   const { locale } = router;
   const t = locale == "en" ? en : ar;
@@ -63,10 +64,10 @@ export default function MainNavBar(props) {
         pl="4"
         py="3"
         cursor="pointer"
-        color={useColorModeValue("inherit", "gray.400")}
+        // color='white'
         _hover={{
-          bg: useColorModeValue("gray.100", "gray.900"),
-          color: useColorModeValue("gray.900", "gray.200"),
+          // bg: useColorModeValue("gray.100", "gray.900"),
+          // color: 'gray',
         }}
         role="group"
         fontWeight="semibold"
@@ -78,7 +79,7 @@ export default function MainNavBar(props) {
             mx="2"
             boxSize="4"
             _groupHover={{
-              color: useColorModeValue("gray.600", "gray.300"),
+              // color: useColorModeValue("gray.600", "gray.300"),
             }}
             as={icon}
           />
@@ -100,8 +101,8 @@ export default function MainNavBar(props) {
       pb="10"
       overflowX="hidden"
       overflowY="auto"
-      bg={useColorModeValue("white", "gray.800")}
-      borderColor={useColorModeValue("inherit", "gray.700")}
+      // bg={useColorModeValue("white", "gray.800")}
+      // borderColor={useColorModeValue("inherit", "gray.700")}
       borderRightWidth="1px"
       w="60"
       {...props}
@@ -110,7 +111,7 @@ export default function MainNavBar(props) {
         <Text
           fontSize="2xl"
           ml="2"
-          color={useColorModeValue("brand.500", "white")}
+          // color={useColorModeValue("brand.500", "white")}
           fontWeight="semibold"
         >
           حوكمة
@@ -162,13 +163,13 @@ export default function MainNavBar(props) {
     <Box
       dir={ditLang}
       as="section"
-      bg={useColorModeValue("gray.50", "gray.700")}
+      // bg={useColorModeValue("gray.50", "gray.700")}
       minH="100vh"
     >
       <SidebarContent display={{ base: "none", md: "unset" }} />
       <Drawer
-        isOpen={sidebar.isOpen}
-        onClose={sidebar.onClose}
+        isOpen={isOpen}
+        onClose={onClose}
         placement="left"
       >
         <DrawerOverlay />
@@ -183,9 +184,9 @@ export default function MainNavBar(props) {
           justify="space-between"
           w="full"
           px="4"
-          bg={useColorModeValue("white", "gray.800")}
+          // bg={useColorModeValue("white", "gray.800")}
           borderBottomWidth="1px"
-          borderColor={useColorModeValue("inherit", "gray.700")}
+          // borderColor={useColorModeValue("inherit", "gray.700")}
           h="14"
         >
           <AutoComplete rollNavigation>
@@ -210,7 +211,7 @@ export default function MainNavBar(props) {
           <IconButton
             aria-label="Menu"
             display={{ base: "inline-flex", md: "none" }}
-            onClick={sidebar.onOpen}
+            onClick={onOpen}
             icon={<FiMenu />}
             size="sm"
           />

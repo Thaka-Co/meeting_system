@@ -35,7 +35,7 @@ export default function Status() {
   console.log(show);
   return (
     <>
-      <Box as="section" bg={mode("gray.50", "gray.800")} p="">
+      <Box as="section" p="">
         <Box
           maxW="9xl"
           mx="auto"

@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  useColorModeValue,
+  // useColorModeValue,
   ButtonGroup,
   IconButton,
   Table,
@@ -34,7 +34,7 @@ export default function TodayMeetings() {
   return data.length != 0 ? (
     <Table
       w="full"
-      bg={useColorModeValue("white", "gray.800")}
+      // bg={useColorModeValue("white", "gray.800")}
       display={{
         base: "block",
         md: "table",
@@ -102,7 +102,7 @@ export default function TodayMeetings() {
                           display: "none",
                         },
                         textTransform: "uppercase",
-                        color: useColorModeValue("gray.400", "gray.400"),
+                        // color: useColorModeValue("gray.400", "gray.400"),
                         fontSize: "xs",
                         fontWeight: "bold",
                         letterSpacing: "wider",
@@ -112,7 +112,7 @@ export default function TodayMeetings() {
                       {x}
                     </Td>
                     <Td
-                      color={useColorModeValue("gray.500")}
+                      // color={useColorModeValue("gray.500")}
                       fontSize="md"
                       fontWeight="hairline"
                     >
@@ -121,7 +121,7 @@ export default function TodayMeetings() {
                   </React.Fragment>
                 );
               })}
-            
+
               <Td>
                 <ButtonGroup variant="solid" size="sm" spacing={3}>
                   <Link href="/meetingSession">
