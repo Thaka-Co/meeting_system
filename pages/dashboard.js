@@ -9,7 +9,7 @@ import en from "../locales/en";
 import ar from "../locales/ar";
 
 
-export default function dashboard() {
+export default function Dashboard() {
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;

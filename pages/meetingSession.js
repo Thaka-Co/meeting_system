@@ -70,9 +70,10 @@ export default function MeetingSession() {
                 </Tr>
               </Thead>
               <Tbody>
-                {tablesProjectData.map((row) => {
+                {tablesProjectData.map((row,index) => {
                   return (
                     <TablesProjectRow
+                    key={index}
                       name={row.name}
                       logo={row.logo}
                       status={row.status}

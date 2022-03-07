@@ -53,7 +53,7 @@ export default function App({ csrfToken }) {
                 Log in to your account
               </Heading>
               <HStack spacing="1" justify="center">
-                <Text color="muted">Don't have an account?</Text>
+                <Text color="muted">Don&#39;t have an account?</Text>
                 <Link href="/signup">
                   <Button variant="link" colorScheme="blue">
                     Sign up

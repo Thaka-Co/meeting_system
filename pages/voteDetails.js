@@ -3,10 +3,8 @@ import * as React from "react";
 import { VoteDetails } from "../components/VoteDetails";
 import { invoicesData } from "../Faker/general";
 import MainNavBar from "../components/navBar/navbar";
-import { useSession } from "next-auth/react";
 import { getCsrfToken, getSession } from "next-auth/react";
 function voteDetails(props) {
-  const { data: session } = useSession();
   return (
     <div>
       {/* {session ? ( */}

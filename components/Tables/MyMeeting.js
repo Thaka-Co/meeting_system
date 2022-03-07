@@ -53,7 +53,7 @@ function MyMeeting(props) {
         <Box borderWidth="4px" borderStyle="dashed" rounded="md" h="96" m="10">
           <Center>
             {" "}
-            <Heading m="10">You Don't Have Any Meetings</Heading>
+            <Heading m="10">You Do not &#39; Have Any Meetings</Heading>
           </Center>
         </Box>
       )}
