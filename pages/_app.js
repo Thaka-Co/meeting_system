@@ -1,7 +1,7 @@
 // pages/_app.js
 import { SessionProvider } from "next-auth/react";
 import { ChakraProvider } from "@chakra-ui/react";
-import { RtlProvider } from "./rtl-provider";
+import RtlProvider from "../lib/providers/rtl-provider";
 import "react-calendar/dist/Calendar.css";
 import "../styles/calendar.css";
 function App(props) {
@@ -10,7 +10,7 @@ function App(props) {
     <SessionProvider>
       <ChakraProvider >
         <RtlProvider>
-        <Component {...pageProps} />
+          <Component {...pageProps} />
 
         </RtlProvider>
       </ChakraProvider>
