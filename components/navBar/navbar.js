@@ -128,10 +128,10 @@ export default function MainNavBar(props) {
         color="gray.600"
         aria-label="Main Navigation"
       >
-        <Link href="/dashboard">
+        <Link href="/dashboard" passHref>
           <NavItem icon={MdDashboard}>{t.dashboard}</NavItem>
         </Link>
-        <Link href="/meeting">
+        <Link href="/meeting" passHref>
           <NavItem icon={FaRss}>{t.addMeeting}</NavItem>
         </Link>
         {/* <NavItem icon={HiCollection}>Collections</NavItem>
@@ -156,7 +156,7 @@ export default function MainNavBar(props) {
           </NavItem>
         </Collapse>
         <NavItem icon={AiFillGift}>Changelog</NavItem> */}
-        <Link href="/setting">
+        <Link href="/setting" passHref>
           <NavItem icon={BsGearFill}>{t.setting}</NavItem>
         </Link>
       </Flex>

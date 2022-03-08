@@ -8,7 +8,7 @@ export const DisplayComments = (props) => {
     <div>
       {comments.map((item, index) => {
         return (
-            <Comment key={index} name={item.name} value={item.value}/>
+          <Comment key={index} name={item.name} value={item.value} />
         );
       })}
     </div>

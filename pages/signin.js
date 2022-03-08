@@ -57,7 +57,7 @@ export default function App({ csrfToken }) {
               </Heading>
               <HStack spacing="1" justify="center">
                 <Text color="muted">Don&#39;t have an account?</Text>
-                <Link href="/signup">
+                <Link href="/signup" passHref>
                   <Button variant="link" colorScheme="blue">
                     Sign up
                   </Button>
@@ -130,7 +130,7 @@ export async function getServerSideProps(context) {
   if (session && res) {
     console.log('working')
     res.writeHead(302, {
-      Location: '/'
+      Location: '/dashboard'
     });
     res.end();
   }

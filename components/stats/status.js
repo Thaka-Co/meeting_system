@@ -6,9 +6,9 @@ import {
   useColorModeValue as mode,
 } from "@chakra-ui/react";
 import * as React from "react";
-import { Stat } from "./Stat";
-import { StatLabel } from "./StatLabel";
-import { StatNumber } from "./StatNumber";
+import { Stat } from "./stat";
+import { StatLabel } from "./statLabel";
+import { StatNumber } from "./statNumber";
 import {
   FaCalendarAlt,
   FaRegCalendarCheck,

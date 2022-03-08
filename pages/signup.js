@@ -57,7 +57,7 @@ export default function App() {
               </Heading>
               <HStack spacing="1" justify="center">
                 <Text color="muted">You have an account?</Text>
-                <Link href="/signin">
+                <Link href="/signin" passHref>
                   <Button variant="link" colorScheme="blue">
                     Sign in
                   </Button>
@@ -128,7 +128,7 @@ export async function getServerSideProps(context) {
   if (session && res) {
     console.log("working");
     res.writeHead(302, {
-      Location: "/",
+      Location: "/dashboard",
     });
     res.end();
   }
