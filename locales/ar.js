@@ -80,5 +80,6 @@ export default {
   dashboard: "لوحة تحكم",
   addMeeting: "أضافة أجتماع",
   setting: "أعدادات",
-  search:'بحث'
+  search: 'بحث',
+  signout: 'تسجيل خروج'
 };

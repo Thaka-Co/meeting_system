@@ -1,7 +1,7 @@
 import {
   Avatar,
   Box,
-  Collapse,
+  Button,
   Drawer,
   DrawerContent,
   DrawerOverlay,
@@ -28,7 +28,7 @@ import {
 import React from "react";
 import { AiFillGift } from "react-icons/ai";
 import { BsGearFill } from "react-icons/bs";
-import { FaBell, FaClipboardCheck, FaRss } from "react-icons/fa";
+import { FaBell, FaSignOutAlt, FaRss } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import { HiCode, HiCollection } from "react-icons/hi";
 import { MdDashboard, MdKeyboardArrowRight } from "react-icons/md";
@@ -38,6 +38,11 @@ import { dashboardTableData } from "../../Faker/general";
 import { useRouter } from "next/router";
 import en from "../../locales/en";
 import ar from "../../locales/ar";
+import { signOut } from "next-auth/react";
+
+
+
+
 
 export default function MainNavBar(props) {
   const { toggleColorMode: toggleMode } = useColorMode();
@@ -55,6 +60,9 @@ export default function MainNavBar(props) {
     router.push(router.pathname, router.asPath, { locale });
     // localStorage.setItem("language", e.target.value);
   };
+  const clickHandler = () => { signOut({ callbackUrl: '/signin' }) }
+
+
   const bg = useColorModeValue("gray.100", "gray.900");
   const color = useColorModeValue("gray.900", "gray.200");
   const iconHover = useColorModeValue("gray.600", "gray.300");
@@ -163,6 +171,8 @@ export default function MainNavBar(props) {
         <Link href="/setting" passHref>
           <NavItem icon={BsGearFill}>{t.setting}</NavItem>
         </Link>
+
+        <NavItem onClick={clickHandler} icon={FaSignOutAlt}>{t.signout}</NavItem>
       </Flex>
     </Box>
   );
