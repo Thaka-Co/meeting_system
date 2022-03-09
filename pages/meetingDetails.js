@@ -2,13 +2,15 @@ import React from "react";
 import MeetingDetails from "../components/MeetingDetails";
 import MainNavBar from "../components/navBar/navbar";
 import { getCsrfToken, getSession } from "next-auth/react";
+import { Box,useColorModeValue } from "@chakra-ui/react";
 function meetingDetails(props) {
   return (
     <div>
       {/* {session ? ( */}
+      <Box bg={useColorModeValue("gray.50", "inherit")}>
       <MainNavBar>
         <MeetingDetails />
-      </MainNavBar>
+      </MainNavBar></Box>
       {/* ) : (
         <></>
       )} */}

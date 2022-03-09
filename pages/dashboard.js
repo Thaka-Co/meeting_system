@@ -1,4 +1,4 @@
-import { Heading } from "@chakra-ui/react";
+import { Heading,Box,useColorModeValue } from "@chakra-ui/react";
 import MainNavBar from "../components/navBar/navbar";
 import Status from "../components/stats/status";
 import MyMeeting from "../components/Tables/MyMeeting";
@@ -16,6 +16,7 @@ export default function Dashboard() {
 
   return (
     <>
+    <Box bg={useColorModeValue("gray.50", "inherit")}>
       <MainNavBar>
         <Status />
         <Heading m="10">{t.ToDayMeetings}</Heading>
@@ -24,7 +25,7 @@ export default function Dashboard() {
         <Heading m="10">{t.MyMeetings}</Heading>
         {/* My Meetings Table */}
         <MyMeeting />
-      </MainNavBar>
+      </MainNavBar></Box>
     </>
   )
 }

@@ -22,6 +22,7 @@ import ar from "../locales/ar";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { getCsrfToken, getSession } from "next-auth/react";
+import { Box,useColorModeValue } from "@chakra-ui/react";
 export default function MeetingSession() {
   const router = useRouter();
   const { locale } = router;
@@ -33,6 +34,7 @@ export default function MeetingSession() {
     setActive(false);
   };
   return (
+    <Box bg={useColorModeValue("gray.50", "inherit")}>
     <MainNavBar>
       {!active ? (
         session ? (
@@ -70,10 +72,10 @@ export default function MeetingSession() {
                 </Tr>
               </Thead>
               <Tbody>
-                {tablesProjectData.map((row,index) => {
+                {tablesProjectData.map((row, index) => {
                   return (
                     <TablesProjectRow
-                    key={index}
+                      key={index}
                       name={row.name}
                       logo={row.logo}
                       status={row.status}
@@ -88,6 +90,7 @@ export default function MeetingSession() {
         </Card>
       )}
     </MainNavBar>
+    </Box>
   );
 }
 export async function getServerSideProps(context) {

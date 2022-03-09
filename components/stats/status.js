@@ -35,6 +35,7 @@ export default function Status() {
   console.log(show);
   return (
     <>
+    {/* <Box bg={mode("gray.50", "inherit")}> */}
       <Box as="section" p="">
         <Box
           maxW="9xl"
@@ -55,25 +56,25 @@ export default function Status() {
               }}
               spacing="6"
             >
-              <Stat key="Meetings" bg={mode("gray.50", "gray.800")}>
+              <Stat key="Meetings" bg={mode("white", "gray.800")}>
                 <StatLabel>{t.Meetings}</StatLabel>
                 <FaCalendarAlt />
                 <StatNumber>10</StatNumber>
               </Stat>
 
-              <Stat key="CompletedMeetings" bg={mode("gray.50", "gray.800")}>
+              <Stat key="CompletedMeetings" bg={mode("white", "gray.800")}>
                 <StatLabel>{t.CompletedMeetings}</StatLabel>
                 <FaRegCalendarCheck />
                 <StatNumber>10</StatNumber>
               </Stat>
 
-              <Stat key="Tasks" bg={mode("gray.50", "gray.800")}>
+              <Stat key="Tasks" bg={mode("white", "gray.800")}>
                 <StatLabel>{t.Tasks}</StatLabel>
                 <FaClipboardList />
                 <StatNumber>10</StatNumber>
               </Stat>
 
-              <Stat key="Complated Ta" bg={mode("gray.50", "gray.800")}>
+              <Stat key="Complated Ta" bg={mode("white", "gray.800")}>
                 <StatLabel>{t.complatedTasks}</StatLabel>
                 <FaClipboardCheck />
                 <StatNumber>10</StatNumber>
@@ -84,6 +85,7 @@ export default function Status() {
           )}
         </Box>
       </Box>
+      {/* </Box> */}
     </>
   );
 }

@@ -19,6 +19,7 @@ function MeetingRooms({ rooms }) {
   const selectRoom = (e) => {
     console.log(e);
   };
+  console.log(getServerSideProps);
   console.log(rooms, "popopop");
   const router = useRouter();
   const { locale } = router;
@@ -74,11 +75,12 @@ function MeetingRooms({ rooms }) {
   );
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
   const res = await fetch("http://localhost:3000/api/rooms/getRoom");
   const rooms = await res.json();
+  console.log(res.json);
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time
   return {

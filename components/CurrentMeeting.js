@@ -20,6 +20,7 @@ function CurrentMeeting(props) {
   let t = locale == "en" ? en : ar;
   return (
     <div>
+      {/* <Box bg={useColorModeValue("gray.50", "inherit")}> */}
       <Box bg={useColorModeValue("white", "gray.800")} p={15} m={5} borderRadius={7}>
         {/* <Text fontSize="xl" color={textColor} fontWeight="bold">
           Meeting title
@@ -44,6 +45,7 @@ function CurrentMeeting(props) {
       <Heading m={10}>{t.comments}</Heading>
       <DisplayComments />
       <AddComments />
+      {/* </Box> */}
     </div>
   );
 }

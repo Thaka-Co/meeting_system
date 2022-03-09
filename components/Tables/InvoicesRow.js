@@ -55,7 +55,7 @@ function InvoicesRow(props) {
       },
       body: JSON.stringify({
         title: e.target.title.value,
-        desc: e.target.desc.value,
+        description: e.target.desc.value,
         users: checkedBox,
         type: choose,
       }),
