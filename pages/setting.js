@@ -5,10 +5,11 @@ import MainNavBar from "../components/navBar/navbar";
 import { getCsrfToken, getSession } from "next-auth/react";
 import { Box,useColorModeValue } from "@chakra-ui/react";
 export default function setting(props) {
+  const bg=useColorModeValue("gray.50", "inherit")
   return (
     <div>
       {/* {session ? ( */}
-      <Box bg={useColorModeValue("gray.50", "inherit")}>
+      <Box bg={bg}>
       <MainNavBar>
         <Setting />
       </MainNavBar>

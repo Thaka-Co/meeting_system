@@ -13,10 +13,10 @@ export default function Dashboard() {
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
-
+  const bg=useColorModeValue("gray.50", "inherit")
   return (
     <>
-    <Box bg={useColorModeValue("gray.50", "inherit")}>
+    <Box bg={bg}>
       <MainNavBar>
         <Status />
         <Heading m="10">{t.ToDayMeetings}</Heading>

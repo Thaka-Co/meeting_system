@@ -6,9 +6,10 @@ import MainNavBar from "../components/navBar/navbar";
 import { getCsrfToken, getSession } from "next-auth/react";
 import { Box,useColorModeValue } from "@chakra-ui/react";
 function voteDetails(props) {
+  const bg=useColorModeValue("gray.50", "inherit")
   return (
     <div>
-       <Box bg={useColorModeValue("gray.50", "inherit")}>
+       <Box bg={bg}>
       <MainNavBar>
         <VoteDetails votes={invoicesData[0].votes[0]} />
       </MainNavBar>

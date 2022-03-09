@@ -33,8 +33,9 @@ export default function MeetingSession() {
     await active;
     setActive(false);
   };
+  const bg=useColorModeValue("gray.50", "inherit")
   return (
-    <Box bg={useColorModeValue("gray.50", "inherit")}>
+    <Box bg={bg}>
     <MainNavBar>
       {!active ? (
         session ? (
