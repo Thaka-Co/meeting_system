@@ -123,7 +123,7 @@ export default function TodayMeetings() {
 
               <Td>
                 <ButtonGroup variant="solid" size="sm" spacing={3}>
-                  <Link href="/meetingSession">
+                  <Link href="/currentMeeting">
                     <IconButton
                       colorScheme="blue"
                       icon={<BsBoxArrowUpRight />}

@@ -81,5 +81,6 @@ export default {
   dashboard: "Dashboard",
   addMeeting: "Add Meeting",
   setting: "Setting",
-  search:'Search'
+  search: 'Search'
+  , signout: 'sign out'
 };

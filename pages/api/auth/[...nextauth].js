@@ -17,7 +17,7 @@ export default NextAuth({
         email: {
           label: "Username",
           type: "text",
-          placeholder: "jsmith",
+          placeholder: "",
         },
         password: {
           label: "Password",
@@ -27,10 +27,7 @@ export default NextAuth({
 
       async authorize(credentials, req) {
         const data = await Users.find({}).where('email').equals(credentials.email)
-        console.log(credentials.email)
-        console.log(credentials.password)
-        console.log(data)
-        // registerUser('ali','ali@gg.com','1234')
+
         const isData = data.length > 0;
         const user = isData ? {
           id: data[0].id,
@@ -39,7 +36,7 @@ export default NextAuth({
         } : null
 
         const hashedPasswrod = crypto.Hash('sha256', credentials.password).digest('hex')
-
+        console.log(hashedPasswrod)
         if (isData && credentials.email === data[0].email && hashedPasswrod === data[0].password) {
           return user
         }
