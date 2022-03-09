@@ -15,9 +15,10 @@ import {
   MenuList,
   Text,
   useColorModeValue,
-  useDisclosure,
+  useDisclosure,useColorMode,
   Select,
 } from "@chakra-ui/react";
+import { FaMoon, FaSun } from "react-icons/fa";
 import {
   AutoComplete,
   AutoCompleteInput,
@@ -39,6 +40,9 @@ import en from "../../locales/en";
 import ar from "../../locales/ar";
 
 export default function MainNavBar(props) {
+  const { toggleColorMode: toggleMode } = useColorMode();
+  const text = useColorModeValue("dark", "light");
+  const SwitchIcon = useColorModeValue(FaMoon, FaSun);
   const { isOpen, onOpen, onClose } = useDisclosure()
   const router = useRouter();
   const sidebar = useDisclosure();
@@ -228,6 +232,16 @@ export default function MainNavBar(props) {
           <Flex align="center">
             <Menu>
               {/* <MenuButton> */}
+              <IconButton
+              size="md"
+              fontSize="lg"
+              aria-label={`Switch to ${text} mode`}
+              variant="ghost"
+              color="current"
+              ml={{ base: "0", md: "3" }}
+              onClick={toggleMode}
+              icon={<SwitchIcon />}
+            />
               <Select
                 w={100}
                 m={4}
