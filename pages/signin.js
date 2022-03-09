@@ -22,7 +22,7 @@ import { useRouter } from "next/router";
 import CredentialsError from "../components/Alerts/credentialsError";
 export default function App({ csrfToken }) {
   const route = useRouter();
-  const error = route.asPath.includes('/signin&error=CredentialsSignin')
+  const error = route.asPath.includes('signin&error=CredentialsSignin')
   console.log(error)
   return (
     <>
