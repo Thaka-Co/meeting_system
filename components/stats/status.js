@@ -23,7 +23,7 @@ export default function Status() {
   const { locale } = router;
   let t = locale == "en" ? en : ar;
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [show, setShow] = React.useState(false);
+  const [show, setShow] = React.useState(true);
   const open = () => {
     show ? setShow(false) : setShow(true);
     const btn = document.querySelector(".btn");
@@ -35,7 +35,7 @@ export default function Status() {
   console.log(show);
   return (
     <>
-    {/* <Box bg={mode("gray.50", "inherit")}> */}
+      {/* <Box bg={mode("gray.50", "inherit")}> */}
       <Box as="section" p="">
         <Box
           maxW="9xl"
