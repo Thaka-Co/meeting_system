@@ -10,7 +10,9 @@ function App(props) {
     <SessionProvider>
       <ChakraProvider >
         <RtlProvider>
+        <Box bg={useColorModeValue("gray.50", "gray.900")}>
           <Component {...pageProps} />
+        </Box>
         </RtlProvider>
       </ChakraProvider>
     </SessionProvider>

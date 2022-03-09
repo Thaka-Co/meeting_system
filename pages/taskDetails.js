@@ -2,19 +2,16 @@ import * as React from "react";
 import TaskDetails from "./../components/TaskDetails";
 import MainNavBar from "../components/navBar/navbar";
 import { getCsrfToken, getSession } from "next-auth/react";
-import { Box,useColorModeValue } from "@chakra-ui/react";
 export const taskDetails = (props) => {
-  const bg=useColorModeValue("gray.50", "inherit")
   return (
     <div>
       {/* {session ? ( */}
-      <Box bg={bg}>
       <MainNavBar>
         <TaskDetails />
       </MainNavBar>
       {/* ) : (
         ""
-      )} */}</Box>
+      )} */}
     </div>
   );
 };

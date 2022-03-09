@@ -2,17 +2,13 @@ import React from "react";
 import AddMeeting from "../components/AddMeeting";
 import MainNavBar from "../components/navBar/navbar";
 import { getCsrfToken, getSession } from "next-auth/react";
-import { Box,useColorModeValue } from "@chakra-ui/react";
 function meeting(props) {
-  const bg=useColorModeValue("gray.50", "inherit")
   return (
     <div>
       {/* {session ? ( */}
-      <Box bg={bg}>
       <MainNavBar>
         <AddMeeting />
       </MainNavBar>
-      </Box>
       {/* ) : (
        ''
       )}  */}
@@ -37,4 +33,3 @@ export async function getServerSideProps(context) {
     },
   };
 }
-
