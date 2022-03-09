@@ -4,16 +4,14 @@ import { VoteDetails } from "../components/VoteDetails";
 import { invoicesData } from "../Faker/general";
 import MainNavBar from "../components/navBar/navbar";
 import { getCsrfToken, getSession } from "next-auth/react";
+import { Box,useColorModeValue } from "@chakra-ui/react";
 function voteDetails(props) {
   return (
     <div>
-      {/* {session ? ( */}
+      
       <MainNavBar>
         <VoteDetails votes={invoicesData[0].votes[0]} />
       </MainNavBar>
-      {/* ) : (
-        ""
-      )} */}
     </div>
   );
 }

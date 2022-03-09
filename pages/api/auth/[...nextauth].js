@@ -1,8 +1,8 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 // import registerUser from "../../../lib/services/user/registerUser"
-import Users from '../../../lib/models/user/userModel'
-const crypto = require('crypto');
+import Users from "../../../lib/models/user/userModel";
+const crypto = require("crypto");
 export default NextAuth({
   providers: [
     // ...add more providers here
@@ -29,20 +29,22 @@ export default NextAuth({
         const data = await Users.find({}).where('email').equals(credentials.email)
 
         const isData = data.length > 0;
-        const user = isData ? {
-          id: data[0].id,
-          name: data[0].name,
-          email: data[0].email
-        } : null
+        const user = isData
+          ? {
+            id: data[0].id,
+            name: data[0].name,
+            email: data[0].email,
+          }
+          : null;
 
         const hashedPasswrod = crypto.Hash('sha256', credentials.password).digest('hex')
         console.log(hashedPasswrod)
         if (isData && credentials.email === data[0].email && hashedPasswrod === data[0].password) {
           return user
         }
-        return null
-      }
-    })
+        return null;
+      },
+    }),
   ],
   callbacks: {
     jwt: async ({ token, user }) => {
@@ -64,6 +66,6 @@ export default NextAuth({
     encryption: true,
   },
   pages: {
-    signIn: '/signin'
-  }
-})
+    signIn: "/signin",
+  },
+});

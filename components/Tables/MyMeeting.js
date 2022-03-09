@@ -22,6 +22,8 @@ function MyMeeting(props) {
   const textColor = useColorModeValue("gray.700", "white");
   return (
     <div>
+      
+     <Box bg={useColorModeValue("white", "gray.800")} p={15} m={5} borderRadius={7}>
       {dashboardTableData.length != 0 ? (
         <Table variant="simple" color={textColor}>
           <Thead>
@@ -57,6 +59,7 @@ function MyMeeting(props) {
           </Center>
         </Box>
       )}
+      </Box>
     </div>
   );
 }
