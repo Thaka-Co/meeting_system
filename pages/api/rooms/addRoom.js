@@ -8,6 +8,7 @@ export default async function postRoom(req, res) {
     //   size,
     //   tools,
     // });
+    console.log(size);
     if ((location, size, tools)) {
       addRoom(location, size, tools);
     } else {

@@ -1,7 +1,9 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Header from "../components/navBar/landingHeader";
-export default function Home() {
+export default function Home({ rooms }) {
+  console.log(rooms);
+  console.log("index", rooms);
   return (
     <>
       <Header />
@@ -15,5 +17,12 @@ export default function Home() {
     </>
   );
 }
-
-
+export const getStaticProps = async () => {
+  const res = await fetch("http://localhost:3000/api/rooms/getRoom");
+  const rooms = await res.json();
+  return {
+    props: {
+      rooms,
+    },
+  };
+};

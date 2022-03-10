@@ -109,7 +109,7 @@ function AddMeeting(props) {
           ""
         )}
       </Box>
-      <MeetingRooms />
+      <MeetingRooms rooms={props.rooms} />
       <>
         <UserData />
         <MeetingItems />

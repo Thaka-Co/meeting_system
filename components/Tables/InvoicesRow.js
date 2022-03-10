@@ -47,7 +47,7 @@ function InvoicesRow(props) {
   const { date, price, format, logo, record } = props;
   const addVote = () => {};
   const addPost = async (e) => {
-    e.preventDefault();                                          
+    e.preventDefault();
     fetch("/api/votes/addVote", {
       method: "POST",
       headers: {
@@ -59,12 +59,11 @@ function InvoicesRow(props) {
         users: checkedBox,
         type: choose,
       }),
-    })
-      .then((res) => res.json())
-      // .then((data) => {
-      //   router.push("/");
-      // });
-    
+    }).then((res) => res.json());
+    // .then((data) => {
+    //   router.push("/");
+    // });
+
     // e.preventDefault();s
     console.log(e.target.title.value);
     console.log(e.target.desc.value);
@@ -73,8 +72,8 @@ function InvoicesRow(props) {
   };
   return (
     <>
-      <Flex my={{ sm: "1rem", xl: "10px" }} alignItems="center" >
-        <Flex direction="column" >
+      <Flex my={{ sm: "1rem", xl: "10px" }} alignItems="center">
+        <Flex direction="column">
           <Text fontSize="md" color={textColor} fontWeight="bold">
             {date}
           </Text>
@@ -90,7 +89,7 @@ function InvoicesRow(props) {
         </HStack> */}
         </Flex>
         <Spacer />
-        <Box me="12px" >
+        <Box me="12px">
           <Text fontSize="md" color="gray.400" fontWeight="semibold">
             {price}
           </Text>
