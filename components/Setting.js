@@ -12,6 +12,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
+import { getSession } from "next-auth/react";
 export const Setting = (props) => {
   const [enableUser, setEnableUser] = React.useState(true);
   const [enablePassword, setEnablePassword] = React.useState(true);
@@ -19,6 +20,7 @@ export const Setting = (props) => {
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
+  // const session = await getSession();
   const enableUserName = () => {
     enableUser ? setEnableUser(false) : setEnableUser(true);
     const userName = document.querySelector(".userName");
@@ -46,17 +48,23 @@ export const Setting = (props) => {
       email.disabled = true;
     }
   };
-
   return (
     <div>
       <Box bg={useColorModeValue("gray.50", "inherit")}>
-        <Box bg={useColorModeValue("white", "gray.800")} p={15} m={5} borderRadius={7} w={350} >
+        <Box
+          bg={useColorModeValue("white", "gray.800")}
+          p={15}
+          m={5}
+          borderRadius={7}
+          w={350}
+        >
           <Heading mb={10}>{t.profile}</Heading>
           <HStack spacing={30} mb={9}>
             <Input
               type={"text"}
               className={"userName"}
               placeholder={t.userName}
+              value={props.user.name}
               disabled
             />
             <Icon as={AiOutlineEdit} onClick={enableUserName} />
@@ -66,6 +74,7 @@ export const Setting = (props) => {
               type={"email"}
               className={"email"}
               placeholder={t.email}
+              value={props.user.email}
               disabled
             />
             <Icon as={AiOutlineEdit} onClick={enableEmail} />
@@ -75,6 +84,7 @@ export const Setting = (props) => {
               type={"password"}
               className={"password"}
               placeholder={t.password}
+              value={props.user.password}
               disabled
             />
             <Icon as={AiOutlineEdit} onClick={enablePass} />

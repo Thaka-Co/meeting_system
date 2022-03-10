@@ -8,7 +8,7 @@ export default function setting(props) {
     <div>
       {/* {session ? ( */}
       <MainNavBar>
-        <Setting />
+        <Setting user={props.user} />
       </MainNavBar>
       {/* ) : (
         ""
@@ -19,17 +19,23 @@ export default function setting(props) {
 export async function getServerSideProps(context) {
   const { req, res } = context;
   const session = await getSession({ req });
-  console.log(session);
+  const id = session.id;
+  console.log(id);
   if (!session && res) {
     console.log("working");
     res.writeHead(302, {
       Location: "/signin",
     });
+
     res.end();
   }
+  const result = await fetch(`http://localhost:3000/api/user/${id}`);
+  console.log(result);
+  const user = await result.json();
   return {
     props: {
       csrfToken: await getCsrfToken(context),
+      user,
     },
   };
 }
