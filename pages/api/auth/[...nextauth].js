@@ -37,7 +37,7 @@ export default NextAuth({
           }
           : null;
 
-        const hashedPasswrod = crypto.Hash('sha256', credentials.password).digest('hex')
+        const hashedPasswrod = crypto.Hash('sha256').update(credentials.password).digest('hex');
         console.log(hashedPasswrod)
         if (isData && credentials.email === data[0].email && hashedPasswrod === data[0].password) {
           return user
