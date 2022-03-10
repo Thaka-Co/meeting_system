@@ -1,14 +1,14 @@
 // @flow
 import { Input, Button, Checkbox, CheckboxGroup } from "@chakra-ui/react";
 import * as React from "react";
-
-export default function addRoom(props) {
-  const [tools,setTools]=React.useState()
+import { useState } from "react";
+export default function AddRoom(props) {
+  const [tools, setTools] = useState("");
   const selecttools = (e) => {
     console.log(e);
-    setTools(e)
+    setTools(e);
   };
-  const addRoom=async(e)=>{
+  const addRoom = async (e) => {
     e.preventDefault();
     console.log(e.target.location.value);
     fetch("/api/rooms/addRoom", {
@@ -21,16 +21,15 @@ export default function addRoom(props) {
         size: e.target.size.value,
         tools,
       }),
-    })
-      .then((res) => res.json())
-  }
+    }).then((res) => res.json());
+  };
   return (
     <div>
       <form onSubmit={addRoom}>
         <Input name="location" type={"text"} placeholder="location" />
         <Input name="size" type={"text"} placeholder="size" />
         <Input type={"text"} placeholder="tool" />
-        <CheckboxGroup name={'tools'} onChange={selecttools}>
+        <CheckboxGroup name={"tools"} onChange={selecttools}>
           <Checkbox name={"board"} value={"board"}>
             board
           </Checkbox>
