@@ -27,7 +27,13 @@ export default function AddRoom(props) {
     <div>
       <form onSubmit={addRoom}>
         <Input name="location" type={"text"} placeholder="location" />
-        <Input name="size" type={"text"} placeholder="size" />
+        <Input
+          name="size"
+          type={"number"}
+          placeholder="size"
+          pattern={"{0-9}"}
+          title="Insert number please"
+        />
         <Input type={"text"} placeholder="tool" />
         <CheckboxGroup name={"tools"} onChange={selecttools}>
           <Checkbox name={"board"} value={"board"}>

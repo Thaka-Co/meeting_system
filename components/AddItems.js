@@ -56,9 +56,11 @@ function AddItems(props) {
   const addAttach = async (e) => {
     e.preventDefault();
     setAttach(e.target.value);
-    // console.log(e.target.files);
+    console.log("from add attach", e.target.files);
+    console.log("hello");
     // console.log(e.target.files[0]);
     if (e.target.files && e.target.files[0]) {
+      console.log("hello");
       const i = e.target.files[0];
       setImage(i);
       setCreateObjectURL(URL.createObjectURL(i));
@@ -67,7 +69,12 @@ function AddItems(props) {
   return (
     <div>
       <Heading m={10}>{t.addItem}</Heading>
-      <Box bg={useColorModeValue("white", "gray.800")}  p={15} m={5} borderRadius={7}>
+      <Box
+        bg={useColorModeValue("white", "gray.800")}
+        p={15}
+        m={5}
+        borderRadius={7}
+      >
         {/* <Text fontSize="lg" color={textColor} fontWeight="bold">
           Meeting items
         </Text> */}
@@ -158,4 +165,3 @@ function AddItems(props) {
 }
 
 export default AddItems;
-

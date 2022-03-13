@@ -20,6 +20,7 @@ import Header from "../components/navBar/landingHeader";
 import { getCsrfToken, getSession } from "next-auth/react"
 import { useRouter } from "next/router";
 import CredentialsError from "../components/Alerts/credentialsError";
+import Footer from "../components/navBar/footer";
 export default function App({ csrfToken }) {
   const route = useRouter();
   const error = route.asPath.includes('signin&error=CredentialsSignin')
@@ -119,7 +120,9 @@ export default function App({ csrfToken }) {
         {/* </Box> */}
         {/* </form> */}
         {/* </Stack> */}
+        
       </Container>
+      <Footer/>
     </>
   );
 }

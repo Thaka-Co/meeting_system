@@ -43,7 +43,7 @@ export default function Header() {
   const cl = useColorModeValue("gray.800", "white");
   const mobileNav = useDisclosure();
   const clickHandler = () => { signOut({ callbackUrl: '/signin' }) }
-
+  
 
   const Section = (props) => {
     const ic = useColorModeValue("brand.600", "brand.50");

@@ -14,17 +14,17 @@ export default async function postAttach(req, res) {
     console.log("file");
     const form = new formidable.IncomingForm();
     form.parse(req, async function (err, fields, files) {
-      console.log("hheeeree", files);
+      console.log("hheeeree", form);
       await saveFile(files.file);
-      //return res.status(201).send("");
+      return res.status(201).send("");
     });
     //console.log(form);
-    if (form) {
-      console.log("attach");
-      addAttachments(file, itemId, meetingId);
-    } else {
-      res.status(404).json("there is something wrong !!");
-    }
+    // if (form) {
+    //   console.log("attach");
+    //   addAttachments(file, itemId, meetingId);
+    // } else {
+    //   res.status(404).json("there is something wrong !!");
+    // }
   } catch (err) {
     res.json(err);
   }
