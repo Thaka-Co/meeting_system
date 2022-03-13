@@ -2,12 +2,14 @@ import React from "react";
 import MeetingDetails from "../components/MeetingDetails";
 import MainNavBar from "../components/navBar/navbar";
 import { getCsrfToken, getSession } from "next-auth/react";
+import Footer from "../components/navBar/footer";
 function meetingDetails(props) {
   return (
     <div>
       {/* {session ? ( */}
       <MainNavBar>
         <MeetingDetails />
+        <Footer/>
       </MainNavBar>
       {/* ) : (
         <></>

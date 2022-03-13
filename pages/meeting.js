@@ -2,6 +2,7 @@ import React from "react";
 import AddMeeting from "../components/AddMeeting";
 import MainNavBar from "../components/navBar/navbar";
 import { getCsrfToken, getSession } from "next-auth/react";
+import Footer from "../components/navBar/footer";
 function meeting(props) {
   console.log(props, "props");
   return (
@@ -9,6 +10,7 @@ function meeting(props) {
       {/* {session ? ( */}
       <MainNavBar>
         <AddMeeting rooms={props.rooms} />
+        <Footer/>
       </MainNavBar>
       {/* ) : (
        ''

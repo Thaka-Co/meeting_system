@@ -2,12 +2,14 @@ import * as React from "react";
 import TaskDetails from "./../components/TaskDetails";
 import MainNavBar from "../components/navBar/navbar";
 import { getCsrfToken, getSession } from "next-auth/react";
+import Footer from "../components/navBar/footer";
 export const taskDetails = (props) => {
   return (
     <div>
       {/* {session ? ( */}
       <MainNavBar>
         <TaskDetails />
+        <Footer/>
       </MainNavBar>
       {/* ) : (
         ""

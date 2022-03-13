@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { getCsrfToken, getSession } from "next-auth/react"
 import en from "../locales/en";
 import ar from "../locales/ar";
+import Footer from "../components/navBar/footer";
 
 
 export default function Dashboard() {
@@ -24,6 +25,7 @@ export default function Dashboard() {
         <Heading m="10">{t.MyMeetings}</Heading>
         {/* My Meetings Table */}
         <MyMeeting />
+        <Footer/>
       </MainNavBar>
     </>
   )

@@ -3,6 +3,7 @@ import * as React from "react";
 import { MeetingRecored } from "../components/MeetingRecored";
 import MainNavBar from "../components/navBar/navbar";
 import { getCsrfToken, getSession } from "next-auth/react";
+import Footer from "../components/navBar/footer";
 function meetingRecord(props) {
   return (
     <div>
@@ -10,6 +11,7 @@ function meetingRecord(props) {
       {/* {session ? ( */}
       <MainNavBar>
         <MeetingRecored />
+        <Footer/>
       </MainNavBar>
       {/* ) : (
         ""

@@ -20,7 +20,7 @@ import Header from "../components/navBar/landingHeader";
 import { getCsrfToken, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import EmailFound from '../components/Alerts/emailFound'
-
+import Footer from "../components/navBar/footer";
 export default function App() {
   const route = useRouter();
   console.log(route.asPath)
@@ -117,6 +117,7 @@ export default function App() {
           </form>
         </Stack>
       </Container>
+      <Footer/>
     </>
   );
 }

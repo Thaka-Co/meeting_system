@@ -3,12 +3,14 @@ import * as React from "react";
 import { Setting } from "../components/Setting";
 import MainNavBar from "../components/navBar/navbar";
 import { getCsrfToken, getSession } from "next-auth/react";
+import Footer from "../components/navBar/footer";
 export default function setting(props) {
   return (
     <div>
       {/* {session ? ( */}
       <MainNavBar>
         <Setting user={props.user} />
+        <Footer/>
       </MainNavBar>
       {/* ) : (
         ""

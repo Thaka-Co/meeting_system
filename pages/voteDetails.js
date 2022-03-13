@@ -5,12 +5,14 @@ import { invoicesData } from "../Faker/general";
 import MainNavBar from "../components/navBar/navbar";
 import { getCsrfToken, getSession } from "next-auth/react";
 import { Box,useColorModeValue } from "@chakra-ui/react";
+import Footer from "../components/navBar/footer";
 function voteDetails(props) {
   return (
     <div>
       
       <MainNavBar>
         <VoteDetails votes={invoicesData[0].votes[0]} />
+        <Footer/>
       </MainNavBar>
     </div>
   );
