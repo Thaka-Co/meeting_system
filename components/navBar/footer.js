@@ -334,7 +334,7 @@ export default function Footer  (props)  {
                 onClick={toggleMode}
                 icon={<SwitchIcon />}
               /> */}
-              <Text>Powered by Thaka</Text>
+              <Text fontWeight={'bold'}>Powered by Thaka</Text>
               <IconButton
                 display={{ base: "flex", md: "none" }}
                 aria-label="Open menu"
