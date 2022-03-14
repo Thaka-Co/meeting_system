@@ -19,7 +19,7 @@ function ItemDetails(props) {
   const { locale } = router;
   let t = locale == "en" ? en : ar;
   return (
-    <Box     
+    <Box
       bg={useColorModeValue("white", "gray.800")}
       p={15}
       m={5}

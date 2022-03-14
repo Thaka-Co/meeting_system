@@ -1,11 +1,13 @@
 // @flow
 import {
   Input,
+  Text,
   Box,
   useColorModeValue,
   Icon,
   HStack,
   Heading,
+  Button,
 } from "@chakra-ui/react";
 import * as React from "react";
 import { AiOutlineEdit } from "react-icons/ai";
@@ -20,7 +22,7 @@ export const Setting = (props) => {
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
-  // const session = await getSession();
+
   const enableUserName = () => {
     enableUser ? setEnableUser(false) : setEnableUser(true);
     const userName = document.querySelector(".userName");
@@ -28,6 +30,7 @@ export const Setting = (props) => {
       userName.disabled = false;
     } else {
       userName.disabled = true;
+      userName.value = "";
     }
   };
   const enablePass = () => {
@@ -48,6 +51,23 @@ export const Setting = (props) => {
       email.disabled = true;
     }
   };
+  const update = async (e) => {
+    e.preventDefault();
+    console.log(e.target);
+    fetch("http://localhost:3000/api/user/updateInfo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userName: e.target.userName.value,
+        password: e.target.password.value,
+        confirmPass: e.target.confirmPass,
+        email: e.target.email.value,
+      }),
+    }).then((res) => res.json());
+  };
+  console.log(enableUser);
   return (
     <div>
       <Box bg={useColorModeValue("gray.50", "inherit")}>
@@ -58,49 +78,67 @@ export const Setting = (props) => {
           borderRadius={7}
           w={350}
         >
-          <Heading mb={10}>{t.profile}</Heading>
-          <HStack spacing={30} mb={9}>
-            <Input
-              type={"text"}
-              className={"userName"}
-              placeholder={t.userName}
-              value={props.user.name}
-              disabled
-            />
-            <Icon as={AiOutlineEdit} onClick={enableUserName} />
-          </HStack>
-          <HStack spacing={30} mb={9}>
-            <Input
-              type={"email"}
-              className={"email"}
-              placeholder={t.email}
-              value={props.user.email}
-              disabled
-            />
-            <Icon as={AiOutlineEdit} onClick={enableEmail} />
-          </HStack>
-          <HStack spacing={30} mb={9}>
-            <Input
-              type={"password"}
-              className={"password"}
-              placeholder={t.password}
-              value={props.user.password}
-              disabled
-            />
-            <Icon as={AiOutlineEdit} onClick={enablePass} />
-          </HStack>
-          {!enablePassword ? (
-            <HStack spacing={30}>
+          <form onSubmit={update}>
+            <Heading mb={10}>{t.profile}</Heading>
+            <HStack spacing={30} mb={9}>
+              <Input
+                type={"text"}
+                className={"userName"}
+                placeholder={t.userName}
+                value={props.user.name}
+                name={"userName"}
+                disabled
+              />
+              {/* <Text
+                // className={"userName"}
+                placeholder={t.userName}
+                value={props.user.name}
+                name={"userName"}
+                //disabled
+                ></Text> */}
+              <Icon as={AiOutlineEdit} onClick={enableUserName} />
+            </HStack>
+            <HStack spacing={30} mb={9}>
+              <Input
+                type={"email"}
+                className={"email"}
+                placeholder={t.email}
+                value={props.user.email}
+                name={"email"}
+                disabled
+              />
+              <Icon as={AiOutlineEdit} onClick={enableEmail} />
+            </HStack>
+            <HStack spacing={30} mb={9}>
               <Input
                 type={"password"}
                 className={"password"}
-                placeholder={t.confirmPassword}
+                placeholder={t.password}
+                value={props.user.password}
+                name={"password"}
+                disabled
               />
-              <Icon as={AiOutlineEdit} visibility={"hidden"} />
+              <Icon as={AiOutlineEdit} onClick={enablePass} />
             </HStack>
-          ) : (
-            ""
-          )}
+            {!enablePassword ? (
+              <HStack spacing={30}>
+                <Input
+                  type={"password"}
+                  className={"password"}
+                  placeholder={t.confirmPassword}
+                  name={"confirmPass"}
+                />
+                <Icon as={AiOutlineEdit} visibility={"hidden"} />
+              </HStack>
+            ) : (
+              ""
+            )}
+            {!enableUser || !enablePassword || !enableEm ? (
+              <Button type="submit">Update</Button>
+            ) : (
+              ""
+            )}
+          </form>
         </Box>
       </Box>
     </div>

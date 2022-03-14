@@ -10,7 +10,7 @@ export default function setting(props) {
       {/* {session ? ( */}
       <MainNavBar>
         <Setting user={props.user} />
-        <Footer/>
+        <Footer />
       </MainNavBar>
       {/* ) : (
         ""
@@ -28,7 +28,6 @@ export async function getServerSideProps(context) {
     res.writeHead(302, {
       Location: "/signin",
     });
-
     res.end();
   }
   const result = await fetch(`http://localhost:3000/api/user/${id}`);

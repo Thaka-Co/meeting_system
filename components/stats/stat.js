@@ -4,8 +4,9 @@ import * as React from "react";
 export const Stat = (props) => (
   <ChakraStat
     px={{
-      base: 4,
-      sm: 6,
+      base: "0",
+      md: "48",
+      lg: "62",
     }}
     py="5"
     bg={useColorModeValue("white", "gray.700")}
