@@ -22,43 +22,53 @@ function MyMeeting(props) {
   const textColor = useColorModeValue("gray.700", "white");
   return (
     <div>
-      
-     <Box bg={useColorModeValue("white", "gray.800")} p={15} m={5} borderRadius={7}>
-      {dashboardTableData.length != 0 ? (
-        <Table variant="simple" color={textColor}>
-          <Thead>
-            <Tr my=".8rem" ps="0px">
-              <Th ps="0px" color="gray.400">
-                {t.topic}
-              </Th>
-              <Th color="gray.400">{t.members}</Th>
-              <Th color="gray.400">{t.timeFrame}</Th>
-              <Th color="gray.400">{t.dueDate}</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {dashboardTableData.map((row, index) => {
-              return (
-                <DashboardTableRow
-                  key={index}
-                  name={row.name}
-                  logo={row.logo}
-                  members={row.members}
-                  budget={row.budget}
-                  progression={row.progression}
-                />
-              );
-            })}
-          </Tbody>
-        </Table>
-      ) : (
-        <Box borderWidth="4px" borderStyle="dashed" rounded="md" h="96" m="10">
-          <Center>
-            {" "}
-            <Heading m="10">You Do not &#39; Have Any Meetings</Heading>
-          </Center>
-        </Box>
-      )}
+      <Box
+        bg={useColorModeValue("white", "gray.800")}
+        p={15}
+        m={5}
+        borderRadius={7}
+      >
+        {dashboardTableData.length != 0 ? (
+          <Table variant="simple" color={textColor}>
+            <Thead>
+              <Tr my=".8rem" ps="0px">
+                <Th ps="0px" color="gray.400">
+                  {t.topic}
+                </Th>
+                <Th color="gray.400">{t.members}</Th>
+                <Th color="gray.400">{t.timeFrame}</Th>
+                <Th color="gray.400">{t.dueDate}</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              {dashboardTableData.map((row, index) => {
+                return (
+                  <DashboardTableRow
+                    key={index}
+                    name={row.name}
+                    logo={row.logo}
+                    members={row.members}
+                    budget={row.budget}
+                    progression={row.progression}
+                  />
+                );
+              })}
+            </Tbody>
+          </Table>
+        ) : (
+          <Box
+            borderWidth="4px"
+            borderStyle="dashed"
+            rounded="md"
+            h="96"
+            m="10"
+          >
+            <Center>
+              {" "}
+              <Heading m="10">You Do not &#39; Have Any Meetings</Heading>
+            </Center>
+          </Box>
+        )}
       </Box>
     </div>
   );

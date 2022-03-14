@@ -62,7 +62,7 @@ export const Setting = (props) => {
       body: JSON.stringify({
         userName: e.target.userName.value,
         password: e.target.password.value,
-        confirmPass: e.target.confirmPass,
+        confirmPass: e.target.confirmPass.value,
         email: e.target.email.value,
       }),
     }).then((res) => res.json());

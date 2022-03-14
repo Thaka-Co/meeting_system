@@ -5,7 +5,8 @@ import {
   Box,
   Heading,
   Text,
-  HStack,useColorModeValue
+  HStack,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import MeetingItems from "./MeetingItems";
 import { Attendance } from "./Attendance";
@@ -21,7 +22,12 @@ function CurrentMeeting(props) {
   return (
     <div>
       {/* <Box bg={useColorModeValue("gray.50", "inherit")}> */}
-      <Box bg={useColorModeValue("white", "gray.800")} p={15} m={5} borderRadius={7}>
+      <Box
+        bg={useColorModeValue("white", "gray.800")}
+        p={15}
+        m={5}
+        borderRadius={7}
+      >
         {/* <Text fontSize="xl" color={textColor} fontWeight="bold">
           Meeting title
         </Text> */}

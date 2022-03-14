@@ -15,7 +15,8 @@ import {
   MenuList,
   Text,
   useColorModeValue,
-  useDisclosure,useColorMode,
+  useDisclosure,
+  useColorMode,
   Select,
 } from "@chakra-ui/react";
 import { FaMoon, FaSun } from "react-icons/fa";
@@ -40,15 +41,11 @@ import en from "../../locales/en";
 import ar from "../../locales/ar";
 import { signOut } from "next-auth/react";
 
-
-
-
-
 export default function MainNavBar(props) {
   const { toggleColorMode: toggleMode } = useColorMode();
   const text = useColorModeValue("dark", "light");
   const SwitchIcon = useColorModeValue(FaMoon, FaSun);
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const router = useRouter();
   const sidebar = useDisclosure();
   const { locale } = router;
@@ -60,8 +57,9 @@ export default function MainNavBar(props) {
     router.push(router.pathname, router.asPath, { locale });
     // localStorage.setItem("language", e.target.value);
   };
-  const clickHandler = () => { signOut({ callbackUrl: '/signin' }) }
-
+  const clickHandler = () => {
+    signOut({ callbackUrl: "/signin" });
+  };
 
   const bg = useColorModeValue("gray.100", "gray.900");
   const color = useColorModeValue("gray.900", "gray.200");
@@ -85,7 +83,6 @@ export default function MainNavBar(props) {
         _hover={{
           bg: bg,
           color: color,
-
         }}
         role="group"
         fontWeight="semibold"
@@ -98,7 +95,6 @@ export default function MainNavBar(props) {
             boxSize="4"
             _groupHover={{
               color: iconHover,
-
             }}
             as={icon}
           />
@@ -122,14 +118,12 @@ export default function MainNavBar(props) {
       overflowY="auto"
       bg={sidebarBg}
       borderColor={borderColor}
-
       borderRightWidth="1px"
       w="60"
       {...props}
     >
       <Flex px="4" py="5" align="center">
         <Text fontSize="2xl" ml="2" color={textColor} fontWeight="semibold">
-
           حوكمة
         </Text>
       </Flex>
@@ -172,7 +166,9 @@ export default function MainNavBar(props) {
           <NavItem icon={BsGearFill}>{t.setting}</NavItem>
         </Link>
 
-        <NavItem onClick={clickHandler} icon={FaSignOutAlt}>{t.signout}</NavItem>
+        <NavItem onClick={clickHandler} icon={FaSignOutAlt}>
+          {t.signout}
+        </NavItem>
       </Flex>
     </Box>
   );
@@ -185,11 +181,7 @@ export default function MainNavBar(props) {
       minH="100vh"
     >
       <SidebarContent display={{ base: "none", md: "unset" }} />
-      <Drawer
-        isOpen={isOpen}
-        onClose={onClose}
-        placement="left"
-      >
+      <Drawer isOpen={isOpen} onClose={onClose} placement="left">
         <DrawerOverlay />
         <DrawerContent>
           <SidebarContent w="full" borderRight="none" />
@@ -205,7 +197,6 @@ export default function MainNavBar(props) {
           bg={sidebarBg}
           borderBottomWidth="1px"
           borderColor={borderColor}
-
           h="14"
         >
           <AutoComplete rollNavigation>
@@ -243,15 +234,15 @@ export default function MainNavBar(props) {
             <Menu>
               {/* <MenuButton> */}
               <IconButton
-              size="md"
-              fontSize="lg"
-              aria-label={`Switch to ${text} mode`}
-              variant="ghost"
-              color="current"
-              ml={{ base: "0", md: "3" }}
-              onClick={toggleMode}
-              icon={<SwitchIcon />}
-            />
+                size="md"
+                fontSize="lg"
+                aria-label={`Switch to ${text} mode`}
+                variant="ghost"
+                color="current"
+                ml={{ base: "0", md: "3" }}
+                onClick={toggleMode}
+                icon={<SwitchIcon />}
+              />
               <Select
                 w={100}
                 m={4}

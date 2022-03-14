@@ -42,8 +42,9 @@ export default function Header() {
   }, [scrollY]);
   const cl = useColorModeValue("gray.800", "white");
   const mobileNav = useDisclosure();
-  const clickHandler = () => { signOut({ callbackUrl: '/signin' }) }
-  
+  const clickHandler = () => {
+    signOut({ callbackUrl: "/signin" });
+  };
 
   const Section = (props) => {
     const ic = useColorModeValue("brand.600", "brand.50");
@@ -226,25 +227,29 @@ export default function Header() {
         justifySelf="self-start"
         onClick={mobileNav.onClose}
       />
-      {
-        session ?
-
-          <Button colorScheme="brand" variant="ghost" size="sm" onClick={clickHandler} >
-            Sign Out
-          </Button>
-          : <>
-            <Link href="/signin">
-              <Button colorScheme="brand" variant="ghost" size="sm">
-                Sign in
-              </Button>
-            </Link>
-            <Link href="/signup">
-              <Button colorScheme="brand" variant="ghost" size="sm">
-                Sign up
-              </Button>
-            </Link>
-          </>
-      }
+      {session ? (
+        <Button
+          colorScheme="brand"
+          variant="ghost"
+          size="sm"
+          onClick={clickHandler}
+        >
+          Sign Out
+        </Button>
+      ) : (
+        <>
+          <Link href="/signin">
+            <Button colorScheme="brand" variant="ghost" size="sm">
+              Sign in
+            </Button>
+          </Link>
+          <Link href="/signup">
+            <Button colorScheme="brand" variant="ghost" size="sm">
+              Sign up
+            </Button>
+          </Link>
+        </>
+      )}
     </VStack>
   );
   return (
@@ -325,28 +330,31 @@ export default function Header() {
             </HStack>
           </Flex>
           <Flex justify="flex-end" align="center" color="gray.400">
-            {
-              session ?
-
-                <HStack spacing="5" display={{ base: "none", md: "flex" }}>
-                  <Button colorScheme="brand" variant="ghost" size="sm" onClick={clickHandler} >
-                    Sign Out
+            {session ? (
+              <HStack spacing="5" display={{ base: "none", md: "flex" }}>
+                <Button
+                  colorScheme="brand"
+                  variant="ghost"
+                  size="sm"
+                  onClick={clickHandler}
+                >
+                  Sign Out
+                </Button>
+              </HStack>
+            ) : (
+              <HStack spacing="5" display={{ base: "none", md: "flex" }}>
+                <Link href="/signin">
+                  <Button colorScheme="brand" variant="ghost" size="sm">
+                    Sign in
                   </Button>
-                </HStack>
-                :
-                <HStack spacing="5" display={{ base: "none", md: "flex" }}>
-                  <Link href="/signin">
-                    <Button colorScheme="brand" variant="ghost" size="sm">
-                      Sign in
-                    </Button>
-                  </Link>
-                  <Link href="/signup">
-                    <Button colorScheme="brand" variant="ghost" size="sm">
-                      Sign up
-                    </Button>
-                  </Link>
-                </HStack>
-            }
+                </Link>
+                <Link href="/signup">
+                  <Button colorScheme="brand" variant="ghost" size="sm">
+                    Sign up
+                  </Button>
+                </Link>
+              </HStack>
+            )}
             <IconButton
               size="md"
               fontSize="lg"

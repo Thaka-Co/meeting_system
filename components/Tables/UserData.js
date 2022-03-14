@@ -68,7 +68,7 @@ export const UserData = (props) => {
           </Text> */}
         </HStack>
         {/* <CheckboxGroup  > */}{" "}
-        <Table >
+        <Table>
           <Thead>
             <tr>
               <Th>{t.attendance}</Th>
