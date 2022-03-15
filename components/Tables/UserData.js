@@ -96,6 +96,7 @@ export const UserData = (props) => {
                           return (
                             // speakers[item.id-1].speaker ? (
                             <Input
+                              key={index}
                               type={"text"}
                               ml={2}
                               width={100}

@@ -28,7 +28,8 @@ function AddItems(props) {
   const addItem = async (e) => {
     e.preventDefault();
     // save file to server
-    const file = new FormData();
+    const form = document.querySelector("form");
+    const file = new FormData(form);
     console.log(image.name);
     file.append("file", image);
     // file='ooo'
@@ -37,7 +38,7 @@ function AddItems(props) {
       method: "POST",
       file,
     });
-    console.log(response);
+    // console.log(response);
     //create item
     fetch("/api/items/addItem", {
       method: "POST",

@@ -7,6 +7,7 @@ import { Attendance } from "./Attendance.js";
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
+import { MeetingInfo } from "./MeetingInfo";
 
 function MeetingDetails(props) {
   const textColor = useColorModeValue("gray.700", "white");
@@ -15,28 +16,7 @@ function MeetingDetails(props) {
   let t = locale == "en" ? en : ar;
   return (
     <Box bg={useColorModeValue("gray.50", "inherit")}>
-      <Box
-        bg={useColorModeValue("white", "gray.800")}
-        p={15}
-        m={5}
-        borderRadius={7}
-      >
-        <Text fontSize="xl" color={textColor} fontWeight="bold">
-          Meeting title
-        </Text>
-        <HStack>
-          <Text fontFamily={"cursive"} fontSize={"1rem"}>
-            {t.location}
-          </Text>
-          <Text p={3}>first floor</Text>
-        </HStack>
-        <HStack>
-          <Text fontFamily={"cursive"} fontSize={"1rem"}>
-            {t.time}
-          </Text>
-          <Text p={3}>21 DEC 11:21 PM</Text>
-        </HStack>
-      </Box>
+      <MeetingInfo />
       <Heading m="10">{t.meetingItems}</Heading>
       {invoicesData.map((row, index) => {
         return (

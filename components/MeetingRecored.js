@@ -21,6 +21,7 @@ import InvoicesRow from "../components/Tables/InvoicesRow";
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
+import { MeetingInfo } from "./MeetingInfo";
 export const MeetingRecored = (props) => {
   const [i, setI] = React.useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -34,6 +35,7 @@ export const MeetingRecored = (props) => {
   return (
     <div>
       <Box bg={useColorModeValue("gray.50", "inherit")}>
+        <MeetingInfo />
         <Box
           bg={useColorModeValue("white", "gray.800")}
           p={15}
@@ -99,7 +101,14 @@ export const MeetingRecored = (props) => {
                 onClick={showChooses}
               />
             </Button>
-            <Button mt={5} bg="#add8e6" _hover={"none"}>
+            <Button
+              mt={5}
+              bg="#add8e6"
+              _hover={"none"}
+              onClick={() => {
+                window.print();
+              }}
+            >
               <Icon as={AiFillPrinter} w={"30px"} h={"auto"} />
             </Button>
           </Box>

@@ -164,7 +164,7 @@ function InvoicesRow(props) {
                     setChoose(e.target.value);
                   }}
                 >
-                  <option value="">{t.voteType}</option>
+                  <option value={-1}>{t.voteType}</option>
                   <option value={0}>{t.private}</option>
                   <option value={1}>{t.public}</option>
                 </Select>

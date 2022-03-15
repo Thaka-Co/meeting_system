@@ -14,7 +14,7 @@ export default async (req, res) => {
     update(userName, password, confirmPass, email, id);
     res.status(200).json("userName updated");
     //   } else {
-    //     console.log("err");
+    console.log("API", id);
     //     res.status(404).json("");
     //   }
     // });

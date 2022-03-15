@@ -14,7 +14,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
-import { getSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 export const Setting = (props) => {
   const [enableUser, setEnableUser] = React.useState(true);
   const [enablePassword, setEnablePassword] = React.useState(true);
@@ -22,7 +22,8 @@ export const Setting = (props) => {
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
-
+  const { data: session } = useSession();
+  // console.log(session.id);
   const enableUserName = () => {
     enableUser ? setEnableUser(false) : setEnableUser(true);
     const userName = document.querySelector(".userName");
@@ -30,7 +31,7 @@ export const Setting = (props) => {
       userName.disabled = false;
     } else {
       userName.disabled = true;
-      userName.value = "";
+      document.querySelector(".userName").value = " xxxc ";
     }
   };
   const enablePass = () => {
@@ -53,7 +54,6 @@ export const Setting = (props) => {
   };
   const update = async (e) => {
     e.preventDefault();
-    console.log(e.target);
     fetch("http://localhost:3000/api/user/updateInfo", {
       method: "POST",
       headers: {
@@ -64,6 +64,7 @@ export const Setting = (props) => {
         password: e.target.password.value,
         confirmPass: e.target.confirmPass.value,
         email: e.target.email.value,
+        id: session.id,
       }),
     }).then((res) => res.json());
   };
@@ -89,13 +90,6 @@ export const Setting = (props) => {
                 name={"userName"}
                 disabled
               />
-              {/* <Text
-                // className={"userName"}
-                placeholder={t.userName}
-                value={props.user.name}
-                name={"userName"}
-                //disabled
-                ></Text> */}
               <Icon as={AiOutlineEdit} onClick={enableUserName} />
             </HStack>
             <HStack spacing={30} mb={9}>
@@ -120,24 +114,26 @@ export const Setting = (props) => {
               />
               <Icon as={AiOutlineEdit} onClick={enablePass} />
             </HStack>
-            {!enablePassword ? (
-              <HStack spacing={30}>
-                <Input
-                  type={"password"}
-                  className={"password"}
-                  placeholder={t.confirmPassword}
-                  name={"confirmPass"}
-                />
-                <Icon as={AiOutlineEdit} visibility={"hidden"} />
-              </HStack>
-            ) : (
+            {/* {!enablePassword ? ( */}
+            <HStack spacing={30}>
+              <Input
+                type={"password"}
+                className={"password"}
+                placeholder={t.confirmPassword}
+                name={"confirmPass"}
+                visibility={!enablePassword ? "visible" : "hidden"}
+              />
+              <Icon as={AiOutlineEdit} visibility={"hidden"} />
+            </HStack>
+            {/* ) : (
               ""
-            )}
-            {!enableUser || !enablePassword || !enableEm ? (
+            )} */}
+            {/* {!enableUser || !enablePassword || !enableEm ? (
               <Button type="submit">Update</Button>
             ) : (
               ""
-            )}
+            )} */}
+            <Button type="submit">Edit my profile</Button>
           </form>
         </Box>
       </Box>
