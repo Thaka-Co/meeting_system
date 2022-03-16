@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, HStack, Heading } from "@chakra-ui/react";
 import { Text, useColorModeValue } from "@chakra-ui/react";
 import { invoicesData } from "../Faker/general";
@@ -8,12 +8,24 @@ import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
 import { MeetingInfo } from "./MeetingInfo";
-
+import { useSession } from "next-auth/react";
 function MeetingDetails(props) {
   const textColor = useColorModeValue("gray.700", "white");
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
+  const { data: session } = useSession();
+  useEffect(() => {
+    getMeetingDetails();
+  }, []);
+
+  const getMeetingDetails = async () => {
+    const id = session.id;// meeting id
+    console.log(id);
+    fetch(
+      `http://localhost:3000/api/meetings/${id}`
+    ).then((res) => console.log(res));
+  };
   return (
     <Box bg={useColorModeValue("gray.50", "inherit")}>
       <MeetingInfo />

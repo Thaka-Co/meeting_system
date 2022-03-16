@@ -70,6 +70,9 @@ function InvoicesRow(props) {
     console.log(checkedBox);
     console.log(choose);
   };
+  const delay=async(e)=>{
+    
+  }
   return (
     <>
       <Flex my={{ sm: "1rem", xl: "10px" }} alignItems="center">

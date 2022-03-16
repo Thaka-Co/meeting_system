@@ -67,6 +67,7 @@ function AddItems(props) {
       setCreateObjectURL(URL.createObjectURL(i));
     }
   };
+  
   return (
     <div>
       <Heading m={10}>{t.addItem}</Heading>

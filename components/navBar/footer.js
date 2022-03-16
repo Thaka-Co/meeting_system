@@ -236,7 +236,7 @@ export default function Footer(props) {
         borderTopWidth={2}
         borderBottomColor={useColorModeValue("gray.200", "gray.900")}
       >
-        <chakra.div h="4.5rem" mx="auto" maxW="1200px">
+        <chakra.div h="4.5rem" mx="auto" maxW="1300px">
           <Flex
             w="full"
             h="full"

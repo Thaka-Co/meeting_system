@@ -31,7 +31,6 @@ export const Setting = (props) => {
       userName.disabled = false;
     } else {
       userName.disabled = true;
-      document.querySelector(".userName").value = " xxxc ";
     }
   };
   const enablePass = () => {
