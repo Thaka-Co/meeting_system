@@ -20,11 +20,11 @@ function MeetingDetails(props) {
   }, []);
 
   const getMeetingDetails = async () => {
-    const id = session.id;// meeting id
+    const id = session.id; // meeting id
     console.log(id);
-    fetch(
-      `http://localhost:3000/api/meetings/${id}`
-    ).then((res) => console.log(res));
+    fetch(`http://localhost:3000/api/meetings/${id}`).then((res) =>
+      console.log(res)
+    );
   };
   return (
     <Box bg={useColorModeValue("gray.50", "inherit")}>

@@ -81,5 +81,6 @@ export default {
   addMeeting: "أضافة أجتماع",
   setting: "أعدادات",
   search: 'بحث',
-  signout: 'تسجيل خروج'
+  signout: 'تسجيل خروج',
+  cancel:'إلغاء'
 };

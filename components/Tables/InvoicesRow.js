@@ -48,7 +48,7 @@ function InvoicesRow(props) {
   const addVote = () => {};
   const addPost = async (e) => {
     e.preventDefault();
-    fetch("/api/votes/addVote", {
+    fetch("http://localhost:3000/api/votes/addVote", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

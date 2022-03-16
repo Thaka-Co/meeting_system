@@ -2,7 +2,7 @@ import update from "../../../lib/services/user/updateInfo";
 const crypto = require("crypto");
 export default async (req, res) => {
   try {
-    const { userName, password, confirmPass, email, id } = req.body;
+    const { name, password, confirmPass, email, id } = req.body;
     // userModel.findOne({ email }).then(async (user) => {
     //   if (user) {
     //     if (userName) {
@@ -11,7 +11,7 @@ export default async (req, res) => {
     //   .then(async (result) => {
     //     if (result) {
     // await result.save();
-    update(userName, password, confirmPass, email, id);
+    update(name, password, confirmPass, email, id);
     res.status(200).json("userName updated");
     //   } else {
     console.log("API", id);
