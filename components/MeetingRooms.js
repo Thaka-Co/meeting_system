@@ -37,7 +37,7 @@ function MeetingRooms({ rooms }) {
           Select the meeting room
         </Text> */}
         <RadioGroup onChange={selectRoom}>
-          {rooms.map((item, index) => {
+          {roomsData.map((item, index) => {
             return (
               <Box
                 key={item._id}
