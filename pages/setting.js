@@ -30,13 +30,13 @@ export async function getServerSideProps(context) {
     });
     res.end();
   }
-  const result = await fetch(`http://localhost:3000/api/user/${id}`);
-  console.log(result);
-  const user = await result.json();
+  // const result = await fetch(`http://localhost:3000/api/user/${id}`);
+  // console.log(result);
+  // const user = await result.json();
   return {
     props: {
       csrfToken: await getCsrfToken(context),
-      user,
+      // user,
     },
   };
 }
