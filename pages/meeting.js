@@ -30,12 +30,12 @@ export async function getServerSideProps(context) {
     });
     res.end();
   }
-  const result = await fetch("http://localhost:3000/api/rooms/getRoom");
-  const rooms = await result.json();
+  // const result = await fetch("http://localhost:3000/api/rooms/getRoom");
+  // const rooms = await result.json();
   return {
     props: {
       csrfToken: await getCsrfToken(context),
-      rooms,
+      // rooms,
     },
   };
 }
