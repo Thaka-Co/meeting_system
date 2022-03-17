@@ -9,7 +9,7 @@ export default function setting(props) {
     <div>
       {/* {session ? ( */}
       <MainNavBar>
-        <Setting user={props.user} />
+        <Setting  />
         <Footer />
       </MainNavBar>
       {/* ) : (

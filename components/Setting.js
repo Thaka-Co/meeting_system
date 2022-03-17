@@ -25,8 +25,9 @@ import en from "../locales/en";
 import ar from "../locales/ar";
 import { useSession } from "next-auth/react";
 import { useDisclosure } from "@chakra-ui/react";
+import { useEffect } from "react";
 export const Setting = (props) => {
-  const [enableUser, setEnableUser] = React.useState(false);
+  const [user, setUser] = React.useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   let ditLang = locale == "en" ? "ltr" : "rtl";
   // const [enablePassword, setEnablePassword] = React.useState(true);
@@ -35,34 +36,18 @@ export const Setting = (props) => {
   const { locale } = router;
   let t = locale == "en" ? en : ar;
   const { data: session } = useSession();
-  // console.log(session.id);
-  // const enableUserName = () => {
-  //   enableUser ? setEnableUser(false) : setEnableUser(true);
-  //   const userName = document.querySelector(".userName");
-  //   if (enableUser) {
-  //     userName.disabled = false;
-  //   } else {
-  //     userName.disabled = true;
-  //   }
-  // };
-  // const enablePass = () => {
-  //   enablePassword ? setEnablePassword(false) : setEnablePassword(true);
-  //   const password = document.querySelector(".password");
-  //   if (enablePassword) {
-  //     password.disabled = false;
-  //   } else {
-  //     password.disabled = true;
-  //   }
-  // };
-  // const enableEmail = () => {
-  //   enableEm ? setEnableEm(false) : setEnableEm(true);
-  //   const email = document.querySelector(".email");
-  //   if (enableEm) {
-  //     email.disabled = false;
-  //   } else {
-  //     email.disabled = true;
-  //   }
-  // };
+  useEffect(() => {
+    getUserData();
+  }, []);
+
+  const getUserData = async () => {
+    const id = session.id; // meeting id
+    console.log(id);
+    const data = await fetch(`http://localhost:3000/api/user/${id}`);
+    const result=await data.json();
+    setUser(result)
+    console.log(result);
+  };
   const update = async (e) => {
     e.preventDefault();
     fetch("http://localhost:3000/api/user/updateInfo", {
@@ -96,7 +81,7 @@ export const Setting = (props) => {
                 type={"text"}
                 className={"userName"}
                 placeholder={t.userName}
-                value={props.user.name}
+                value={user.name}
                 name={"nameValue"}
                 disabled
               />
@@ -107,7 +92,7 @@ export const Setting = (props) => {
                 type={"email"}
                 className={"email"}
                 placeholder={t.email}
-                value={props.user.email}
+                value={user.email}
                 name={"email"}
                 disabled
               />
@@ -118,7 +103,7 @@ export const Setting = (props) => {
                 type={"password"}
                 className={"password"}
                 placeholder={t.password}
-                value={props.user.password}
+                value={user.password}
                 name={"password"}
                 disabled
               />
