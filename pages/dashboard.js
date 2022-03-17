@@ -4,11 +4,10 @@ import Status from "../components/stats/status";
 import MyMeeting from "../components/Tables/MyMeeting";
 import TodayMeetings from "../components/Tables/TodayMeetings";
 import { useRouter } from "next/router";
-import { getCsrfToken, getSession } from "next-auth/react"
+import { getCsrfToken, getSession } from "next-auth/react";
 import en from "../locales/en";
 import ar from "../locales/ar";
 import Footer from "../components/navBar/footer";
-
 
 export default function Dashboard() {
   const router = useRouter();
@@ -25,19 +24,19 @@ export default function Dashboard() {
         <Heading m="10">{t.MyMeetings}</Heading>
         {/* My Meetings Table */}
         <MyMeeting />
-        <Footer/>
+        <Footer />
       </MainNavBar>
     </>
-  )
+  );
 }
 export async function getServerSideProps(context) {
   const { req, res } = context;
   const session = await getSession({ req });
-  console.log(session)
+  console.log(session);
   if (!session && res) {
-    console.log('working')
+    console.log("working");
     res.writeHead(302, {
-      Location: '/signin'
+      Location: "/signin",
     });
     res.end();
   }
@@ -45,5 +44,5 @@ export async function getServerSideProps(context) {
     props: {
       csrfToken: await getCsrfToken(context),
     },
-  }
+  };
 }

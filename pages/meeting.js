@@ -10,7 +10,7 @@ function meeting(props) {
       {/* {session ? ( */}
       <MainNavBar>
         <AddMeeting rooms={props.rooms} />
-        <Footer/>
+        <Footer />
       </MainNavBar>
       {/* ) : (
        ''

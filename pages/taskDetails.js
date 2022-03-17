@@ -9,7 +9,7 @@ export const taskDetails = (props) => {
       {/* {session ? ( */}
       <MainNavBar>
         <TaskDetails />
-        <Footer/>
+        <Footer />
       </MainNavBar>
       {/* ) : (
         ""

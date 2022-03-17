@@ -11,7 +11,7 @@ function meetingRecord(props) {
       {/* {session ? ( */}
       <MainNavBar>
         <MeetingRecored />
-        <Footer/>
+        <Footer />
       </MainNavBar>
       {/* ) : (
         ""

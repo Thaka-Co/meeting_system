@@ -1,7 +1,7 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Header from "../components/navBar/landingHeader";
-import { getCsrfToken, getSession } from "next-auth/react"
+import { getCsrfToken, getSession } from "next-auth/react";
 import Footer from "../components/navBar/footer";
 
 export default function Home() {
@@ -25,9 +25,9 @@ export async function getServerSideProps(context) {
   const session = await getSession({ req });
   // console.log(session)
   if (session && res) {
-    console.log('working')
+    console.log("working");
     res.writeHead(302, {
-      Location: '/dashboard'
+      Location: "/dashboard",
     });
     res.end();
   }
@@ -36,4 +36,4 @@ export async function getServerSideProps(context) {
       csrfToken: await getCsrfToken(context),
     },
   };
-} 
+}

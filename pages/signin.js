@@ -17,13 +17,13 @@ import Link from "next/link";
 import * as React from "react";
 import { PasswordField } from "../components/forms/passwordFiled";
 import Header from "../components/navBar/landingHeader";
-import { getCsrfToken, getSession } from "next-auth/react"
+import { getCsrfToken, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import CredentialsError from "../components/Alerts/credentialsError";
 import Footer from "../components/navBar/footer";
 export default function App({ csrfToken }) {
   const route = useRouter();
-  const error = route.asPath.includes('signin&error=CredentialsSignin')
+  const error = route.asPath.includes("signin&error=CredentialsSignin");
 
   return (
     <>
@@ -91,10 +91,12 @@ export default function App({ csrfToken }) {
             >
               <Stack spacing="6">
                 <Stack spacing="5">
-                  <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-                  {
-                    error ? <CredentialsError /> : <></>
-                  }
+                  <input
+                    name="csrfToken"
+                    type="hidden"
+                    defaultValue={csrfToken}
+                  />
+                  {error ? <CredentialsError /> : <></>}
                   <FormControl>
                     <FormLabel htmlFor="email">Email</FormLabel>
                     <Input id="email" name="email" type="email" />
@@ -108,21 +110,20 @@ export default function App({ csrfToken }) {
                   </Button>
                 </HStack>
                 <Stack spacing="6">
-                  <Button variant="primary" type="submit" >Sign in</Button>
+                  <Button variant="primary" type="submit">
+                    Sign in
+                  </Button>
                 </Stack>
               </Stack>
             </Box>
-
           </form>
-
         </Stack>
         {/* </Stack> */}
         {/* </Box> */}
         {/* </form> */}
         {/* </Stack> */}
-        
       </Container>
-      <Footer/>
+      <Footer />
     </>
   );
 }
@@ -131,9 +132,9 @@ export async function getServerSideProps(context) {
   const session = await getSession({ req });
   // console.log(session)
   if (session && res) {
-    console.log('working')
+    console.log("working");
     res.writeHead(302, {
-      Location: '/dashboard'
+      Location: "/dashboard",
     });
     res.end();
   }

@@ -10,7 +10,7 @@ function currentMeeting(props) {
       {/* {session ? ( */}
       <MainNavBar>
         <CurrentMeeting />
-        <Footer/>
+        <Footer />
       </MainNavBar>
       {/* ) : (
         ""

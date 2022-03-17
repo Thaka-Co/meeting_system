@@ -6,7 +6,7 @@ export default function addRooms(props) {
   return (
     <div>
       <AddRoom />
-      <Footer/>
+      <Footer />
     </div>
   );
 }

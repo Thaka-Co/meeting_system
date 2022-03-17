@@ -8,8 +8,10 @@ export default async function handler(req, res) {
     if ((name, email, password)) {
       console.log(name, email, password);
 
-
-      const hashedPasswrod = crypto.Hash('sha256').update(password).digest('hex');
+      const hashedPasswrod = crypto
+        .Hash("sha256")
+        .update(password)
+        .digest("hex");
       const data = await Users.find({}).where("email").equals(email);
       console.log(data);
       const isData = data.length > 0;

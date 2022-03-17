@@ -9,7 +9,7 @@ function meetingDetails(props) {
       {/* {session ? ( */}
       <MainNavBar>
         <MeetingDetails />
-        <Footer/>
+        <Footer />
       </MainNavBar>
       {/* ) : (
         <></>
