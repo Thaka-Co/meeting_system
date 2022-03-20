@@ -30,8 +30,8 @@ function AddItems(props) {
     // save file to server
     const form = document.querySelector("form");
     const file = new FormData(form);
-    console.log(image.name);
-    file.append("file", image);
+    // console.log(image.name);
+    file.append("file", JSON.stringify(image.name));
     // file='ooo'
     console.log("this is file", file);
     const response = await fetch("/api/attachments/addAttachment", {
@@ -58,16 +58,14 @@ function AddItems(props) {
     e.preventDefault();
     setAttach(e.target.value);
     console.log("from add attach", e.target.files);
-    console.log("hello");
     // console.log(e.target.files[0]);
     if (e.target.files && e.target.files[0]) {
-      console.log("hello");
       const i = e.target.files[0];
       setImage(i);
       setCreateObjectURL(URL.createObjectURL(i));
     }
   };
-  
+
   return (
     <div>
       <Heading m={10}>{t.addItem}</Heading>

@@ -44,8 +44,8 @@ export const Setting = (props) => {
     const id = session.id; // meeting id
     console.log(id);
     const data = await fetch(`http://localhost:3000/api/user/${id}`);
-    const result=await data.json();
-    setUser(result)
+    const result = await data.json();
+    setUser(result);
     console.log(result);
   };
   const update = async (e) => {
@@ -62,7 +62,9 @@ export const Setting = (props) => {
         email: e.target.email.value,
         id: session.id,
       }),
-    }).then((res) => res.json());
+    }).then((res) => {
+      if (res) getUserData();
+    });
   };
   return (
     <div>

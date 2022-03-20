@@ -54,6 +54,8 @@ export const UserData = (props) => {
     console.log(writer);
   };
   console.log(writer);
+  console.log(time);
+  console.log(speakers);
   return (
     <div>
       <Box
@@ -105,7 +107,7 @@ export const UserData = (props) => {
                               name="time"
                               onChange={(e) => {
                                 setTime(e.target.value);
-                                console.log(time);
+                                speakers[index].time = time;
                               }}
                             />
                             // ) : (

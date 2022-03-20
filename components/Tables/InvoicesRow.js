@@ -70,9 +70,7 @@ function InvoicesRow(props) {
     console.log(checkedBox);
     console.log(choose);
   };
-  const delay=async(e)=>{
-    
-  }
+  const delay = async (e) => {};
   return (
     <>
       <Flex my={{ sm: "1rem", xl: "10px" }} alignItems="center">
@@ -165,9 +163,10 @@ function InvoicesRow(props) {
                   mt={4}
                   onChange={(e) => {
                     setChoose(e.target.value);
+                    console.log(e.target.value);
                   }}
                 >
-                  <option value={-1}>{t.voteType}</option>
+                  {/* <option value={''}>{t.voteType}</option> */}
                   <option value={0}>{t.private}</option>
                   <option value={1}>{t.public}</option>
                 </Select>

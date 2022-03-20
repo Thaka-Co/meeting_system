@@ -3,7 +3,7 @@ import { SessionProvider } from "next-auth/react";
 import { ChakraProvider, Box, useColorModeValue } from "@chakra-ui/react";
 import RtlProvider from "../lib/providers/rtl-provider";
 import "react-calendar/dist/Calendar.css";
-import "../styles/calendar.css";
+// import "../styles/calendar.css";
 function App(props) {
   const { Component, pageProps } = props;
   return (

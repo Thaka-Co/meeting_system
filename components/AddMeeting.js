@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
 import {
@@ -17,7 +17,7 @@ import MeetingItems from "./MeetingItems";
 import MeetingRooms from "./MeetingRooms";
 import { UserData } from "./Tables/UserData";
 import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
+// import "react-calendar/dist/Calendar.css";
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
@@ -26,21 +26,32 @@ import DatePicker from "react-datepicker";
 import { AiOutlineClockCircle } from "react-icons/ai";
 function AddMeeting(props) {
   const [date, setDate] = useState("");
-  const [startH, setStartH] = useState("");
+  const [period, setPeriod] = useState("");
+  const [periodMin, setPeriodMin] = useState("");
   const [startMin, setStartMin] = useState("");
+  const [start, setStart] = useState("");
   const [endH, setEndH] = useState("");
   const [endMin, setEndMin] = useState("");
   const [cyclic, setCyclic] = useState(false);
+  const [rooms,setRooms]=useState('');
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
-  console.log("starting", startH, startMin);
-  console.log("ending", endH, endMin);
-
+  console.log("period", period, periodMin);
+  console.log("start", start, startMin);
+  useEffect(() => {
+    getRooms();
+}, []);
+  const getRooms=async()=>{
+    const data = await fetch(`http://localhost:3000/api/rooms/getRoom`);
+    const result = await data.json();
+    setRooms(result);
+    console.log(result);
+  }
   const meetings = [];
   const selectDate = (e) => {
-    console.log(e._d, "date");
-    setDate(e._d);
+    console.log(e, "date");
+    setDate(e);
   };
   // to get date of yesterday
   const yesterday = moment().subtract(1, "day");
@@ -70,7 +81,7 @@ function AddMeeting(props) {
           <Icon as={AiOutlineClockCircle} />
           <Datetime
             onChange={(e) => {
-              setStartH(e._d.getHours()), setStartMin(e._d.getMinutes());
+              setPeriod(e._d.getHours()), setPeriodMin(e._d.getMinutes());
             }}
             dateFormat={false}
             inputProps={{ placeholder: t.startDate }}
@@ -82,8 +93,8 @@ function AddMeeting(props) {
           <Icon as={AiOutlineClockCircle} />
           <Datetime
             onChange={(e) => {
-              setEndH(e._d.getHours());
-              setEndMin(e._d.getMinutes());
+              setStart(e._d.getHours());
+              setStartMin(e._d.getMinutes());
             }}
             dateFormat={false}
             inputProps={{ placeholder: t.endTime }}
@@ -91,7 +102,7 @@ function AddMeeting(props) {
             timeConstraints={{ hours: { min: 8, max: 17 } }}
           />
         </HStack>
-        <Checkbox
+        {/* <Checkbox
           mt={10}
           onChange={(e) => {
             !cyclic ? setCyclic(true) : setCyclic(false);
@@ -107,9 +118,9 @@ function AddMeeting(props) {
           </Select>
         ) : (
           ""
-        )}
+        )} */}
       </Box>
-      <MeetingRooms rooms={props.rooms} />
+      <MeetingRooms rooms={rooms} />
       <>
         <UserData />
         <MeetingItems />
