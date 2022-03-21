@@ -8,8 +8,21 @@ import {
   Select,
   Text,
   Icon,
+  Input,
   HStack,
+  Table,
+  Td,
+  Thead,
+  Th,
+  Button,
+  Tr,
+  Heading,
+  RadioGroup,
+  Radio,
 } from "@chakra-ui/react";
+import { IoLocationOutline } from "react-icons/io5";
+import { BsPeople } from "react-icons/bs";
+import { CgToolbox } from "react-icons/cg";
 import moment from "moment";
 import { useState } from "react";
 import AddItems from "./AddItems";
@@ -30,10 +43,17 @@ function AddMeeting(props) {
   const [periodMin, setPeriodMin] = useState("");
   const [startMin, setStartMin] = useState("");
   const [start, setStart] = useState("");
-  const [endH, setEndH] = useState("");
-  const [endMin, setEndMin] = useState("");
   const [cyclic, setCyclic] = useState(false);
-  const [rooms,setRooms]=useState('');
+  const [rooms, setRooms] = useState("");
+  const [users, setUsers] = useState("");
+  const [attendance, setAttendance] = useState("");
+  const [speakers, setSpeakers] = useState("");
+  const [writer, setWriter] = useState("");
+  const [time, setTime] = useState("");
+  const [isRepated, setIsRepated] = useState("");
+  const [title, setTitle] = useState("");
+  const [roomId, setRoomId] = useState("");
+  const [meetingType, setMeetingType] = useState("");
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
@@ -41,17 +61,65 @@ function AddMeeting(props) {
   console.log("start", start, startMin);
   useEffect(() => {
     getRooms();
-}, []);
-  const getRooms=async()=>{
+    getUsers();
+  }, []);
+  //setUsers
+  const selectUser = (e) => {
+    console.log(e.target.value);
+    e.target.checked
+      ? setAttendance([...attendance, e.target.value])
+      : attendance.splice(attendance.indexOf(e.target.value), 1); //splice
+    console.log(attendance);
+  };
+  console.log(attendance);
+  //setSpeakers
+  const selectSpeaker = (e) => {
+    console.log(e.target.value);
+    e.target.checked
+      ? setSpeakers([
+          ...speakers,
+          { speaker: e.target.value, time: time, isChecked: true },
+        ])
+      : speakers.splice(speakers.indexOf(e.target.value), 1); //splice
+    console.log(speakers);
+  };
+  console.log(speakers);
+  //console.log(speakers[0].speaker);
+  const selectWriter = (e) => {
+    console.log(e.target.value);
+    e.target.checked
+      ? setWriter([...writer, e.target.value])
+      : writer.splice(writer.indexOf(e.target.value), 1); //splice
+    console.log(writer);
+  };
+  const getUsers = async () => {
+    const data = await fetch(`http://localhost:3000/api/user/getUsers`);
+    const result = await data.json();
+    setUsers(result);
+    console.log(result);
+  };
+  const addMeeting = (e) => {
+    e.preventDefault();
+    fetch(`http://localhost:3000/api/meetings/meetings`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title,
+        date,
+        timeFram: start,
+        memebers: attendance,
+        isRepated,
+        roomId,
+      }),
+    }).then((res) => res.json());
+  };
+  const getRooms = async () => {
     const data = await fetch(`http://localhost:3000/api/rooms/getRoom`);
     const result = await data.json();
     setRooms(result);
     console.log(result);
-  }
-  const meetings = [];
-  const selectDate = (e) => {
-    console.log(e, "date");
-    setDate(e);
   };
   // to get date of yesterday
   const yesterday = moment().subtract(1, "day");
@@ -62,47 +130,55 @@ function AddMeeting(props) {
   console.log(cyclic);
   return (
     <Box bg={useColorModeValue("gray.50", "inherit")}>
-      <Box
-        bg={useColorModeValue("white", "gray.800")}
-        p={15}
-        m={5}
-        borderRadius={7}
-      >
-        {/* <Datetime
+      <form onSubmit={addMeeting}>
+        <Box
+          bg={useColorModeValue("white", "gray.800")}
+          p={15}
+          m={5}
+          borderRadius={7}
+        >
+          {/* <Datetime
           onChange={selectDate}
           isValidDate={valid}
           timeFormat={false}
           inputP
           rops={{ placeholder: t.selectDate }}
         /> */}
-        {/* <DatePicker controls={["time"]} select="range" touchUi={true} /> */}
-        <Calendar className={"calendar"} onChange={selectDate} />
-        <HStack mt={10}>
-          <Icon as={AiOutlineClockCircle} />
-          <Datetime
+          {/* <DatePicker controls={["time"]} select="range" touchUi={true} /> */}
+          {/* <form onSubmit={addMeeting}> */}
+          <Calendar
+            className={"calendar"}
             onChange={(e) => {
-              setPeriod(e._d.getHours()), setPeriodMin(e._d.getMinutes());
+              setDate(e);
             }}
-            dateFormat={false}
-            inputProps={{ placeholder: t.startDate }}
-            timeFormat="HH:mm:ss"
-            timeConstraints={{ hours: { min: 8, max: 17 } }}
           />
-        </HStack>
-        <HStack>
-          <Icon as={AiOutlineClockCircle} />
-          <Datetime
-            onChange={(e) => {
-              setStart(e._d.getHours());
-              setStartMin(e._d.getMinutes());
-            }}
-            dateFormat={false}
-            inputProps={{ placeholder: t.endTime }}
-            timeFormat="HH:mm:ss"
-            timeConstraints={{ hours: { min: 8, max: 17 } }}
-          />
-        </HStack>
-        {/* <Checkbox
+          <HStack mt={10}>
+            <Icon as={AiOutlineClockCircle} />
+            <Datetime
+              onChange={(e) => {
+                setPeriod([`${e._d.getHours()}`, `${e._d.getMinutes()}`]),
+                  setPeriodMin(e._d.getMinutes());
+              }}
+              dateFormat={false}
+              inputProps={{ placeholder: t.startDate }}
+              timeFormat="HH:mm:ss"
+              timeConstraints={{ hours: { min: 8, max: 17 } }}
+            />
+          </HStack>
+          <HStack>
+            <Icon as={AiOutlineClockCircle} />
+            <Datetime
+              onChange={(e) => {
+                setStart([`${e._d.getHours()}`, `${e._d.getMinutes()}`]);
+                setStartMin(e._d.getMinutes());
+              }}
+              dateFormat={false}
+              inputProps={{ placeholder: t.endTime }}
+              timeFormat="HH:mm:ss"
+              timeConstraints={{ hours: { min: 8, max: 17 } }}
+            />
+          </HStack>
+          {/* <Checkbox
           mt={10}
           onChange={(e) => {
             !cyclic ? setCyclic(true) : setCyclic(false);
@@ -111,34 +187,159 @@ function AddMeeting(props) {
           {t.cyclicMeeting}
         </Checkbox>
         {cyclic ? (
-          <Select>
-            <option>{t.Daily}</option>
-            <option>{t.weekly}</option>
-            <option>{t.monthly}</option>
+          <Select onChange={(e)=>{setIsReapeted(e.target.value)}}>
+            <option value={1}>{t.Daily}</option>
+            <option value={2}>{t.weekly}</option>
+            <option value={3}>{t.monthly}</option>
           </Select>
         ) : (
           ""
         )} */}
-      </Box>
-      <MeetingRooms rooms={rooms} />
-      <>
-        <UserData />
-        <MeetingItems />
-        <AddItems />
+        </Box>
+
+        {/* <MeetingRooms rooms={rooms} /> */}
+        <Heading m="10">{t.meetingRoom}</Heading>
         <Box
           bg={useColorModeValue("white", "gray.800")}
           p={15}
           m={5}
           borderRadius={7}
         >
-          <Text mb={4}>{t.recordMeetingType}</Text>
-          <Select>
-            <option>type 1</option>
-            <option>type 2</option>
-            <option>type 3</option>
-          </Select>
+          {/* <Text fontSize="lg" color={textColor} fontWeight="bold">
+          Select the meeting room
+        </Text> */}
+          <RadioGroup
+            onChange={(e) => {
+              setRoomId(e);
+            }}
+          >
+            {rooms &&
+              rooms.map((item, index) => {
+                return (
+                  <Box
+                    key={item._id}
+                    m={3}
+                    p={4}
+                    borderWidth={3}
+                    borderColor={"#F7FAFC"}
+                    borderRadius={7}
+                    position={"relative"}
+                  >
+                    <Radio value={item._id}>
+                      <HStack>
+                        <HStack spacing={4} m={5}>
+                          <BsPeople />
+                          <Text>{item.size}</Text>
+                        </HStack>
+                        <HStack spacing={4} m={5}>
+                          <IoLocationOutline />
+                          <Text>{item.location}</Text>
+                        </HStack>
+                        <HStack spacing={4} m={5}>
+                          <CgToolbox />
+                          {item.tools.map((item, index) => {
+                            return <Text key={index}>{item}</Text>;
+                          })}
+                        </HStack>
+                      </HStack>
+                    </Radio>
+                  </Box>
+                );
+              })}
+          </RadioGroup>
         </Box>
-      </>
+        <>
+          {/* <UserData /> */}
+          <Box
+            bg={useColorModeValue("white", "gray.800")}
+            p={15}
+            m={5}
+            borderRadius={7}
+          >
+            <HStack spacing={40}></HStack>
+            <Table>
+              <Thead>
+                <tr>
+                  <Th>{t.attendance}</Th>
+                  <Th>{t.speakers}</Th>
+                  <Th>{t.writter}</Th>
+                </tr>
+              </Thead>
+              <tbody>
+                {users &&
+                  users.map((item, index) => {
+                    return (
+                      <Tr key={index}>
+                        <Td>
+                          <Checkbox onChange={selectUser} value={item._id}>
+                            {item.name}
+                          </Checkbox>
+                        </Td>
+                        <Td>
+                          <Checkbox
+                            onChange={selectSpeaker}
+                            value={item._id}
+                          ></Checkbox>
+                          {speakers &&
+                            speakers.map((ele, index) => {
+                              if (ele.speaker == item._id)
+                                return (
+                                  // speakers[item.id-1].speaker ? (
+                                  <Input
+                                    key={index}
+                                    type={"text"}
+                                    ml={2}
+                                    width={100}
+                                    height={30}
+                                    placeholder="time"
+                                    name="time"
+                                    onChange={(e) => {
+                                      setTime(e.target.value);
+                                      speakers[index].time = time;
+                                    }}
+                                  />
+                                  // ) : (
+                                  //   ""
+                                  // )
+                                );
+                            })}
+                        </Td>
+                        <Td>
+                          <Checkbox
+                            onChange={selectWriter}
+                            value={item.id}
+                          ></Checkbox>
+                        </Td>
+                      </Tr>
+                    );
+                  })}
+              </tbody>
+            </Table>
+            <Button mt={4}>{t.invite}</Button>
+          </Box>
+          <Box
+            bg={useColorModeValue("white", "gray.800")}
+            p={15}
+            m={5}
+            borderRadius={7}
+          >
+            <Text mb={4}>{t.recordMeetingType}</Text>
+            <Select
+              onChange={(e) => {
+                setMeetingType(e);
+              }}
+            >
+              <option>type 1</option>
+              <option>type 2</option>
+              <option>type 3</option>
+            </Select>
+          </Box>
+          {/* </form> */}
+          <MeetingItems />
+          <AddItems />
+          <Button type="submit">{t.save}</Button>
+        </>
+      </form>
     </Box>
   );
 }

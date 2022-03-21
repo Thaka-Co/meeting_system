@@ -11,6 +11,7 @@ export default async function postRoom(req, res) {
     console.log(size);
     if ((location, size, tools)) {
       addRoom(location, size, tools);
+      res.status(200).json("added");
     } else {
       res.json("there is something wrong !!");
     }

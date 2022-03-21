@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { usersData } from "../../Faker/general";
 import {
   Box,
@@ -21,9 +21,20 @@ export const UserData = (props) => {
   const [speakers, setSpeakers] = useState("");
   const [writer, setWriter] = useState("");
   const [time, setTime] = useState("");
+  const [users, setUsers] = useState("");
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
+  useEffect(() => {
+    getUsers();
+  }, []);
+
+  const getUsers = async () => {
+    const data = await fetch(`http://localhost:3000/api/user/getUsers`);
+    const result = await data.json();
+    setUsers(result);
+    console.log(result);
+  };
   //setUsers
   const selectUser = (e) => {
     console.log(e.target.value);
@@ -64,12 +75,7 @@ export const UserData = (props) => {
         m={5}
         borderRadius={7}
       >
-        <HStack spacing={40}>
-          {/* <Text fontSize="lg" color={textColor} fontWeight="bold">
-            Choose 
-          </Text> */}
-        </HStack>
-        {/* <CheckboxGroup  > */}{" "}
+        <HStack spacing={40}></HStack>
         <Table>
           <Thead>
             <tr>
@@ -79,55 +85,55 @@ export const UserData = (props) => {
             </tr>
           </Thead>
           <tbody>
-            {usersData.map((item, index) => {
-              return (
-                <Tr key={index}>
-                  <Td>
-                    <Checkbox onChange={selectUser} value={item.id}>
-                      {item.name}
-                    </Checkbox>
-                  </Td>
-                  <Td>
-                    <Checkbox
-                      onChange={selectSpeaker}
-                      value={item.id}
-                    ></Checkbox>
-                    {speakers &&
-                      speakers.map((ele, index) => {
-                        if (ele.speaker == item.id)
-                          return (
-                            // speakers[item.id-1].speaker ? (
-                            <Input
-                              key={index}
-                              type={"text"}
-                              ml={2}
-                              width={100}
-                              height={30}
-                              placeholder="time"
-                              name="time"
-                              onChange={(e) => {
-                                setTime(e.target.value);
-                                speakers[index].time = time;
-                              }}
-                            />
-                            // ) : (
-                            //   ""
-                            // )
-                          );
-                      })}
-                  </Td>
-                  <Td>
-                    <Checkbox
-                      onChange={selectWriter}
-                      value={item.id}
-                    ></Checkbox>
-                  </Td>
-                </Tr>
-              );
-            })}
+            {users &&
+              users.map((item, index) => {
+                return (
+                  <Tr key={index}>
+                    <Td>
+                      <Checkbox onChange={selectUser} value={item._id}>
+                        {item.name}
+                      </Checkbox>
+                    </Td>
+                    <Td>
+                      <Checkbox
+                        onChange={selectSpeaker}
+                        value={item._id}
+                      ></Checkbox>
+                      {speakers &&
+                        speakers.map((ele, index) => {
+                          if (ele.speaker == item._id)
+                            return (
+                              // speakers[item.id-1].speaker ? (
+                              <Input
+                                key={index}
+                                type={"text"}
+                                ml={2}
+                                width={100}
+                                height={30}
+                                placeholder="time"
+                                name="time"
+                                onChange={(e) => {
+                                  setTime(e.target.value);
+                                  speakers[index].time = time;
+                                }}
+                              />
+                              // ) : (
+                              //   ""
+                              // )
+                            );
+                        })}
+                    </Td>
+                    <Td>
+                      <Checkbox
+                        onChange={selectWriter}
+                        value={item.id}
+                      ></Checkbox>
+                    </Td>
+                  </Tr>
+                );
+              })}
           </tbody>
         </Table>
-        {/* </CheckboxGroup> */}
         <Button mt={4}>{t.invite}</Button>
       </Box>
     </div>

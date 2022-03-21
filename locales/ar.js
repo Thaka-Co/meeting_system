@@ -65,7 +65,7 @@ export default {
   email: "البريد الالكتروني",
   password: "كلمة المرور",
   confirmPassword: "تأكيد كلمة المرور",
-  endTime: "وقت الأنتهاء",
+  endTime: "بداية الأجتماع",
   startDate: "مدة الاجتماع",
   selectDate: " التاريخ",
   // save:'حفظ',
