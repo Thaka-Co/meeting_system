@@ -6,14 +6,10 @@ import Footer from "../components/navBar/footer";
 export const taskDetails = (props) => {
   return (
     <div>
-      {/* {session ? ( */}
       <MainNavBar>
         <TaskDetails />
         <Footer />
       </MainNavBar>
-      {/* ) : (
-        ""
-      )} */}
     </div>
   );
 };

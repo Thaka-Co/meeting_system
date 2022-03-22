@@ -50,7 +50,7 @@ export const Setting = (props) => {
   };
   const update = async (e) => {
     e.preventDefault();
-    fetch("http://localhost:3000/api/user/updateInfo", {
+    await fetch("http://localhost:3000/api/user/updateInfo", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -62,9 +62,8 @@ export const Setting = (props) => {
         email: e.target.email.value,
         id: session.id,
       }),
-    }).then((res) => {
-      if (res) getUserData();
-    });
+    }); //.then((res) => console.log(res));
+    getUserData();
   };
   return (
     <div>

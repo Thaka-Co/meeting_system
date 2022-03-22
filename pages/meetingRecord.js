@@ -7,15 +7,10 @@ import Footer from "../components/navBar/footer";
 function meetingRecord(props) {
   return (
     <div>
-      {/* <AddComments /> */}
-      {/* {session ? ( */}
       <MainNavBar>
         <MeetingRecored />
         <Footer />
       </MainNavBar>
-      {/* ) : (
-        ""
-      )} */}
     </div>
   );
 }

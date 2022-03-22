@@ -6,14 +6,10 @@ import Footer from "../components/navBar/footer";
 function meetingDetails(props) {
   return (
     <div>
-      {/* {session ? ( */}
       <MainNavBar>
         <MeetingDetails />
         <Footer />
       </MainNavBar>
-      {/* ) : (
-        <></>
-      )} */}
     </div>
   );
 }

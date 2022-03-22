@@ -19,10 +19,8 @@ export default function Dashboard() {
       <MainNavBar>
         <Status />
         <Heading m="10">{t.ToDayMeetings}</Heading>
-        {/* today meetings */}
         <TodayMeetings />
         <Heading m="10">{t.MyMeetings}</Heading>
-        {/* My Meetings Table */}
         <MyMeeting />
         <Footer />
       </MainNavBar>

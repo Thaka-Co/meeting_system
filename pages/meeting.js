@@ -7,14 +7,10 @@ function meeting(props) {
   console.log(props, "props");
   return (
     <div>
-      {/* {session ? ( */}
       <MainNavBar>
         <AddMeeting rooms={props.rooms} />
         <Footer />
       </MainNavBar>
-      {/* ) : (
-       ''
-      )}  */}
     </div>
   );
 }
@@ -39,12 +35,3 @@ export async function getServerSideProps(context) {
     },
   };
 }
-// export const getStaticProps = async () => {
-//   const res = await fetch('http://localhost:3000/api/rooms/getRoom')
-//   const rooms = await res.json()
-//   return {
-//     props: {
-//       rooms,
-//     },
-//   };
-// };

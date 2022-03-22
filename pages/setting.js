@@ -7,14 +7,10 @@ import Footer from "../components/navBar/footer";
 export default function setting(props) {
   return (
     <div>
-      {/* {session ? ( */}
       <MainNavBar>
         <Setting />
         <Footer />
       </MainNavBar>
-      {/* ) : (
-        ""
-      )} */}
     </div>
   );
 }
