@@ -46,6 +46,7 @@ function AddMeeting(props) {
   const [cyclic, setCyclic] = useState(false);
   const [rooms, setRooms] = useState("");
   const [users, setUsers] = useState("");
+  const [types, setTypes] = useState("");
   const [attendance, setAttendance] = useState("");
   const [speakers, setSpeakers] = useState("");
   const [writer, setWriter] = useState("");
@@ -62,6 +63,7 @@ function AddMeeting(props) {
   useEffect(() => {
     getRooms();
     getUsers();
+    getTypes();
   }, []);
   //setUsers
   const selectUser = (e) => {
@@ -98,6 +100,12 @@ function AddMeeting(props) {
     setUsers(result);
     console.log(result);
   };
+  const getTypes = async () => {
+    const data = await fetch(`http://localhost:3000/api/types/getTypes`);
+    const result = await data.json();
+    setTypes(result);
+    console.log(result);
+  };
   const addMeeting = (e) => {
     e.preventDefault();
     fetch(`http://localhost:3000/api/meetings/meetings`, {
@@ -112,6 +120,7 @@ function AddMeeting(props) {
         memebers: attendance,
         isRepated,
         roomId,
+        meetingType,
       }),
     }).then((res) => res.json());
   };
@@ -146,13 +155,21 @@ function AddMeeting(props) {
         /> */}
           {/* <DatePicker controls={["time"]} select="range" touchUi={true} /> */}
           {/* <form onSubmit={addMeeting}> */}
+          <Input
+            m={3}
+            type={"text"}
+            placeholder={t.meetingTitle}
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+          />
           <Calendar
             className={"calendar"}
             onChange={(e) => {
               setDate(e);
             }}
           />
-          <HStack mt={10}>
+          <HStack m={3} mt={7}>
             <Icon as={AiOutlineClockCircle} />
             <Datetime
               onChange={(e) => {
@@ -165,7 +182,7 @@ function AddMeeting(props) {
               timeConstraints={{ hours: { min: 8, max: 17 } }}
             />
           </HStack>
-          <HStack>
+          <HStack m={3} mt={7}>
             <Icon as={AiOutlineClockCircle} />
             <Datetime
               onChange={(e) => {
@@ -178,23 +195,30 @@ function AddMeeting(props) {
               timeConstraints={{ hours: { min: 8, max: 17 } }}
             />
           </HStack>
-          {/* <Checkbox
-          mt={10}
-          onChange={(e) => {
-            !cyclic ? setCyclic(true) : setCyclic(false);
-          }}
-        >
-          {t.cyclicMeeting}
-        </Checkbox>
-        {cyclic ? (
-          <Select onChange={(e)=>{setIsReapeted(e.target.value)}}>
-            <option value={1}>{t.Daily}</option>
-            <option value={2}>{t.weekly}</option>
-            <option value={3}>{t.monthly}</option>
-          </Select>
-        ) : (
-          ""
-        )} */}
+          <Checkbox
+            m={3}
+            mt={7}
+            onChange={(e) => {
+              !cyclic ? setCyclic(true) : setCyclic(false);
+            }}
+          >
+            {t.cyclicMeeting}
+          </Checkbox>
+          {!cyclic ? (
+            <Select
+              m={3}
+              mt={7}
+              onChange={(e) => {
+                setIsRepated(e.target.value);
+              }}
+            >
+              <option value={1}>{t.Daily}</option>
+              <option value={2}>{t.weekly}</option>
+              <option value={3}>{t.monthly}</option>
+            </Select>
+          ) : (
+            ""
+          )}
         </Box>
 
         {/* <MeetingRooms rooms={rooms} /> */}
@@ -261,8 +285,8 @@ function AddMeeting(props) {
               <Thead>
                 <tr>
                   <Th>{t.attendance}</Th>
-                  <Th>{t.speakers}</Th>
-                  <Th>{t.writter}</Th>
+                  {/* <Th>{t.speakers}</Th>
+                  <Th>{t.writter}</Th> */}
                 </tr>
               </Thead>
               <tbody>
@@ -275,12 +299,12 @@ function AddMeeting(props) {
                             {item.name}
                           </Checkbox>
                         </Td>
-                        <Td>
-                          <Checkbox
+                        {/* <Td> */}
+                        {/* <Checkbox
                             onChange={selectSpeaker}
                             value={item._id}
-                          ></Checkbox>
-                          {speakers &&
+                          ></Checkbox> */}
+                        {/* {speakers &&
                             speakers.map((ele, index) => {
                               if (ele.speaker == item._id)
                                 return (
@@ -295,27 +319,30 @@ function AddMeeting(props) {
                                     name="time"
                                     onChange={(e) => {
                                       setTime(e.target.value);
-                                      speakers[index].time = time;
+                                      console.log(speakers);
+                                      speakers[index].time = e.target.value;
                                     }}
                                   />
                                   // ) : (
                                   //   ""
                                   // )
                                 );
-                            })}
-                        </Td>
-                        <Td>
-                          <Checkbox
+                            })} */}
+                        {/* </Td> */}
+                        {/* <Td> */}
+                        {/* <Checkbox
                             onChange={selectWriter}
-                            value={item.id}
-                          ></Checkbox>
-                        </Td>
+                            value={item._id}
+                          ></Checkbox> */}
+                        {/* </Td> */}
                       </Tr>
                     );
                   })}
               </tbody>
             </Table>
-            <Button mt={4}>{t.invite}</Button>
+            <Button m={3} mt={4}>
+              {t.invite}
+            </Button>
           </Box>
           <Box
             bg={useColorModeValue("white", "gray.800")}
@@ -323,15 +350,28 @@ function AddMeeting(props) {
             m={5}
             borderRadius={7}
           >
-            <Text mb={4}>{t.recordMeetingType}</Text>
+            <Text m={3} mb={4}>
+              {t.recordMeetingType}
+            </Text>
             <Select
+              m={3}
+              mt={4}
               onChange={(e) => {
-                setMeetingType(e);
+                setMeetingType(e.target.value);
+                console.log(e.target.value);
               }}
             >
-              <option>type 1</option>
-              <option>type 2</option>
-              <option>type 3</option>
+              {types &&
+                types.map((item, index) => {
+                  return (
+                    <option value={item._id} key={index}>
+                      {item.type}
+                    </option>
+                  );
+                })}
+
+              {/* <option>type 2</option>
+              <option>type 3</option> */}
             </Select>
           </Box>
           {/* </form> */}
