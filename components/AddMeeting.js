@@ -31,7 +31,7 @@ import MeetingRooms from "./MeetingRooms";
 import { UserData } from "./Tables/UserData";
 import Calendar from "react-calendar";
 // import "react-calendar/dist/Calendar.css";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
 import DatePicker from "react-datepicker";
@@ -122,7 +122,11 @@ function AddMeeting(props) {
         roomId,
         meetingType,
       }),
-    }).then((res) => res.json());
+    }).then(async (res) => {
+      const data = await res.json();
+      console.log(data, "hiiiiiiiiiiiiiiiiiiiiiiii");
+      router.push(`./nextStep/${data._id}`);
+    });
   };
   const getRooms = async () => {
     const data = await fetch(`http://localhost:3000/api/rooms/getRoom`);
@@ -204,7 +208,7 @@ function AddMeeting(props) {
           >
             {t.cyclicMeeting}
           </Checkbox>
-          {!cyclic ? (
+          {cyclic ? (
             <Select
               m={3}
               mt={7}
@@ -249,7 +253,7 @@ function AddMeeting(props) {
                     borderRadius={7}
                     position={"relative"}
                   >
-                    <Radio value={item._id}>
+                    <Radio value={item._id} name="rooms" required>
                       <HStack>
                         <HStack spacing={4} m={5}>
                           <BsPeople />
@@ -350,9 +354,9 @@ function AddMeeting(props) {
             m={5}
             borderRadius={7}
           >
-            <Text m={3} mb={4}>
+            {/* <Text m={3} mb={4}>
               {t.recordMeetingType}
-            </Text>
+            </Text> */}
             <Select
               m={3}
               mt={4}
@@ -360,7 +364,9 @@ function AddMeeting(props) {
                 setMeetingType(e.target.value);
                 console.log(e.target.value);
               }}
+              required
             >
+              <option value="">{t.recordMeetingType}</option>
               {types &&
                 types.map((item, index) => {
                   return (
@@ -375,9 +381,9 @@ function AddMeeting(props) {
             </Select>
           </Box>
           {/* </form> */}
-          <MeetingItems />
-          <AddItems />
-          <Button type="submit">{t.save}</Button>
+          {/* <MeetingItems />
+          <AddItems /> */}
+          <Button type="submit">{t.next}</Button>
         </>
       </form>
     </Box>

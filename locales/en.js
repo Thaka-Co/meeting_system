@@ -83,5 +83,6 @@ export default {
   setting: "Setting",
   search: "Search",
   signout: "sign out",
-  cancel: "cancel",
+  cancel: "Cancel",
+  next: "Next",
 };

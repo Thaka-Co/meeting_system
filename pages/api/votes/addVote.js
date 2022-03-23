@@ -8,7 +8,8 @@ export default async function postVote(req, res) {
     //   description,
     //   itemId,
     // });
-    if ((type, title, description)) {
+    console.log(itemId);
+    if ((type, title, description, itemId, users)) {
       addVote(type, title, description, itemId, users);
     }
     // const result = await newVote.save();

@@ -17,26 +17,27 @@ import {
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
+import MeetingItems from "./MeetingItems";
 function AddItems(props) {
   const router = useRouter();
   const [attach, setAttach] = useState("");
   const [image, setImage] = useState(null);
   const [createObjectURL, setCreateObjectURL] = useState(null);
+  const [trigger, setTrigger] = useState(false);
   const { locale } = router;
   let t = locale == "en" ? en : ar;
-  // t = locale === 0 ? en : ar;
   const addItem = async (e) => {
     e.preventDefault();
     // save file to server
     const form = document.querySelector("form");
     const file = new FormData(form);
     // console.log(image.name);
-    file.append("file", JSON.stringify(image.name));
+    file.append("file", JSON.stringify(image));
     // file='ooo'
     console.log("this is file", file);
     const response = await fetch("/api/attachments/addAttachment", {
       method: "POST",
-      file,
+      // file,
     });
     // console.log(response);
     //create item
@@ -48,6 +49,7 @@ function AddItems(props) {
       body: JSON.stringify({
         title: e.target.title.value,
         description: e.target.desc.value,
+        meetingId: props.id,
       }),
     }).then((res) => res.json());
     // .then((data) => {
@@ -79,7 +81,7 @@ function AddItems(props) {
           Meeting items
         </Text> */}
         {/*  */}
-        <form onSubmit={addItem}>
+        <form onSubmit={addItem} enctype="multipart/form-data">
           <Input placeholder={t.title} name={"title"} mb={4}></Input>
           <Textarea
             mb={4}
@@ -138,6 +140,7 @@ function AddItems(props) {
                       name="file-upload"
                       type="file"
                       onChange={addAttach}
+                      multiple
                     />
                   </VisuallyHidden>
                 </chakra.label>
@@ -160,6 +163,8 @@ function AddItems(props) {
           {t.delayedItem}
         </Button>
       </Box>
+
+      <MeetingItems id={props.id} />
     </div>
   );
 }

@@ -12,12 +12,29 @@ export default async function postAttach(req, res) {
   try {
     // const { file, itemId, meetingId } = req.body;
     console.log("file");
-    const form = new formidable.IncomingForm();
-    form.parse(req, async function (err, fields, files) {
-      console.log("hheeeree", form);
-      await saveFile(files.file);
-      return res.status(201).send("");
+    // const form = new formidable.IncomingForm();
+    // form.parse(req, async function (err, fields, files) {
+    //   console.log("hheeeree", form);
+    //   await saveFile(files.file);
+    //   return res.status(201).send("");
+    // });
+console.log('ATTACHMENT');
+    var form = new formidable.IncomingForm();
+
+    console.log(form);
+    form.parse(req);
+
+    form.on("fileBegin", function (name, file) {
+      file.path = __dirname + "/uploads/" + file.name;
+      console.log(__dirname);
     });
+
+    form.on("file", function (name, file) {
+      console.log("Uploaded " + file.name);
+    });
+
+    res.sendFile(__dirname + "/index.html");
+
     //console.log(form);
     // if (form) {
     //   console.log("attach");

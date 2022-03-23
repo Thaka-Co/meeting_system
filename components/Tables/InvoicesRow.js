@@ -20,7 +20,7 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { usersData } from "../../Faker/general";
 import { useRouter } from "next/router";
 import en from "../../locales/en";
@@ -29,6 +29,7 @@ function InvoicesRow(props) {
   const [checkedBox, setCheckedBox] = useState("");
   const router = useRouter();
   const [choose, setChoose] = useState("");
+  const [attendence, setAttendence] = useState("");
   // for language and rtl
   const { locale } = router;
   let t = locale == "en" ? en : ar;
@@ -44,9 +45,9 @@ function InvoicesRow(props) {
   console.log(checkedBox);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const textColor = useColorModeValue("gray.700", "white");
-  const { date, price, format, logo, record } = props;
-  const addVote = () => {};
-  const addPost = async (e) => {
+  const { itemId, date, price, format, logo, record, meetingId } = props;
+  console.log(itemId);
+  const addVote = async (e) => {
     e.preventDefault();
     fetch("http://localhost:3000/api/votes/addVote", {
       method: "POST",
@@ -58,6 +59,7 @@ function InvoicesRow(props) {
         description: e.target.desc.value,
         users: checkedBox,
         type: choose,
+        itemId,
       }),
     }).then((res) => res.json());
     // .then((data) => {
@@ -69,6 +71,18 @@ function InvoicesRow(props) {
     console.log(e.target.desc.value);
     console.log(checkedBox);
     console.log(choose);
+  };
+  useEffect(() => {
+    getMeetingDetails();
+  }, []);
+
+  const getMeetingDetails = async () => {
+    const id = meetingId;
+    fetch(`http://localhost:3000/api/meetings/${id}`).then(async (res) => {
+      const data = await res.json();
+      console.log(data.memebers[0].name);
+      setAttendence(data.memebers);
+    });
   };
   const delay = async (e) => {};
   return (
@@ -143,7 +157,7 @@ function InvoicesRow(props) {
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent dir={ditLang}>
-            <form onSubmit={addPost}>
+            <form onSubmit={addVote}>
               <ModalHeader>{t.voteInfo}</ModalHeader>
               <ModalCloseButton />
               <ModalBody>
@@ -172,20 +186,21 @@ function InvoicesRow(props) {
                 </Select>
                 <Text mt={4}>{t.canVote}</Text>
                 {/* <CheckboxGroup  name='hi'> */}
-                {usersData.map((item, index) => {
-                  return (
-                    <Stack key={index} p={4}>
-                      <Checkbox
-                        onChange={(e) => {
-                          selectUser(e);
-                        }}
-                        value={item.id}
-                      >
-                        {item.name}
-                      </Checkbox>
-                    </Stack>
-                  );
-                })}
+                {attendence &&
+                  attendence.map((item, index) => {
+                    return (
+                      <Stack key={index} p={4}>
+                        <Checkbox
+                          onChange={(e) => {
+                            selectUser(e);
+                          }}
+                          value={item._id}
+                        >
+                          {item.name}
+                        </Checkbox>
+                      </Stack>
+                    );
+                  })}
                 {/* </CheckboxGroup> */}
                 {/* <Button mt={4}>Invite</Button> */}
               </ModalBody>
