@@ -41,7 +41,6 @@ function TaskDetails(props) {
           </VStack>
         </HStack>
       </Box>
-
       <DisplayComments />
       <AddComments />
     </Box>

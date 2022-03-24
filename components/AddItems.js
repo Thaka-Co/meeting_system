@@ -81,7 +81,7 @@ function AddItems(props) {
           Meeting items
         </Text> */}
         {/*  */}
-        <form onSubmit={addItem} enctype="multipart/form-data">
+        <form onSubmit={addItem} encType="multipart/form-data">
           <Input placeholder={t.title} name={"title"} mb={4}></Input>
           <Textarea
             mb={4}

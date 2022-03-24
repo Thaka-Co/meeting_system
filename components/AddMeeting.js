@@ -27,6 +27,7 @@ import moment from "moment";
 import { useState } from "react";
 import AddItems from "./AddItems";
 import MeetingItems from "./MeetingItems";
+import { MeetingMinutes } from "./MeetingMinutes";
 import MeetingRooms from "./MeetingRooms";
 import { UserData } from "./Tables/UserData";
 import Calendar from "react-calendar";
@@ -126,6 +127,7 @@ function AddMeeting(props) {
       const data = await res.json();
       console.log(data, "hiiiiiiiiiiiiiiiiiiiiiiii");
       router.push(`./nextStep/${data._id}`);
+      <MeetingMinutes id={data._id} />;
     });
   };
   const getRooms = async () => {

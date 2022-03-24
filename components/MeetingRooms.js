@@ -37,38 +37,39 @@ function MeetingRooms({ rooms }) {
           Select the meeting room
         </Text> */}
         <RadioGroup onChange={selectRoom}>
-          {rooms&&rooms.map((item, index) => {
-            return (
-              <Box
-                key={item._id}
-                m={3}
-                p={4}
-                borderWidth={3}
-                borderColor={"#F7FAFC"}
-                borderRadius={7}
-                position={"relative"}
-              >
-                <Radio value={index}>
-                  <HStack>
-                    <HStack spacing={4} m={5}>
-                      <BsPeople />
-                      <Text>{item.size}</Text>
+          {rooms &&
+            rooms.map((item, index) => {
+              return (
+                <Box
+                  key={item._id}
+                  m={3}
+                  p={4}
+                  borderWidth={3}
+                  borderColor={"#F7FAFC"}
+                  borderRadius={7}
+                  position={"relative"}
+                >
+                  <Radio value={index}>
+                    <HStack>
+                      <HStack spacing={4} m={5}>
+                        <BsPeople />
+                        <Text>{item.size}</Text>
+                      </HStack>
+                      <HStack spacing={4} m={5}>
+                        <IoLocationOutline />
+                        <Text>{item.location}</Text>
+                      </HStack>
+                      <HStack spacing={4} m={5}>
+                        <CgToolbox />
+                        {item.tools.map((item, index) => {
+                          return <Text key={index}>{item}</Text>;
+                        })}
+                      </HStack>
                     </HStack>
-                    <HStack spacing={4} m={5}>
-                      <IoLocationOutline />
-                      <Text>{item.location}</Text>
-                    </HStack>
-                    <HStack spacing={4} m={5}>
-                      <CgToolbox />
-                      {item.tools.map((item, index) => {
-                        return <Text key={index}>{item}</Text>;
-                      })}
-                    </HStack>
-                  </HStack>
-                </Radio>
-              </Box>
-            );
-          })}
+                  </Radio>
+                </Box>
+              );
+            })}
         </RadioGroup>
       </Box>
     </div>

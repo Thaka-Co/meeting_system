@@ -14,6 +14,7 @@ export const MeetingMinutes = (props) => {
   const { locale } = router;
   let t = locale == "en" ? en : ar;
   const id = props.id;
+  console.log(id);
   const selectSpeaker = (e) => {
     console.log(e.target.value);
     e.target.checked
