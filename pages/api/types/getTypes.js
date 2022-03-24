@@ -3,7 +3,6 @@ import typeModel from "../../../lib/models/meetingTypes/types"
 export default async function getTypes(req, res) {
   try {
     // const { id } = req.body;
-    console.log(typeModel);
     const rooms = await typeModel.find({});
     if (rooms.length) {
       console.log("here", rooms);
