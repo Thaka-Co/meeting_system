@@ -45,7 +45,8 @@ function InvoicesRow(props) {
   console.log(checkedBox);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const textColor = useColorModeValue("gray.700", "white");
-  const { itemId, date, price, format, logo, record, meetingId } = props;
+  const { itemId, date, price, format, logo, record, meetingId, isDelayed } =
+    props;
   console.log(itemId);
   const addVote = async (e) => {
     e.preventDefault();
@@ -84,7 +85,13 @@ function InvoicesRow(props) {
       setAttendence(data.memebers);
     });
   };
-  const delay = async (e) => {};
+  const delay = async (e) => {
+    // e.preventDefault();
+    const id = itemId;
+    const res = await fetch(`http://localhost:3000/api/items/delay/${id}`);
+    const data = res.json();
+    console.log(data);
+  };
   return (
     <>
       <Flex my={{ sm: "1rem", xl: "10px" }} alignItems="center">
@@ -137,8 +144,15 @@ function InvoicesRow(props) {
               }}
             >
               <Flex alignItems="center" p="12px">
-                <Text fontSize="md" color={textColor} fontWeight="bold">
-                  {t.delay}
+                <Text
+                  fontSize="md"
+                  color={textColor}
+                  fontWeight="bold"
+                  onClick={() => {
+                    delay(itemId);
+                  }}
+                >
+                  {isDelayed ? "Delayed" : t.delay}
                 </Text>
               </Flex>
             </Button>

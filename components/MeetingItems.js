@@ -8,17 +8,9 @@ import InvoicesRow from "../components/Tables/InvoicesRow";
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
-import {
-  FaArrowDown,
-  FaArrowUp,
-  FaBell,
-  FaCreditCard,
-  FaFilePdf,
-  FaHtml5,
-  FaShoppingCart,
-} from "react-icons/fa";
+import { FaFilePdf } from "react-icons/fa";
 function MeetingItems(props) {
-  const [items, setItems] = useState();
+  const [items, setItems] = useState("");
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
@@ -80,6 +72,7 @@ function MeetingItems(props) {
                       format={"PDF"}
                       meetingId={props.id}
                       itemId={row._id}
+                      isDelayed={row.isDelayed}
                     />
                   );
                 })}

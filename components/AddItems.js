@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Flex,
   Text,
@@ -17,30 +17,43 @@ import {
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
+import Card from "../components/Card/Card.js";
+import CardHeader from "../components/Card/CardHeader.js";
+import CardBody from "../components/Card/CardBody.js";
 import MeetingItems from "./MeetingItems";
+import InvoicesRow from "../components/Tables/InvoicesRow";
+
+import {
+  FaFilePdf,
+} from "react-icons/fa";
 function AddItems(props) {
   const router = useRouter();
   const [attach, setAttach] = useState("");
   const [image, setImage] = useState(null);
   const [createObjectURL, setCreateObjectURL] = useState(null);
   const [trigger, setTrigger] = useState(false);
+  const [items, setItems] = useState("");
   const { locale } = router;
   let t = locale == "en" ? en : ar;
+  useEffect(() => {
+    getItems();
+  }, []);
   const addItem = async (e) => {
     e.preventDefault();
     // save file to server
-    const form = document.querySelector("form");
-    const file = new FormData(form);
+    // const form = document.querySelector("form");
+    // const file = new FormData(form);
     // console.log(image.name);
-    file.append("file", JSON.stringify(image));
+    // file.append("file", JSON.stringify(image));
     // file='ooo'
-    console.log("this is file", file);
-    const response = await fetch("/api/attachments/addAttachment", {
-      method: "POST",
-      // file,
-    });
+    // console.log("this is file", file);
+    // const response = await fetch("/api/attachments/addAttachment", {
+    //   method: "POST",
+    //   // file,
+    // });
     // console.log(response);
     //create item
+    // const result = await
     fetch("/api/items/addItem", {
       method: "POST",
       headers: {
@@ -49,11 +62,19 @@ function AddItems(props) {
       body: JSON.stringify({
         title: e.target.title.value,
         description: e.target.desc.value,
-        meetingId: props.id,
+        meetingId: props.id, 
       }),
-    }).then((res) => res.json());
-    // .then((data) => {
-    //   router.push("/");
+    });
+    // .then((res) => {
+    //   res.text();
+    console.log("kk");
+    //   // getItems();
+    // })
+    // .then(() => {
+    getItems();
+    // })
+    // .catch((err) => {
+    // console.log(err);
     // });
   };
   const addAttach = async (e) => {
@@ -67,7 +88,21 @@ function AddItems(props) {
       setCreateObjectURL(URL.createObjectURL(i));
     }
   };
-
+  const getItems = async () => {
+    console.log(props.id, "items");
+    const id = props.id;
+    const result = await fetch(`/api/items/${id}`);
+    console.log(result);
+    const data = await result.json();
+    console.log(data);
+    setItems(data);
+  };
+  const delay = async (e) => {
+    e.preventDefault();
+    const res = await fetch(`http://localhost:3000/api/items/delay/${id}`);
+    const data = res.json();
+    console.log(data);
+  };
   return (
     <div>
       <Heading m={10}>{t.addItem}</Heading>
@@ -163,8 +198,58 @@ function AddItems(props) {
           {t.delayedItem}
         </Button>
       </Box>
-
-      <MeetingItems id={props.id} />
+      {/* ################################################################################ */}
+      <Heading m="10">{t.meetingItems}</Heading>
+      <Box
+        bg={useColorModeValue("white", "gray.800")}
+        p={15}
+        m={5}
+        borderRadius={7}
+      >
+        <Card>
+          <CardHeader p="0px 0px 0px 0px">
+            <Flex justify="space-between" align="center" mb="1rem" w="90%">
+              {/* <Text fontSize="lg" color={textColor} fontWeight="bold">
+                Meeting items
+              </Text> */}
+              {/* <Button
+                colorScheme="teal"
+                borderColor="teal.300"
+                color="teal.300"
+                variant="outline"
+                fontSize="xs"
+                p="8px 32px"
+              >
+                VIEW ALL
+              </Button> */}
+            </Flex>
+          </CardHeader>
+          <CardBody>
+            <Flex direction="column" w="90%">
+              {items &&
+                items.map((row, index) => {
+                  return (
+                    <InvoicesRow
+                      key={row._id}
+                      date={row.title}
+                      code={row.downArrow}
+                      downArrow={row.downArrow}
+                      upArrow={row.upArrow}
+                      up={row.up}
+                      down={row.down}
+                      price={row.price}
+                      logo={FaFilePdf}
+                      format={"PDF"}
+                      meetingId={props.id}
+                      itemId={row._id}
+                    />
+                  );
+                })}
+            </Flex>
+          </CardBody>
+        </Card>
+      </Box>
+      {/* <MeetingItems id={props.id} /> */}
     </div>
   );
 }

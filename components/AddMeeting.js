@@ -127,7 +127,7 @@ function AddMeeting(props) {
       const data = await res.json();
       console.log(data, "hiiiiiiiiiiiiiiiiiiiiiiii");
       router.push(`./nextStep/${data._id}`);
-      <MeetingMinutes id={data._id} />;
+      // <MeetingMinutes id={data._id} />;
     });
   };
   const getRooms = async () => {
