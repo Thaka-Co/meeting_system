@@ -13,7 +13,7 @@ export default function nextStep(props) {
   return (
     <div>
       <MainNavBar>
-        <MeetingMinutes id={id} />
+        <MeetingMinutes id={id} />  
         <AddItems id={id} />
         {/* <MeetingItems id={id}/> */}
         <Footer />

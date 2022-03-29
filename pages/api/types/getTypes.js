@@ -1,4 +1,4 @@
-import typeModel from "../../../lib/models/meetingTypes/types"
+import typeModel from "../../../lib/models/meetingTypes/types";
 
 export default async function getTypes(req, res) {
   try {

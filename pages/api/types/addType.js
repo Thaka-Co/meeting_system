@@ -1,4 +1,4 @@
-import typeModel from "../../../lib/models/meetingTypes/types"
+import typeModel from "../../../lib/models/meetingTypes/types";
 import addRoom from "../../../lib/services/rooms/addRooms";
 export default async function postType(req, res) {
   try {

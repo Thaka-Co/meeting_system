@@ -18,7 +18,7 @@ export default async function postAttach(req, res) {
     //   await saveFile(files.file);
     //   return res.status(201).send("");
     // });
-console.log('ATTACHMENT');
+    console.log("ATTACHMENT");
     var form = new formidable.IncomingForm();
 
     console.log(form);

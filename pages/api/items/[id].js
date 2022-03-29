@@ -4,7 +4,7 @@ export default async function getItem(req, res) {
   try {
     const { id } = req.query;
     console.log("here", id);
-    const items = await itemModel.find({ meetingId: id }).populate("votes");
+    const items = await itemModel.find({ meetingId: id })//.populate("votes");
     if (items.length) {
       console.log("here");
       res.status(200).json(items);
