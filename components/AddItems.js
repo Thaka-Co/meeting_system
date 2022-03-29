@@ -23,9 +23,7 @@ import CardBody from "../components/Card/CardBody.js";
 import MeetingItems from "./MeetingItems";
 import InvoicesRow from "../components/Tables/InvoicesRow";
 
-import {
-  FaFilePdf,
-} from "react-icons/fa";
+import { FaFilePdf } from "react-icons/fa";
 function AddItems(props) {
   const router = useRouter();
   const [attach, setAttach] = useState("");
@@ -62,7 +60,7 @@ function AddItems(props) {
       body: JSON.stringify({
         title: e.target.title.value,
         description: e.target.desc.value,
-        meetingId: props.id, 
+        meetingId: props.id,
       }),
     });
     // .then((res) => {

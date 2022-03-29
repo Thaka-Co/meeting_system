@@ -1,4 +1,5 @@
 import meetingModel from "../../../lib/models/meetings/meetingsModel";
+// get meeting details
 export default async (req, res) => {
   const { id } = req.query;
   console.log(id, "meeting api");
