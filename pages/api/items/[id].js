@@ -1,5 +1,5 @@
 import itemModel from "../../../lib/models/Items/itemsModel";
-
+// get items for meeting
 export default async function getItem(req, res) {
   try {
     const { id } = req.query;

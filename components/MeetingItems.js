@@ -73,6 +73,7 @@ function MeetingItems(props) {
                       meetingId={props.id}
                       itemId={row._id}
                       isDelayed={row.isDelayed}
+                      // votes={row.votes}
                     />
                   );
                 })}

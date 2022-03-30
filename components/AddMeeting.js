@@ -36,6 +36,8 @@ import { Router, useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
 import DatePicker from "react-datepicker";
+import { getCsrfToken, getSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 // import "../styles/calendar.css";
 import { AiOutlineClockCircle } from "react-icons/ai";
 function AddMeeting(props) {
@@ -61,6 +63,8 @@ function AddMeeting(props) {
   let t = locale == "en" ? en : ar;
   console.log("period", period, periodMin);
   console.log("start", start, startMin);
+  const { data: session } = useSession();
+  const id=session.id;
   useEffect(() => {
     getRooms();
     getUsers();
@@ -122,6 +126,7 @@ function AddMeeting(props) {
         isRepated,
         roomId,
         meetingType,
+        id
       }),
     }).then(async (res) => {
       const data = await res.json();
