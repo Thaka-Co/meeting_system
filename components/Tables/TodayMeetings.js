@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   useColorModeValue,
   ButtonGroup,
@@ -19,7 +19,9 @@ import ar from "../../locales/ar";
 import { AiFillEdit } from "react-icons/ai";
 import { BsBoxArrowUpRight, BsFillTrashFill } from "react-icons/bs";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 export default function TodayMeetings() {
+  const [meetings, setMeetings] = React.useState(false);
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
@@ -30,6 +32,20 @@ export default function TodayMeetings() {
     { name: "Add the New Pricing Page", created: "5 PM" },
     { name: "Redesign New Online Shop", created: "3 PM" },
   ];
+  const { data: session } = useSession();
+  useEffect(() => {
+    getUserData();
+  }, []);
+
+  const getUserData = async () => {
+    console.log(session);
+    const id = session.id; // meeting id
+    console.log(id);
+    const data = await fetch(`http://localhost:3000/api/user/${id}`);
+    const result = await data.json();
+    setMeetings(result.meetings);
+    console.log(result.meetings);
+  };
   const bg = useColorModeValue("white", "gray.800");
   const color = useColorModeValue("gray.400", "gray.400");
   const tdColor = useColorModeValue("gray.500");
@@ -76,26 +92,27 @@ export default function TodayMeetings() {
           },
         }}
       >
-        {data.map((token, tid) => {
-          return (
-            <Tr
-              key={tid}
-              display={{
-                base: "grid",
-                md: "table-row",
-              }}
-              sx={{
-                "@media print": {
-                  display: "table-row",
-                },
-                gridTemplateColumns: "minmax(0px, 35%) minmax(0px, 65%)",
-                gridGap: "10px",
-              }}
-            >
-              {Object.keys(token).map((x) => {
-                return (
-                  <React.Fragment key={`${tid}${x}`}>
-                    <Td
+        {meetings &&
+          meetings.map((token, tid) => {
+            return (
+              <Tr
+                key={tid}
+                display={{
+                  base: "grid",
+                  md: "table-row",
+                }}
+                sx={{
+                  "@media print": {
+                    display: "table-row",
+                  },
+                  gridTemplateColumns: "minmax(0px, 35%) minmax(0px, 65%)",
+                  gridGap: "10px",
+                }}
+              >
+                {/* {Object.keys(token).map((x) => {
+                return ( */}
+                <React.Fragment key={`${tid}`}>
+                  {/* <Td
                       display={{
                         base: "table-cell",
                         md: "none",
@@ -113,33 +130,37 @@ export default function TodayMeetings() {
                       }}
                     >
                       {x}
-                    </Td>
-                    <Td color={tdColor} fontSize="md" fontWeight="hairline">
-                      {token[x]}
-                    </Td>
-                  </React.Fragment>
-                );
-              })}
+                    </Td> */}
+                  <Td color={tdColor} fontSize="md" fontWeight="hairline">
+                    {token["title"]}
+                    {/* {token[x]} */}
+                  </Td>
+                  <Td color={tdColor} fontSize="md" fontWeight="hairline">
+                    {token["timeFram"][0]}:{token["timeFram"][0]}
+                  </Td>
+                </React.Fragment>
+                {/* );
+              })} */}
 
-              <Td>
-                <ButtonGroup variant="solid" size="sm" spacing={3}>
-                  <Link href="/currentMeeting">
+                <Td>
+                  <ButtonGroup variant="solid" size="sm" spacing={3}>
+                    <Link href="/currentMeeting">
+                      <IconButton
+                        colorScheme="blue"
+                        icon={<BsBoxArrowUpRight />}
+                      />
+                    </Link>
+                    <IconButton colorScheme="green" icon={<AiFillEdit />} />
                     <IconButton
-                      colorScheme="blue"
-                      icon={<BsBoxArrowUpRight />}
+                      colorScheme="red"
+                      variant="outline"
+                      icon={<BsFillTrashFill />}
                     />
-                  </Link>
-                  <IconButton colorScheme="green" icon={<AiFillEdit />} />
-                  <IconButton
-                    colorScheme="red"
-                    variant="outline"
-                    icon={<BsFillTrashFill />}
-                  />
-                </ButtonGroup>
-              </Td>
-            </Tr>
-          );
-        })}
+                  </ButtonGroup>
+                </Td>
+              </Tr>
+            );
+          })}
       </Tbody>
     </Table>
   ) : (

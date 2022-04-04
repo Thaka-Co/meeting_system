@@ -36,6 +36,7 @@ function AddItems(props) {
   useEffect(() => {
     getItems();
   }, []);
+  console.log(props.id);
   const addItem = async (e) => {
     e.preventDefault();
     // save file to server
