@@ -64,7 +64,7 @@ function AddMeeting(props) {
   console.log("period", period, periodMin);
   console.log("start", start, startMin);
   const { data: session } = useSession();
-  const id=session.id;
+  const id = session.id;
   useEffect(() => {
     getRooms();
     getUsers();
@@ -126,7 +126,7 @@ function AddMeeting(props) {
         isRepated,
         roomId,
         meetingType,
-        id
+        id,
       }),
     }).then(async (res) => {
       const data = await res.json();

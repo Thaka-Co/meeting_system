@@ -219,7 +219,12 @@ function InvoicesRow(props) {
                 {/* <Button mt={4}>Invite</Button> */}
               </ModalBody>
               <ModalFooter>
-                <Button colorScheme="blue" mr={3} type={"submit"}>
+                <Button
+                  colorScheme="blue"
+                  mr={3}
+                  type={"submit"}
+                  onClose={onClose}
+                >
                   {t.invite}
                 </Button>
                 {/* <Button variant='ghost'>Secondary Action</Button> */}

@@ -130,7 +130,7 @@ export default function App({ csrfToken }) {
 export async function getServerSideProps(context) {
   const { req, res } = context;
   const session = await getSession({ req });
-  // console.log(session)
+  console.log(context);
   if (session && res) {
     console.log("working");
     res.writeHead(302, {
