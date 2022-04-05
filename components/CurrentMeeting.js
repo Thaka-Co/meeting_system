@@ -8,7 +8,7 @@ import {
   HStack,
   useColorModeValue,
 } from "@chakra-ui/react";
-import MeetingItems from "./MeetingItems";
+// import MeetingItems from "./MeetingItems";
 import { Attendance } from "./Attendance";
 import { AddComments } from "./Comments/AddComments";
 import { DisplayComments } from "./Comments/DisplayComments";
@@ -44,10 +44,10 @@ function CurrentMeeting(props) {
           <Text p={3}>21</Text>
         </HStack>
       </Box>
-      <AddItems />
-      <MeetingItems />
+      <AddItems id={props.id} />
+      {/* <MeetingItems id={props.id} /> */}
       <Heading m="10">{t.attendance}</Heading>
-      <Attendance attend={true} />
+      <Attendance attend={true} id={props.id} />
       <Heading m={10}>{t.comments}</Heading>
       <DisplayComments />
       <AddComments />

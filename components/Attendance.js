@@ -17,10 +17,21 @@ import en from "../locales/en";
 import ar from "../locales/ar";
 export const Attendance = (props) => {
   const { attend } = props;
+  const [users,setUsers]=React.useState();
   const textColor = useColorModeValue("gray.700", "white");
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
+  React.useEffect(() => {
+    getUserData();
+  }, []);
+  const getUserData = async () => {
+    const id = props.id;
+    const data = await fetch(`http://localhost:3000/api/meetings/${id}`);
+    const result = await data.json();
+    setUsers(result.memebers);
+    console.log(result);
+  };
   return (
     <div>
       {" "}
@@ -45,7 +56,7 @@ export const Attendance = (props) => {
               </Tr>
             </Thead>
             <Tbody>
-              {tablesTableData.map((row, index) => {
+              {users&&users.map((row, index) => {
                 return (
                   <TablesTableRow
                     key={index}

@@ -1,14 +1,18 @@
 // @flow
 import * as React from "react";
-import CurrentMeeting from "../components/CurrentMeeting";
-import MainNavBar from "../components/navBar/navbar";
+import CurrentMeeting from "../../components/CurrentMeeting";
+import MainNavBar from "../../components/navBar/navbar";
 import { getCsrfToken, getSession } from "next-auth/react";
-import Footer from "../components/navBar/footer";
+import Footer from "../../components/navBar/footer";
+import { useRouter } from "next/router";
 function currentMeeting(props) {
+  const router = useRouter();
+  const { id } = router.query;
+  console.log(id);
   return (
     <div>
       <MainNavBar>
-        <CurrentMeeting />
+        <CurrentMeeting id={id} />
         <Footer />
       </MainNavBar>
     </div>

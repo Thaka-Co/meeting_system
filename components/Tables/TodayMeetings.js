@@ -36,9 +36,8 @@ export default function TodayMeetings() {
   useEffect(() => {
     getUserData();
   }, []);
-
+  console.log(session);
   const getUserData = async () => {
-    console.log(session);
     const id = session.id; // meeting id
     console.log(id);
     const data = await fetch(`http://localhost:3000/api/user/${id}`);
@@ -140,11 +139,11 @@ export default function TodayMeetings() {
                   </Td>
                 </React.Fragment>
                 {/* );
-              })} */}
-
+              })}  */}
+                {token._id}
                 <Td>
                   <ButtonGroup variant="solid" size="sm" spacing={3}>
-                    <Link href="/currentMeeting">
+                    <Link href={`/currentMeeting/${token._id}`}>
                       <IconButton
                         colorScheme="blue"
                         icon={<BsBoxArrowUpRight />}
