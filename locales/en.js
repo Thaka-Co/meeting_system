@@ -85,4 +85,5 @@ export default {
   signout: "sign out",
   cancel: "Cancel",
   next: "Next",
+  delayed: "Delayed",
 };

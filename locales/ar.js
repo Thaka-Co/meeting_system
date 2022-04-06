@@ -84,4 +84,5 @@ export default {
   signout: "تسجيل خروج",
   cancel: "إلغاء",
   next: "التالي",
+  delayed: "مؤجل",
 };

@@ -30,6 +30,7 @@ function InvoicesRow(props) {
   const router = useRouter();
   const [choose, setChoose] = useState("");
   const [attendence, setAttendence] = useState("");
+  const [item, setItem] = useState("");
   // for language and rtl
   const { locale } = router;
   let t = locale == "en" ? en : ar;
@@ -75,8 +76,9 @@ function InvoicesRow(props) {
   };
   useEffect(() => {
     getMeetingDetails();
+    itemDetails();
   }, []);
-
+  // used for how can vote ?
   const getMeetingDetails = async () => {
     const id = meetingId;
     fetch(`http://localhost:3000/api/meetings/${id}`).then(async (res) => {
@@ -91,6 +93,14 @@ function InvoicesRow(props) {
     const res = await fetch(`http://localhost:3000/api/items/delay/${id}`);
     const data = res.json();
     console.log(data);
+    itemDetails();
+  };
+  const itemDetails = async () => {
+    const id = itemId;
+    const res = await fetch(`http://localhost:3000/api/items/details/${id}`);
+    const data = await res.json();
+    console.log(data);
+    setItem(data);
   };
   return (
     <>
@@ -152,7 +162,7 @@ function InvoicesRow(props) {
                     delay(itemId);
                   }}
                 >
-                  {isDelayed ? "Delayed" : t.delay}
+                  {item && item.isDelayed ? t.delayed : t.delay}
                 </Text>
               </Flex>
             </Button>

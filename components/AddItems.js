@@ -12,8 +12,18 @@ import {
   Input,
   Heading,
   Textarea,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Select,
+  Checkbox,
   HStack,
 } from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
@@ -30,10 +40,14 @@ function AddItems(props) {
   const [image, setImage] = useState(null);
   const [createObjectURL, setCreateObjectURL] = useState(null);
   const [trigger, setTrigger] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [items, setItems] = useState("");
+  const [delayedItems, setDelayedItems] = useState("");
   const { locale } = router;
   let t = locale == "en" ? en : ar;
+  let ditLang = locale == "en" ? "ltr" : "rtl";
   useEffect(() => {
+    delayedItem();
     getItems();
   }, []);
   console.log(props.id);
@@ -96,10 +110,10 @@ function AddItems(props) {
     console.log(data);
     setItems(data);
   };
-  const delay = async (e) => {
-    e.preventDefault();
-    const res = await fetch(`http://localhost:3000/api/items/delay/${id}`);
-    const data = res.json();
+  const delayedItem = async () => {
+    const res = await fetch(`/api/items/delayedItems`);
+    const data = await res.json();
+    setDelayedItems(data);
     console.log(data);
   };
   return (
@@ -193,9 +207,75 @@ function AddItems(props) {
             {t.addItem}
           </Button>
         </form>
-        <Button ml={4} mt={4}>
+        <Button ml={4} mt={4} onClick={onOpen}>
           {t.delayedItem}
         </Button>
+      </Box>
+      <Box>
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent dir={ditLang}>
+            <form>
+              <ModalHeader>{t.voteInfo}</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <Input
+                  type={"text"}
+                  name={"title"}
+                  placeholder={t.title}
+                  mt={4}
+                ></Input>
+                <Textarea
+                  resize={"none"}
+                  name={"desc"}
+                  placeholder={t.desc}
+                  mt={4}
+                ></Textarea>
+                <Select
+                  mt={4}
+                  onChange={(e) => {
+                    // setChoose(e.target.value);
+                    // console.log(e.target.value);
+                  }}
+                >
+                  {/* <option value={''}>{t.voteType}</option> */}
+                  <option value={0}>{t.private}</option>
+                  <option value={1}>{t.public}</option>
+                </Select>
+                <Text mt={4}>{t.canVote}</Text>
+                {/* <CheckboxGroup  name='hi'> */}
+                {delayedItems &&
+                  delayedItems.map((item, index) => {
+                    return (
+                      <Stack key={index} p={4}>
+                        <Checkbox
+                          onChange={(e) => {
+                            // selectUser(e);
+                          }}
+                          value={item._id}
+                        >
+                          {item.title}
+                        </Checkbox>
+                      </Stack>
+                    );
+                  })}
+                {/* </CheckboxGroup> */}
+                {/* <Button mt={4}>Invite</Button> */}
+              </ModalBody>
+              <ModalFooter>
+                <Button
+                  colorScheme="blue"
+                  mr={3}
+                  type={"submit"}
+                  onClose={onClose}
+                >
+                  {t.invite}
+                </Button>
+                {/* <Button variant='ghost'>Secondary Action</Button> */}
+              </ModalFooter>
+            </form>
+          </ModalContent>
+        </Modal>
       </Box>
       {/* ################################################################################ */}
       <Heading m="10">{t.meetingItems}</Heading>

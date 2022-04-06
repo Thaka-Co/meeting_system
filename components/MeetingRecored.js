@@ -12,6 +12,8 @@ import {
   ModalCloseButton,
   useDisclosure,
 } from "@chakra-ui/react";
+import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
 import { GrDownload, GrDocumentPdf } from "react-icons/gr";
 import { AiFillPrinter } from "react-icons/ai";
 import { Icon } from "@chakra-ui/react";
@@ -29,11 +31,35 @@ export const MeetingRecored = (props) => {
   const { locale } = router;
   let t = locale == "en" ? en : ar;
   let ditLang = locale == "en" ? "ltr" : "rtl";
-  const showChooses = () => {
+  const showChooses = async () => {
     setI(true);
   };
+  const downloadPdf = async () => {
+    const doc = new jsPDF();
+    const domElement = document.getElementById("content");
+    console.log(domElement);
+    const body = await html2canvas(domElement).then(function (canvas) {
+      //  domElement.appendChild(canvas);
+      const img = canvas.toDataURL("image/png");
+      // canvas.append(domElement);
+      doc.addImage(img, "PNG", 5, 5, 200, 250);
+      doc.save("a4.pdf");
+    });
+  };
+  const downloadWord = async () => {
+    const doc = new jsPDF();
+    const domElement = document.getElementById("content");
+    console.log(domElement);
+    const body = await html2canvas(domElement).then(function (canvas) {
+      //  domElement.appendChild(canvas);
+      const img = canvas.toDataURL("image/png");
+      // canvas.append(domElement);
+      doc.addImage(img, "PNG", 5, 5, 200, 250);
+      doc.save("a4.docx");
+    });
+  };
   return (
-    <div>
+    <div id="content">
       <Box bg={useColorModeValue("gray.50", "inherit")}>
         <MeetingInfo />
         <Box
@@ -69,12 +95,19 @@ export const MeetingRecored = (props) => {
                   <ModalCloseButton />
                   <ModalBody>
                     <Box mt={70} mr={50}>
-                      <Icon as={GrDocumentPdf} w={50} h={"auto"} ml={100} />
+                      <Icon
+                        as={GrDocumentPdf}
+                        w={50}
+                        h={"auto"}
+                        ml={100}
+                        onClick={downloadPdf}
+                      />
                       <Icon
                         as={BsFillFileEarmarkWordFill}
                         w={50}
                         h={"auto"}
                         ml={100}
+                        onClick={downloadWord}
                       />
                     </Box>
                   </ModalBody>
