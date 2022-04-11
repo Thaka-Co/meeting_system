@@ -11,14 +11,11 @@ export default async function postItem(req, res) {
       if (!item.isDelayed) {
         await itemModel.findByIdAndUpdate(id, { isDelayed: true });
       }
-      console.log("here");
       res.status(200).json(item);
     } else {
       res.status(200).json("item not found !!!!");
     }
   } catch (err) {
-    console.log("lllooolll");
-    console.log(err);
     res.status(404).json(err);
   }
 }

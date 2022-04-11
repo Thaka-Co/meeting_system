@@ -64,7 +64,7 @@ function AddMeeting(props) {
   console.log("period", period, periodMin);
   console.log("start", start, startMin);
   const { data: session } = useSession();
-  const id = session.id;
+  
   useEffect(() => {
     getRooms();
     getUsers();
@@ -111,8 +111,9 @@ function AddMeeting(props) {
     setTypes(result);
     console.log(result);
   };
-  const addMeeting = (e) => {
+  const addMeeting =async (e) => {
     e.preventDefault();
+    const id =await session.id;
     fetch(`http://localhost:3000/api/meetings/meetings`, {
       method: "POST",
       headers: {

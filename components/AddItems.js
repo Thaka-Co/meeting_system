@@ -43,6 +43,7 @@ function AddItems(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [items, setItems] = useState("");
   const [delayedItems, setDelayedItems] = useState("");
+  const [selectedItem, setSelectedItem] = useState("");
   const { locale } = router;
   let t = locale == "en" ? en : ar;
   let ditLang = locale == "en" ? "ltr" : "rtl";
@@ -51,6 +52,15 @@ function AddItems(props) {
     getItems();
   }, []);
   console.log(props.id);
+  const selectItem = async (e) => {
+    console.log(e.target.value);
+    e.target.checked
+      ? setSelectedItem([...selectedItem, e.target.value])
+      : selectedItem.splice(selectedItem.indexOf(e.target.value), 1); //splice
+    console.log(selectedItem);
+    delayedItem();
+  };
+  console.log(selectedItem);
   const addItem = async (e) => {
     e.preventDefault();
     // save file to server
@@ -67,28 +77,37 @@ function AddItems(props) {
     // console.log(response);
     //create item
     // const result = await
-    fetch("/api/items/addItem", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title: e.target.title.value,
-        description: e.target.desc.value,
-        meetingId: props.id,
-      }),
-    });
-    // .then((res) => {
-    //   res.text();
+    if (e.target.title.value) {
+      await fetch("/api/items/addItem", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          title: e.target.title.value,
+          description: e.target.desc.value,
+          meetingId: props.id,
+          selectedItem,
+        }),
+      });
+    }
+    if (selectItem) {
+      await fetch("/api/items/addItem", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          meetingId: props.id,
+          selectedItem,
+        }),
+      });
+    }
     console.log("kk");
-    //   // getItems();
-    // })
-    // .then(() => {
+    delayedItem();
     getItems();
-    // })
-    // .catch((err) => {
-    // console.log(err);
-    // });
   };
   const addAttach = async (e) => {
     e.preventDefault();
@@ -109,13 +128,15 @@ function AddItems(props) {
     const data = await result.json();
     console.log(data);
     setItems(data);
+    // delayedItem();
   };
   const delayedItem = async () => {
     const res = await fetch(`/api/items/delayedItems`);
     const data = await res.json();
-    setDelayedItems(data);
     console.log(data);
+    setDelayedItems(data);
   };
+  // getItems();
   return (
     <div>
       <Heading m={10}>{t.addItem}</Heading>
@@ -216,10 +237,10 @@ function AddItems(props) {
           <ModalOverlay />
           <ModalContent dir={ditLang}>
             <form>
-              <ModalHeader>{t.voteInfo}</ModalHeader>
+              <ModalHeader>{t.delayedItem}</ModalHeader>
               <ModalCloseButton />
               <ModalBody>
-                <Input
+                {/* <Input
                   type={"text"}
                   name={"title"}
                   placeholder={t.title}
@@ -230,35 +251,36 @@ function AddItems(props) {
                   name={"desc"}
                   placeholder={t.desc}
                   mt={4}
-                ></Textarea>
-                <Select
+                ></Textarea> */}
+                {/* <Select
                   mt={4}
                   onChange={(e) => {
-                    // setChoose(e.target.value);
-                    // console.log(e.target.value);
+                    setChoose(e.target.value);
+                    console.log(e.target.value);
                   }}
-                >
-                  {/* <option value={''}>{t.voteType}</option> */}
-                  <option value={0}>{t.private}</option>
-                  <option value={1}>{t.public}</option>
-                </Select>
-                <Text mt={4}>{t.canVote}</Text>
+                > */}
+                {/* <option value={''}>{t.voteType}</option> */}
+                {/* <option value={0}>{t.private}</option>
+                  <option value={1}>{t.public}</option> */}
+                {/* </Select> */}
+                {/* <Text mt={4}>{t.delayedItem}</Text> */}
                 {/* <CheckboxGroup  name='hi'> */}
-                {delayedItems &&
-                  delayedItems.map((item, index) => {
-                    return (
-                      <Stack key={index} p={4}>
-                        <Checkbox
-                          onChange={(e) => {
-                            // selectUser(e);
-                          }}
-                          value={item._id}
-                        >
-                          {item.title}
-                        </Checkbox>
-                      </Stack>
-                    );
-                  })}
+                {delayedItems
+                  ? delayedItems.map((item, index) => {
+                      return (
+                        <Stack key={index} p={4}>
+                          <Checkbox
+                            onChange={(e) => {
+                              selectItem(e);
+                            }}
+                            value={item._id}
+                          >
+                            {item.title}
+                          </Checkbox>
+                        </Stack>
+                      );
+                    })
+                  : "لا يوجد بنود مؤجله"}
                 {/* </CheckboxGroup> */}
                 {/* <Button mt={4}>Invite</Button> */}
               </ModalBody>
@@ -268,8 +290,9 @@ function AddItems(props) {
                   mr={3}
                   type={"submit"}
                   onClose={onClose}
+                  onClick={addItem}
                 >
-                  {t.invite}
+                  {t.addItem}
                 </Button>
                 {/* <Button variant='ghost'>Secondary Action</Button> */}
               </ModalFooter>

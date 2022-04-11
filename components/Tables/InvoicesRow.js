@@ -83,7 +83,7 @@ function InvoicesRow(props) {
     const id = meetingId;
     fetch(`http://localhost:3000/api/meetings/${id}`).then(async (res) => {
       const data = await res.json();
-      console.log(data.memebers[0].name);
+      console.log(data.memebers[0]?.name);
       setAttendence(data.memebers);
     });
   };
