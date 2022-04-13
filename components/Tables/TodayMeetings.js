@@ -38,7 +38,7 @@ export default function TodayMeetings() {
   }, []);
   console.log(session);
   const getUserData = async () => {
-    const id = await session.id; // meeting id
+    const id = await session.id; // user id
     console.log(id);
     const data = await fetch(`http://localhost:3000/api/user/${id}`);
     const result = await data.json();
@@ -135,7 +135,8 @@ export default function TodayMeetings() {
                     {/* {token[x]} */}
                   </Td>
                   <Td color={tdColor} fontSize="md" fontWeight="hairline">
-                    {token["timeFram"][0]}:{token["timeFram"][0]}
+                    {token["timeFram"][0]}:
+                    {token["timeFram"][1] ? token["timeFram"][1] : 0}
                   </Td>
                 </React.Fragment>
                 {/* );

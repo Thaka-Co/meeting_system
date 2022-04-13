@@ -9,7 +9,6 @@ import {
   Tbody,
   Text,
 } from "@chakra-ui/react";
-import MainNavBar from "../components/navBar/navbar";
 import Card from "../components/Card/Card.js";
 import CardHeader from "../components/Card/CardHeader";
 import CardBody from "../components/Card/CardBody";
@@ -33,7 +32,7 @@ export default function MeetingSession() {
     setActive(false);
   };
   return (
-    <MainNavBar>
+    <>
       {!active ? (
         session ? (
           <Flex d="row">
@@ -87,7 +86,7 @@ export default function MeetingSession() {
           </CardBody>
         </Card>
       )}
-    </MainNavBar>
+    </>
   );
 }
 export async function getServerSideProps(context) {

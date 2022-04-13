@@ -1,9 +1,7 @@
 // @flow
 import * as React from "react";
 import CurrentMeeting from "../../components/CurrentMeeting";
-import MainNavBar from "../../components/navBar/navbar";
 import { getCsrfToken, getSession } from "next-auth/react";
-import Footer from "../../components/navBar/footer";
 import { useRouter } from "next/router";
 function currentMeeting(props) {
   const router = useRouter();
@@ -11,10 +9,7 @@ function currentMeeting(props) {
   console.log(id);
   return (
     <div>
-      <MainNavBar>
-        <CurrentMeeting id={id} />
-        <Footer />
-      </MainNavBar>
+      <CurrentMeeting id={id} />
     </div>
   );
 }

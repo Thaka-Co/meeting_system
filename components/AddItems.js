@@ -280,7 +280,7 @@ function AddItems(props) {
                         </Stack>
                       );
                     })
-                  : "لا يوجد بنود مؤجله"}
+                  : t.delayedItemNotFound}
                 {/* </CheckboxGroup> */}
                 {/* <Button mt={4}>Invite</Button> */}
               </ModalBody>

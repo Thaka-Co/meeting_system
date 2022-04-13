@@ -86,4 +86,5 @@ export default {
   cancel: "Cancel",
   next: "Next",
   delayed: "Delayed",
+  delayedItemNotFound:'There is no items delayed'
 };

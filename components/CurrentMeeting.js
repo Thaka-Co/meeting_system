@@ -49,8 +49,8 @@ function CurrentMeeting(props) {
       <Heading m="10">{t.attendance}</Heading>
       <Attendance attend={true} id={props.id} />
       <Heading m={10}>{t.comments}</Heading>
-      <DisplayComments />
-      <AddComments />
+      <DisplayComments meetingId={props.id} />
+      <AddComments meetingId={props.id} />
       {/* </Box> */}
     </div>
   );

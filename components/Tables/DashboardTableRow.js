@@ -2,8 +2,6 @@ import {
   Avatar,
   AvatarGroup,
   Flex,
-  Icon,
-  Link,
   Td,
   Text,
   Tr,
@@ -12,27 +10,32 @@ import {
 import React from "react";
 import { useRouter } from "next/router";
 function DashboardTableRow(props) {
-  const { logo, name, members, budget, progression } = props;
+  const { logo, name, members, budget, progression, meetingId } = props;
   const textColor = useColorModeValue("gray.700", "white");
   const router = useRouter();
+  console.log(meetingId);
   const showMeetingDetails = () => {
-    router.push("/meetingDetails");
+    router.push(`/meetingDetailss/${meetingId}`);
   };
   return (
     <Tr onClick={showMeetingDetails}>
       <Td minWidth={{ sm: "250px" }} pl="0px">
-        <Flex align="center" py=".8rem" minWidth="100%" flexWrap="nowrap">
-          <Icon as={logo} h={"24px"} w={"24px"} pe="5px" />
-          <Link href="/meetingDetails">
-            <Text
-              fontSize="md"
-              color={textColor}
-              fontWeight="bold"
-              minWidth="100%"
-            >
-              {name}
-            </Text>
-          </Link>
+        <Flex
+          align="center"
+          py=".8rem"
+          minWidth="100%"
+          flexWrap="nowrap"
+          onClick={showMeetingDetails}
+        >
+          {/* <Icon as={logo} h={"24px"} w={"24px"} pe="5px" /> */}
+          <Text
+            fontSize="md"
+            color={textColor}
+            fontWeight="bold"
+            minWidth="100%"
+          >
+            {name}
+          </Text>
         </Flex>
       </Td>
       <Td>
@@ -51,7 +54,7 @@ function DashboardTableRow(props) {
       </Td>
       <Td>
         <Text fontSize="md" color={textColor} fontWeight="bold" pb=".5rem">
-          {budget}
+          {budget[0]}:{budget[1] ? budget[1] : 0}
         </Text>
       </Td>
       <Td>

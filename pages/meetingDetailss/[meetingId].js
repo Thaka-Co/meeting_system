@@ -1,20 +1,19 @@
 import React from "react";
-import MeetingDetails from "../components/MeetingDetails";
-import MainNavBar from "../components/navBar/navbar";
+import MeetingDetails from "../../components/MeetingDetails";
 import { getCsrfToken, getSession } from "next-auth/react";
-import Footer from "../components/navBar/footer";
-function meetingDetails(props) {
+import { useRouter } from "next/router";
+function meetingDetailss(props) {
+  const router = useRouter();
+  const { meetingId } = router.query;
+  console.log(router);
   return (
     <div>
-      <MainNavBar>
-        <MeetingDetails />
-        <Footer />
-      </MainNavBar>
+      <MeetingDetails meetingId={meetingId} />
     </div>
   );
 }
 
-export default meetingDetails;
+export default meetingDetailss;
 export async function getServerSideProps(context) {
   const { req, res } = context;
   const session = await getSession({ req });

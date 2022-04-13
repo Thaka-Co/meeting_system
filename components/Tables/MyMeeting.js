@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Center,
@@ -13,13 +13,28 @@ import {
 import { useRouter } from "next/router";
 import en from "../../locales/en";
 import ar from "../../locales/ar";
+// import {AdobexdLogo} from 'react-icons/ai'
 import { dashboardTableData } from "../../Faker/general";
 import DashboardTableRow from "../Tables/DashboardTableRow";
+import { useSession } from "next-auth/react";
 function MyMeeting(props) {
+  const [meetings, setMeetings] = useState("");
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
   const textColor = useColorModeValue("gray.700", "white");
+  const { data: session } = useSession();
+  useEffect(() => {
+    getUserData();
+  }, []);
+  const getUserData = async () => {
+    const id = session.id; // user id
+    console.log(id);
+    const data = await fetch(`http://localhost:3000/api/user/${id}`);
+    const result = await data.json();
+    console.log(result.meetings);
+    setMeetings(result.meetings);
+  };
   return (
     <div>
       <Box
@@ -28,7 +43,7 @@ function MyMeeting(props) {
         m={5}
         borderRadius={7}
       >
-        {dashboardTableData.length != 0 ? (
+        {meetings.length != 0 ? (
           <Table variant="simple" color={textColor}>
             <Thead>
               <Tr my=".8rem" ps="0px">
@@ -41,15 +56,16 @@ function MyMeeting(props) {
               </Tr>
             </Thead>
             <Tbody>
-              {dashboardTableData.map((row, index) => {
+              {meetings.map((row, index) => {
                 return (
                   <DashboardTableRow
                     key={index}
-                    name={row.name}
-                    logo={row.logo}
-                    members={row.members}
-                    budget={row.budget}
-                    progression={row.progression}
+                    name={row.title}
+                    // logo={'AdobexdLogo'}
+                    members={row.memebers}
+                    budget={row.timeFram}
+                    progression={row.date}
+                    meetingId={row._id}
                   />
                 );
               })}
@@ -58,7 +74,7 @@ function MyMeeting(props) {
         ) : (
           <Box
             borderWidth="4px"
-            borderStyle="dashed"
+            // borderStyle="dashed"
             rounded="md"
             h="96"
             m="10"

@@ -1,5 +1,4 @@
 import { Heading } from "@chakra-ui/react";
-import MainNavBar from "../components/navBar/navbar";
 import Status from "../components/stats/status";
 import MyMeeting from "../components/Tables/MyMeeting";
 import TodayMeetings from "../components/Tables/TodayMeetings";
@@ -7,7 +6,6 @@ import { useRouter } from "next/router";
 import { getCsrfToken, getSession } from "next-auth/react";
 import en from "../locales/en";
 import ar from "../locales/ar";
-import Footer from "../components/navBar/footer";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -16,14 +14,11 @@ export default function Dashboard() {
 
   return (
     <>
-      <MainNavBar>
-        <Status />
-        <Heading m="10">{t.ToDayMeetings}</Heading>
-        <TodayMeetings />
-        <Heading m="10">{t.MyMeetings}</Heading>
-        <MyMeeting />
-        <Footer />
-      </MainNavBar>
+      <Status />
+      <Heading m="10">{t.ToDayMeetings}</Heading>
+      <TodayMeetings />
+      <Heading m="10">{t.MyMeetings}</Heading>
+      <MyMeeting />
     </>
   );
 }

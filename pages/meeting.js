@@ -1,16 +1,11 @@
 import React from "react";
 import AddMeeting from "../components/AddMeeting";
-import MainNavBar from "../components/navBar/navbar";
 import { getCsrfToken, getSession } from "next-auth/react";
-import Footer from "../components/navBar/footer";
 function meeting(props) {
   console.log(props, "props");
   return (
     <div>
-      <MainNavBar>
-        <AddMeeting rooms={props.rooms} />
-        <Footer />
-      </MainNavBar>
+      <AddMeeting rooms={props.rooms} />
     </div>
   );
 }

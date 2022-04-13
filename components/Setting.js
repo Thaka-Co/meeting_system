@@ -41,7 +41,7 @@ export const Setting = (props) => {
   }, []);
 
   const getUserData = async () => {
-    const id = session.id; // meeting id
+    const id =await session.id; // meeting id
     console.log(id);
     const data = await fetch(`http://localhost:3000/api/user/${id}`);
     const result = await data.json();
