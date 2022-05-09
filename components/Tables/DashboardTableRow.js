@@ -13,7 +13,7 @@ function DashboardTableRow(props) {
   const { logo, name, members, budget, progression, meetingId } = props;
   const textColor = useColorModeValue("gray.700", "white");
   const router = useRouter();
-  console.log(meetingId);
+  console.log('hi',meetingId);
   const showMeetingDetails = () => {
     router.push(`/meetingDetailss/${meetingId}`);
   };

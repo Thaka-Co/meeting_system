@@ -28,7 +28,7 @@ function MyMeeting(props) {
     getUserData();
   }, []);
   const getUserData = async () => {
-    const id = session.id; // user id
+    const id =  session.id; // user id
     console.log(id);
     const data = await fetch(`http://localhost:3000/api/user/${id}`);
     const result = await data.json();

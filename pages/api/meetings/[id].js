@@ -4,8 +4,8 @@ import getMeeting from "../../../lib/services/meeting/getMeeting";
 export default async (req, res) => {
   const { id } = req.query;
   if (id) {
-    // console.log(getMeeting(id));
     const result = await getMeeting(id);
+    console.log(result);
     res.status(200).json(result);
   } else {
     res.json("there is something wrong !!");

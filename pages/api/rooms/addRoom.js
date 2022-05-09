@@ -1,5 +1,5 @@
-const roomModel = require("../../../lib/models/Rooms/roomsModel");
-import addRoom from "../../../lib/services/rooms/addRooms";
+const roomModel = require("../../../lib/models/Rooms/roomsModel"); // ES5
+import addRoom from "../../../lib/services/rooms/addRooms"; // ES6
 export default async function postRoom(req, res) {
   try {
     const { location, size, tools } = req.body;

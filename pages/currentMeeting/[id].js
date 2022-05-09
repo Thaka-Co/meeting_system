@@ -3,31 +3,40 @@ import * as React from "react";
 import CurrentMeeting from "../../components/CurrentMeeting";
 import { getCsrfToken, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
-function currentMeeting(props) {
-  const router = useRouter();
-  const { id } = router.query;
-  console.log(id);
+function currentMeeting({ meeting }) {
+  // const router = useRouter();
+  // const { id } = router.query;
+  console.log(meeting);
   return (
     <div>
-      <CurrentMeeting id={id} />
+      <CurrentMeeting id={meeting._id} />{" "}
     </div>
   );
 }
 export default currentMeeting;
-export async function getServerSideProps(context) {
-  const { req, res } = context;
-  const session = await getSession({ req });
-  console.log(session);
-  if (!session && res) {
-    console.log("working");
-    res.writeHead(302, {
-      Location: "/signin",
-    });
-    res.end();
-  }
+// export async function getServerSideProps(context) {
+//   const { req, res } = context;
+//   const session = await getSession({ req });
+//   console.log(session);
+//   if (!session && res) {
+//     console.log("working");
+//     res.writeHead(302, {
+//       Location: "/signin",
+//     });
+//     res.end();
+//   }
+//   return {
+//     props: {
+//       csrfToken: await getCsrfToken(context),
+//     },
+//   };
+// }
+export const getServerSideProps = async (context) => {
+  const res = await fetch(
+    `http://localhost:3000/api/meetings/${context.params.id}`
+  );
+  const meeting = await res.json();
   return {
-    props: {
-      csrfToken: await getCsrfToken(context),
-    },
+    props: { meeting },
   };
-}
+};

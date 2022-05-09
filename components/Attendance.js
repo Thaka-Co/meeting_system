@@ -17,7 +17,7 @@ import en from "../locales/en";
 import ar from "../locales/ar";
 export const Attendance = (props) => {
   const { attend } = props;
-  const [users,setUsers]=React.useState();
+  const [users, setUsers] = React.useState();
   const textColor = useColorModeValue("gray.700", "white");
   const router = useRouter();
   const { locale } = router;
@@ -56,21 +56,22 @@ export const Attendance = (props) => {
               </Tr>
             </Thead>
             <Tbody>
-              {users&&users.map((row, index) => {
-                return (
-                  <TablesTableRow
-                    key={index}
-                    name={row.name}
-                    logo={row.logo}
-                    email={row.email}
-                    subdomain={row.subdomain}
-                    domain={row.domain}
-                    status={row.status}
-                    date={row.date}
-                    attend={attend}
-                  />
-                );
-              })}
+              {users &&
+                users.map((row, index) => {
+                  return (
+                    <TablesTableRow
+                      key={index}
+                      name={row.name}
+                      logo={row.logo}
+                      email={row.email}
+                      subdomain={row.subdomain}
+                      domain={row.domain}
+                      status={row.status}
+                      date={row.date}
+                      attend={attend}
+                    />
+                  );
+                })}
             </Tbody>
           </Table>
         </CardBody>
