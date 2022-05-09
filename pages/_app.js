@@ -1,5 +1,5 @@
 // pages/_app.js
-import { SessionProvider } from "next-auth/react";
+import { SessionProvider } from "next-auth/react"; // version 4 /react version 3 /client
 import { ChakraProvider, Box, useColorModeValue } from "@chakra-ui/react";
 import RtlProvider from "../lib/providers/rtl-provider";
 import "react-calendar/dist/Calendar.css";
