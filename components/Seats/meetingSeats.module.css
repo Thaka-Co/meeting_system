@@ -1,0 +1,52 @@
+/* .container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  flex-wrap: wrap;
+} */
+
+.container {
+  display: flex;
+  justify-content: center;
+  /* flex-direction: column; */
+  flex-wrap: wrap;
+  background-color: rgb(87, 126, 141);
+  width: 70%;
+  margin: auto;
+}
+.container > div {
+  margin: 10px;
+}
+.card {
+  display: inline;
+  width: 30%;
+  justify-content: center;
+  /* //background-color: red; */
+}
+.block {
+  /* align-self: flex-start; */
+  /* gap: 3px; */
+}
+.backgroundColor {
+  background-color: rgb(87, 126, 141);
+}
+.c {
+  /* display: flex;
+  flex-direction: row; */
+  width: 46%;
+  text-align: center;
+}
+
+.se {
+  width: 100%;
+  text-align: center;
+}
+
+.inside {
+  width: 40%;
+  margin: auto;
+  background-color: black;
+  border-radius: 10px;
+  color: white;
+  padding: 5px;
+}

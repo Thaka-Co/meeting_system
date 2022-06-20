@@ -32,7 +32,7 @@ import CardHeader from "../components/Card/CardHeader.js";
 import CardBody from "../components/Card/CardBody.js";
 import MeetingItems from "./MeetingItems";
 import InvoicesRow from "../components/Tables/InvoicesRow";
-
+import { server } from "../config";
 import { FaFilePdf } from "react-icons/fa";
 function AddItems(props) {
   const router = useRouter();
@@ -78,7 +78,7 @@ function AddItems(props) {
     //create item
     // const result = await
     if (e.target.title.value) {
-      await fetch("/api/items/addItem", {
+      await fetch(`${server}/api/items/addItem`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -89,11 +89,12 @@ function AddItems(props) {
           description: e.target.desc.value,
           meetingId: props.id,
           selectedItem,
+          time: e.target.time.value,
         }),
       });
     }
     if (selectItem) {
-      await fetch("/api/items/addItem", {
+      await fetch(`${server}/api/items/addItem`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -123,7 +124,7 @@ function AddItems(props) {
   const getItems = async () => {
     console.log(props.id, "items");
     const id = props.id;
-    const result = await fetch(`/api/items/${id}`);
+    const result = await fetch(`${server}/api/items/${id}`);
     console.log(result);
     const data = await result.json();
     console.log(data);
@@ -131,7 +132,7 @@ function AddItems(props) {
     // delayedItem();
   };
   const delayedItem = async () => {
-    const res = await fetch(`/api/items/delayedItems`);
+    const res = await fetch(`${server}/api/items/delayedItems`);
     const data = await res.json();
     console.log(data);
     setDelayedItems(data);
@@ -152,6 +153,7 @@ function AddItems(props) {
         {/*  */}
         <form onSubmit={addItem} encType="multipart/form-data">
           <Input placeholder={t.title} name={"title"} mb={4}></Input>
+          <Input type={"text"} placeholder={t.time} name="time" mb={4}></Input>
           <Textarea
             mb={4}
             resize={"none"}
@@ -294,7 +296,7 @@ function AddItems(props) {
                 >
                   {t.addItem}
                 </Button>
-                {/* <Button variant='ghost'>Secondary Action</Button> */}
+                {/* <Button variant='ghost' onClose={onClose}>Secondary Action</Button> */}
               </ModalFooter>
             </form>
           </ModalContent>

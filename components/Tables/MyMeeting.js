@@ -13,27 +13,36 @@ import {
 import { useRouter } from "next/router";
 import en from "../../locales/en";
 import ar from "../../locales/ar";
+import { server } from "../../config";
 // import {AdobexdLogo} from 'react-icons/ai'
-import { dashboardTableData } from "../../Faker/general";
+import { useSelector } from "react-redux";
 import DashboardTableRow from "../Tables/DashboardTableRow";
-import { useSession } from "next-auth/react";
 function MyMeeting(props) {
   const [meetings, setMeetings] = useState("");
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
   const textColor = useColorModeValue("gray.700", "white");
-  const { data: session } = useSession();
+
+  const state = useSelector((state) => {
+    return state;
+  });
+  const id = state.tokenReducer.id;
   useEffect(() => {
     getUserData();
   }, []);
   const getUserData = async () => {
-    const id =  session.id; // user id
-    console.log(id);
-    const data = await fetch(`http://localhost:3000/api/user/${id}`);
+    console.log(server);
+    const data = await fetch(`${server}/api/user/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
     const result = await data.json();
-    console.log(result.meetings);
-    setMeetings(result.meetings);
+    console.log(result);
+    console.log(result?.meetings);
+    setMeetings(result?.meetings);
   };
   return (
     <div>

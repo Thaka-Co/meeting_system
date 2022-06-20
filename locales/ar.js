@@ -85,5 +85,5 @@ export default {
   cancel: "إلغاء",
   next: "التالي",
   delayed: "مؤجل",
-  delayedItemNotFound:'لا يوجد بنود مؤجله'
+  delayedItemNotFound: "لا يوجد بنود مؤجله",
 };

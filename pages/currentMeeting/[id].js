@@ -3,13 +3,14 @@ import * as React from "react";
 import CurrentMeeting from "../../components/CurrentMeeting";
 import { getCsrfToken, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { server } from "../../config";
 function currentMeeting({ meeting }) {
   // const router = useRouter();
   // const { id } = router.query;
   console.log(meeting);
   return (
     <div>
-      <CurrentMeeting id={meeting._id} />{" "}
+      <CurrentMeeting id={meeting} />{" "}
     </div>
   );
 }
@@ -32,9 +33,7 @@ export default currentMeeting;
 //   };
 // }
 export const getServerSideProps = async (context) => {
-  const res = await fetch(
-    `http://localhost:3000/api/meetings/${context.params.id}`
-  );
+  const res = await fetch(`${server}/api/meetings/${context.params.id}`);
   const meeting = await res.json();
   return {
     props: { meeting },

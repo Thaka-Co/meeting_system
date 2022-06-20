@@ -1,12 +1,12 @@
-// import { createStore, combineReducers } from "redux";
-// import { composeWithDevTools } from "redux-devtools-extension";
+import { createStore, combineReducers } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
 
-// import tokenReducer from "./login";
-// import logout from "./login";
+import tokenReducer from "./login";
+import logout from "./login";
 
-// const reducers = combineReducers({ tokenReducer, logout });
+const reducers = combineReducers({ tokenReducer, logout });
 
-// const store = () => {
-//   return createStore(reducers, composeWithDevTools());
-// };
-// export default store();
+const store = () => {
+  return createStore(reducers, composeWithDevTools());
+};
+export default store();

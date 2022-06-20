@@ -16,15 +16,20 @@ import {
 } from "@chakra-ui/react";
 import en from "../../locales/en";
 import ar from "../../locales/ar";
+import { server } from "../../config";
 import { AiFillEdit } from "react-icons/ai";
 import { BsBoxArrowUpRight, BsFillTrashFill } from "react-icons/bs";
 import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
-export default function TodayMeetings() {
-  const [meetings, setMeetings] = React.useState(false);
+import { useSelector } from "react-redux";
+export default function TodayMeetings(props) {
+  const [meetings, setMeetings] = React.useState("");
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
+  const state = useSelector((state) => {
+    return state;
+  });
+  const id = state.tokenReducer.id;
   const data = [
     { name: "Purity UI Version", created: "10 AM" },
     { name: "Fix Platform Errors", created: "8 PM" },
@@ -32,18 +37,16 @@ export default function TodayMeetings() {
     { name: "Add the New Pricing Page", created: "5 PM" },
     { name: "Redesign New Online Shop", created: "3 PM" },
   ];
-  const { data: session } = useSession();
   useEffect(() => {
     getUserData();
   }, []);
-  console.log(session);
+  console.log(id);
   const getUserData = async () => {
-    const id = await session.id; // user id
-    console.log(id);
-    const data = await fetch(`http://localhost:3000/api/user/${id}`);
+    const data = await fetch(`${server}/api/user/${id}`);
     const result = await data.json();
-    setMeetings(result.meetings);
-    console.log(result.meetings);
+    console.log(result);
+    setMeetings(result?.meetings);
+    console.log(result?.meetings);
   };
   const bg = useColorModeValue("white", "gray.800");
   const color = useColorModeValue("gray.400", "gray.400");

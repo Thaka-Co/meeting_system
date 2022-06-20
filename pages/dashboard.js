@@ -6,12 +6,35 @@ import { useRouter } from "next/router";
 import { getCsrfToken, getSession } from "next-auth/react";
 import en from "../locales/en";
 import ar from "../locales/ar";
-
-export default function Dashboard() {
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import { signIn } from "../reducers/login";
+import { useDispatch } from "react-redux";
+function Dashboard() {
+  const dispatch = useDispatch();
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
+  const session = getSession();
+  // useEffect(async()=>{
+  // },[])
 
+  const [id, setId] = useState();
+  console.log(session, "WOOW");
+
+  useEffect(() => {
+    setUserId();
+  }, []);
+  const setUserId = async () => {
+    const session = await getSession();
+    const userId = session.id;
+    const data = {
+      id: session.id,
+      token: session.token,
+    };
+    dispatch(signIn(data));
+    setId(userId);
+  };
   return (
     <>
       <Status />
@@ -25,7 +48,8 @@ export default function Dashboard() {
 export async function getServerSideProps(context) {
   const { req, res } = context;
   const session = await getSession({ req });
-  console.log(session);
+  // console.log(session);
+  console.log(context, "context.id");
   if (!session && res) {
     console.log("working");
     res.writeHead(302, {
@@ -39,3 +63,4 @@ export async function getServerSideProps(context) {
     },
   };
 }
+export default Dashboard;

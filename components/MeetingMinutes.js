@@ -17,6 +17,7 @@ export const MeetingMinutes = (props) => {
   console.log(id);
   const selectSpeaker = (e) => {
     console.log(e.target.value);
+    // اذا سوا تشك تنضاف للأراي واذا انشال التشك يحذف من الاراي
     e.target.checked
       ? setSpeakers([
           ...speakers,
@@ -68,7 +69,7 @@ export const MeetingMinutes = (props) => {
                       onChange={selectSpeaker}
                       value={item._id}
                     ></Checkbox>
-                    {speakers &&
+                    {/* {speakers &&
                       speakers.map((ele, index) => {
                         if (ele.speaker == item._id)
                           return (
@@ -91,7 +92,7 @@ export const MeetingMinutes = (props) => {
                             //   ""
                             // )
                           );
-                      })}
+                      })} */}
                   </Td>
                   <Td>
                     <Checkbox

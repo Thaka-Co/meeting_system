@@ -24,7 +24,6 @@ export default NextAuth({
           type: "password",
         },
       },
-
       async authorize(credentials, req) {
         const data = await Users.find({})
           .where("email")
@@ -43,7 +42,7 @@ export default NextAuth({
           .Hash("sha256")
           .update(credentials.password)
           .digest("hex");
-        console.log(hashedPasswrod);
+        // console.log(hashedPasswrod);
         if (
           isData &&
           credentials.email === data[0].email &&
@@ -60,16 +59,19 @@ export default NextAuth({
       if (user) {
         token.id = user.id;
       }
+      // console.log("token from login", token);
       return token;
     },
     session: ({ session, token }) => {
       if (token) {
         session.id = token.id;
+        session.token = token;
       }
+      // console.log("session from login", session);
       return session;
     },
   },
-  secret: "test",
+  // secret: "test",
   jwt: {
     secret: "test",
     encryption: true,

@@ -2,10 +2,9 @@ import React from "react";
 import AddMeeting from "../components/AddMeeting";
 import { getCsrfToken, getSession } from "next-auth/react";
 function meeting(props) {
-  console.log(props, "props");
   return (
     <div>
-      <AddMeeting rooms={props.rooms} />
+      <AddMeeting />
     </div>
   );
 }

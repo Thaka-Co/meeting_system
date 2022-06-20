@@ -231,7 +231,7 @@ export default function MainNavBar(props) {
 
           <Flex align="center">
             <Menu>
-              {/* <MenuButton> */}
+              <MenuButton>
               <IconButton
                 size="md"
                 fontSize="lg"
@@ -251,11 +251,11 @@ export default function MainNavBar(props) {
                 <option value={"en"}>English</option>
                 <option value={"ar"}>Arabic</option>
               </Select>
-              {/* </MenuButton> */}
-              <MenuButton>
-                <Icon color="gray.500" as={FaBell} cursor="pointer" />
               </MenuButton>
-              <MenuList p="16px 8px">
+              {/* <MenuButton>
+                <Icon color="gray.500" as={FaBell} cursor="pointer" />
+              </MenuButton> */}
+              {/* <MenuList p="16px 8px">
                 <Flex flexDirection="column">
                   <MenuItem borderRadius="8px" mb="10px">
                     <ItemContent
@@ -285,7 +285,7 @@ export default function MainNavBar(props) {
                     />
                   </MenuItem>
                 </Flex>
-              </MenuList>
+              </MenuList> */}
             </Menu>
             <Avatar ml="4" size="sm" name="Solid" src="" cursor="pointer" />
           </Flex>

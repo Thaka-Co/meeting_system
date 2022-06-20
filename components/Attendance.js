@@ -13,6 +13,7 @@ import {
 import TablesTableRow from "./Tables/TablesTableRow";
 import { tablesTableData } from "../Faker/general";
 import { useRouter } from "next/router";
+import { server } from "../config/index.js";
 import en from "../locales/en";
 import ar from "../locales/ar";
 export const Attendance = (props) => {
@@ -25,9 +26,11 @@ export const Attendance = (props) => {
   React.useEffect(() => {
     getUserData();
   }, []);
+  console.log(props);
   const getUserData = async () => {
-    const id = props.id;
-    const data = await fetch(`http://localhost:3000/api/meetings/${id}`);
+    const id = props.id._id;
+    console.log(props);
+    const data = await fetch(`${server}/api/meetings/${id}`);
     const result = await data.json();
     setUsers(result.memebers);
     console.log(result);

@@ -23,7 +23,19 @@ import CredentialsError from "../components/Alerts/credentialsError";
 export default function App({ csrfToken }) {
   const route = useRouter();
   const error = route.asPath.includes("signin&error=CredentialsSignin");
-
+  // const login = () => {
+  //   fetch("/api/auth/login", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       email: e.target.email.value,
+  //       password: e.target.password.value,
+  //       // tools,
+  //     }),
+  //   }).then((res) => res.json());
+  // };
   return (
     <>
       <Header />
@@ -65,6 +77,7 @@ export default function App({ csrfToken }) {
               </HStack>
             </Stack>
           </Stack>
+          {/* <form method="post" action="/api/auth/callback/credentials"> */}
           <form method="post" action="/api/auth/callback/credentials">
             <Box
               py={{
@@ -123,6 +136,7 @@ export default function App({ csrfToken }) {
 }
 export async function getServerSideProps(context) {
   const { req, res } = context;
+  console.log("this is context", context);
   const session = await getSession({ req });
   console.log(context);
   if (session && res) {
