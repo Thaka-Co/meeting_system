@@ -21,10 +21,11 @@ import {
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
-import { usersData } from "../../Faker/general";
+import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 import en from "../../locales/en";
 import ar from "../../locales/ar";
+import { server } from "../../config";
 function InvoicesRow(props) {
   const [checkedBox, setCheckedBox] = useState("");
   const router = useRouter();
@@ -51,7 +52,7 @@ function InvoicesRow(props) {
   console.log(itemId);
   const addVote = async (e) => {
     e.preventDefault();
-    fetch("http://localhost:3000/api/votes/addVote", {
+    fetch(`{server}/api/votes/addVote`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -63,25 +64,35 @@ function InvoicesRow(props) {
         type: choose,
         itemId,
       }),
-    }).then((res) => res.json());
+    }).then(async (res) => {
+      console.log(await res.json());
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your work has been saved",
+        showConfirmButton: false,
+        timer: 1500, 
+      });
+    });
     // .then((data) => {
     //   router.push("/");
     // });
 
     // e.preventDefault();s
-    console.log(e.target.title.value);
-    console.log(e.target.desc.value);
-    console.log(checkedBox);
-    console.log(choose);
+    // console.log(e.target.title.value);
+    // console.log(e.target.desc.value);
+    // console.log(checkedBox);
+    // console.log(choose);
   };
   useEffect(() => {
     getMeetingDetails();
     itemDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // used for how can vote ?
   const getMeetingDetails = async () => {
     const id = meetingId;
-    fetch(`http://localhost:3000/api/meetings/${id}`).then(async (res) => {
+    fetch(`${server}/api/meetings/${id}`).then(async (res) => {
       const data = await res.json();
       console.log(data.memebers[0]?.name);
       setAttendence(data.memebers);
@@ -90,7 +101,7 @@ function InvoicesRow(props) {
   const delay = async (e) => {
     // e.preventDefault();
     const id = itemId;
-    const res = await fetch(`http://localhost:3000/api/items/delay/${id}`);
+    const res = await fetch(`${server}/api/items/delay/${id}`);
     const data = res.json();
     console.log(data);
     itemDetails();
@@ -233,7 +244,7 @@ function InvoicesRow(props) {
                   colorScheme="blue"
                   mr={3}
                   type={"submit"}
-                  onClose={onClose}
+                  onClick={onClose}
                 >
                   {t.invite}
                 </Button>

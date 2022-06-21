@@ -17,6 +17,7 @@ function MeetingItems(props) {
   console.log(props.id);
   useEffect(() => {
     getItems();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const getItems = async () => {
     console.log(props.id, "items");

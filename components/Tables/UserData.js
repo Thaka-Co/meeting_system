@@ -27,6 +27,7 @@ export const UserData = (props) => {
   let t = locale == "en" ? en : ar;
   useEffect(() => {
     getUsers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getUsers = async () => {

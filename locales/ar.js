@@ -86,4 +86,6 @@ export default {
   next: "التالي",
   delayed: "مؤجل",
   delayedItemNotFound: "لا يوجد بنود مؤجله",
+  // seat picker
+  meetingTable:"طاولة الأجتماع"
 };

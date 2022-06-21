@@ -28,10 +28,12 @@ export const Attendance = (props) => {
   }, []);
   console.log(props);
   const getUserData = async () => {
-    const id = props.id._id;
-    console.log(props);
+    const id = props.id;
+    console.log(id);
     const data = await fetch(`${server}/api/meetings/${id}`);
+    console.log(data);
     const result = await data.json();
+    if(result==='there is something wrong !!')return setUsers([]);
     setUsers(result.memebers);
     console.log(result);
   };

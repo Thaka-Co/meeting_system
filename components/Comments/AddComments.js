@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import en from "../../locales/en";
 import ar from "../../locales/ar";
 import { useSession } from "next-auth/react";
+import { DisplayComments } from "./DisplayComments";
 export const AddComments = (props) => {
   const router = useRouter();
   const { locale } = router;
@@ -35,25 +36,13 @@ export const AddComments = (props) => {
         borderRadius={7}
       >
         <Text mb={3}>User name</Text>
-        {/* <Flex
-          mt={1}
-          justify="center"
-          px={6}
-          pt={5}
-          pb={6}
-          borderWidth={2}
-          borderColor={useColorModeValue("gray.300", "gray.500")}
-          // borderStyle="dashed"
-          rounded="md"
-        >
-          <Stack spacing={1} textAlign="center"></Stack>
-        </Flex> */}
         <form onSubmit={addComment}>
           <Input type={"text"} name="comment" />
           <Button mt={4} type="submit">
             {t.reply}
           </Button>
         </form>
+        <DisplayComments meetingId={props.meetingId}/>
       </Box>
     </Box>
   );

@@ -5,6 +5,8 @@ import { Router, useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
 import { useState, useEffect } from "react";
+import SeatPiker from "./Seats/seatPicker";
+import { server } from "../config/index.js";
 export const MeetingMinutes = (props) => {
   const [speakers, setSpeakers] = useState("");
   const [writer, setWriter] = useState("");
@@ -15,6 +17,7 @@ export const MeetingMinutes = (props) => {
   let t = locale == "en" ? en : ar;
   const id = props.id;
   console.log(id);
+  console.log(attendence);
   const selectSpeaker = (e) => {
     console.log(e.target.value);
     // اذا سوا تشك تنضاف للأراي واذا انشال التشك يحذف من الاراي
@@ -37,10 +40,11 @@ export const MeetingMinutes = (props) => {
   console.log(writer);
   useEffect(() => {
     getMeetingDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getMeetingDetails = async () => {
-    fetch(`http://localhost:3000/api/meetings/${id}`).then(async (res) => {
+    fetch(`${server}/api/meetings/${id}`).then(async (res) => {
       const data = await res.json();
       console.log(data.memebers[0].name);
       setAttendence(data.memebers);
@@ -48,6 +52,7 @@ export const MeetingMinutes = (props) => {
   };
   return (
     <div>
+       <SeatPiker  id={props.id}/>
       <Table>
         <Thead>
           <tr>

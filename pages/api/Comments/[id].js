@@ -5,10 +5,9 @@ export default async function (req, res) {
     const { id } = req.query;
     if (id) {
       const result = await getComment(id);
-      res.status(200).json(result);
-    } else {
-      res.status(404).json();
-    }
+      console.log(result ,'from back');
+      if(!result)res.status(200).json('there is no comments');
+      res.status(200).json(result);}
   } catch (err) {
     console.log(err);
   }

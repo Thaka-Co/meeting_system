@@ -30,15 +30,16 @@ export default function TodayMeetings(props) {
     return state;
   });
   const id = state.tokenReducer.id;
-  const data = [
-    { name: "Purity UI Version", created: "10 AM" },
-    { name: "Fix Platform Errors", created: "8 PM" },
-    { name: "Launch our Mobile App", created: "12 PM" },
-    { name: "Add the New Pricing Page", created: "5 PM" },
-    { name: "Redesign New Online Shop", created: "3 PM" },
-  ];
+  // const data = [
+  //   { name: "Purity UI Version", created: "10 AM" },
+  //   { name: "Fix Platform Errors", created: "8 PM" },
+  //   { name: "Launch our Mobile App", created: "12 PM" },
+  //   { name: "Add the New Pricing Page", created: "5 PM" },
+  //   { name: "Redesign New Online Shop", created: "3 PM" },
+  // ];
   useEffect(() => {
     getUserData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   console.log(id);
   const getUserData = async () => {
@@ -52,7 +53,7 @@ export default function TodayMeetings(props) {
   const color = useColorModeValue("gray.400", "gray.400");
   const tdColor = useColorModeValue("gray.500");
   const header = [t.topic, t.time, t.actions];
-  return data.length != 0 ? (
+  return meetings.length ? (
     <Table
       w="full"
       bg={bg}

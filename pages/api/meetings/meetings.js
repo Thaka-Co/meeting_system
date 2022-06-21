@@ -2,8 +2,8 @@ import meetingsModel from "../../../lib/models/meetings/meetingsModel";
 import usersModel from "../../../lib/models/user/userModel";
 export default async function handler(req, res) {
   // res.status(200).json({ data: req.body });
-  console.log(req.method);
-  console.log(req.body);
+  // console.log(req.method);
+  // console.log(req.body);
   // res.writeHead(301, {
   //   location: "/meetins",
   // });

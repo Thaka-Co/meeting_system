@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import { getCsrfToken, getSession } from "next-auth/react";
 import en from "../locales/en";
 import ar from "../locales/ar";
-import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { signIn } from "../reducers/login";
 import { useDispatch } from "react-redux";
@@ -15,12 +14,7 @@ function Dashboard() {
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
-  const session = getSession();
-  // useEffect(async()=>{
-  // },[])
-
   const [id, setId] = useState();
-  console.log(session, "WOOW");
 
   useEffect(() => {
     setUserId();

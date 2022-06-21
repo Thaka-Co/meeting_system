@@ -30,6 +30,7 @@ function MyMeeting(props) {
   const id = state.tokenReducer.id;
   useEffect(() => {
     getUserData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const getUserData = async () => {
     console.log(server);
@@ -52,7 +53,7 @@ function MyMeeting(props) {
         m={5}
         borderRadius={7}
       >
-        {meetings.length != 0 ? (
+        {meetings.length ? (
           <Table variant="simple" color={textColor}>
             <Thead>
               <Tr my=".8rem" ps="0px">

@@ -23,7 +23,7 @@ import {
 import { IoLocationOutline } from "react-icons/io5";
 import { BsPeople } from "react-icons/bs";
 import { CgToolbox } from "react-icons/cg";
-import moment from "moment";
+// import moment from "moment";
 import { useState } from "react";
 import AddItems from "./AddItems";
 import MeetingItems from "./MeetingItems";
@@ -69,6 +69,7 @@ function AddMeeting(props) {
     getRooms();
     getUsers();
     getTypes();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   //setUsers
   const selectUser = (e) => {
@@ -143,11 +144,11 @@ function AddMeeting(props) {
     console.log(result);
   };
   // to get date of yesterday
-  const yesterday = moment().subtract(1, "day");
+  // const yesterday = moment().subtract(1, "day");
   // to specify valid date to meetings
-  const valid = function (current) {
-    return current.isAfter(yesterday);
-  };
+  // const valid = function (current) {
+  //   return current.isAfter(yesterday);
+  // };
   console.log(cyclic);
   return (
     <Box bg={useColorModeValue("gray.50", "inherit")}>

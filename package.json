@@ -18,6 +18,8 @@
     "fs": "^0.0.1-security",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
+    "live-server": "^1.2.2",
+    "moment": "^2.29.3",
     "mongodb": "^4.4.0",
     "mongoose": "^6.2.3",
     "next": "^12.0.10",

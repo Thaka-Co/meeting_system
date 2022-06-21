@@ -39,7 +39,7 @@ import { useRouter } from "next/router";
 import en from "../../locales/en";
 import ar from "../../locales/ar";
 import { signOut } from "next-auth/react";
-
+import { useDispatch } from "react-redux";
 export default function MainNavBar(props) {
   const { toggleColorMode: toggleMode } = useColorMode();
   const text = useColorModeValue("dark", "light");
@@ -57,6 +57,8 @@ export default function MainNavBar(props) {
     // localStorage.setItem("language", e.target.value);
   };
   const clickHandler = () => {
+    const dispatch = useDispatch();
+    dispatch(logout({ token: "", id: "" }));
     signOut({ callbackUrl: "/signin" });
   };
 

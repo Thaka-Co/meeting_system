@@ -9,7 +9,7 @@ export default async function getDelayedItems(req, res) {
       console.log("here", items);
       res.status(200).json(items);
     } else {
-      res.status(404).json("delayedItems not found");
+      res.status(200).json("delayedItems not found");
     }
   } catch (err) {
     console.log(err);

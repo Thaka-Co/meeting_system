@@ -19,6 +19,7 @@ function CurrentMeeting(props) {
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
+  console.log(props);
   return (
     <div>
       {/* <Box bg={useColorModeValue("gray.50", "inherit")}> */}

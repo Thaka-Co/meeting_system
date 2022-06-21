@@ -10,7 +10,7 @@ function currentMeeting({ meeting }) {
   console.log(meeting);
   return (
     <div>
-      <CurrentMeeting id={meeting} />{" "}
+      <CurrentMeeting id={meeting._id} />{" "}
     </div>
   );
 }

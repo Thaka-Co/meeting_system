@@ -48,8 +48,9 @@ function AddItems(props) {
   let t = locale == "en" ? en : ar;
   let ditLang = locale == "en" ? "ltr" : "rtl";
   useEffect(() => {
-    delayedItem();
     getItems();
+    delayedItem();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   console.log(props.id);
   const selectItem = async (e) => {
@@ -128,16 +129,22 @@ function AddItems(props) {
     console.log(result);
     const data = await result.json();
     console.log(data);
-    setItems(data);
+    if (data === "items not found !!!!") setItems([]);
+    else {
+      setItems(data);
+    }
     // delayedItem();
   };
   const delayedItem = async () => {
     const res = await fetch(`${server}/api/items/delayedItems`);
     const data = await res.json();
     console.log(data);
-    setDelayedItems(data);
+    if (data === "delayedItems not found") {
+      setDelayedItems([]);
+    } else {
+      setDelayedItems(data);
+    }
   };
-  // getItems();
   return (
     <div>
       <Heading m={10}>{t.addItem}</Heading>
@@ -267,7 +274,7 @@ function AddItems(props) {
                 {/* </Select> */}
                 {/* <Text mt={4}>{t.delayedItem}</Text> */}
                 {/* <CheckboxGroup  name='hi'> */}
-                {delayedItems
+                {delayedItems.length
                   ? delayedItems.map((item, index) => {
                       return (
                         <Stack key={index} p={4}>
@@ -330,25 +337,26 @@ function AddItems(props) {
           </CardHeader>
           <CardBody>
             <Flex direction="column" w="90%">
-              {items &&
-                items.map((row, index) => {
-                  return (
-                    <InvoicesRow
-                      key={row._id}
-                      date={row.title}
-                      code={row.downArrow}
-                      downArrow={row.downArrow}
-                      upArrow={row.upArrow}
-                      up={row.up}
-                      down={row.down}
-                      price={row.price}
-                      logo={FaFilePdf}
-                      format={"PDF"}
-                      meetingId={props.id}
-                      itemId={row._id}
-                    />
-                  );
-                })}
+              {items.length
+                ? items.map((row, index) => {
+                    return (
+                      <InvoicesRow
+                        key={row._id}
+                        date={row.title}
+                        code={row.downArrow}
+                        downArrow={row.downArrow}
+                        upArrow={row.upArrow}
+                        up={row.up}
+                        down={row.down}
+                        price={row.price}
+                        logo={FaFilePdf}
+                        format={"PDF"}
+                        meetingId={props.id}
+                        itemId={row._id}
+                      />
+                    );
+                  })
+                : "not found"}
             </Flex>
           </CardBody>
         </Card>

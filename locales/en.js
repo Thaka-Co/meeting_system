@@ -87,4 +87,6 @@ export default {
   next: "Next",
   delayed: "Delayed",
   delayedItemNotFound: "There is no items delayed",
+// seatPicker
+meetingTable:"meeting Table"
 };

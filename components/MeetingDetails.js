@@ -16,8 +16,19 @@ function MeetingDetails(props) {
   let t = locale == "en" ? en : ar;
   useEffect(() => {
     getMeetingDetails();
+    getMeetingItems();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   console.log(props);
+  const getMeetingItems = async () => {
+    const id = props.meetingId; // meeting id
+    console.log(props.meetingId);
+    fetch(`/api/items/${id}`).then(async (res) => {
+      const data = await res.json();
+      console.log(data);
+      setMeetings(data);
+    });
+  };
   const getMeetingDetails = async () => {
     const id = props.meetingId; // meeting id
     console.log(props.meetingId);
@@ -62,7 +73,7 @@ function MeetingDetails(props) {
       {/* <Text fontSize="xl" color={textColor} fontWeight="bold">
             </Text> */}
       {/* </CardHeader> */}
-      <Attendance id={props.meetingId} />
+      <Attendance attend={false} id={props.meetingId} />
       {/* </Card> */}
       {/* </Box> */}
       {/* <MeetingItems /> */}

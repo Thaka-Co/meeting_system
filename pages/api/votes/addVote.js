@@ -10,10 +10,10 @@ export default async function postVote(req, res) {
     // });
     console.log(itemId);
     if ((type, title, description, itemId, users)) {
-      addVote(type, title, description, itemId, users);
+     const result = await addVote(type, title, description, itemId, users);
+     res.status(200).json(result);
     }
     // const result = await newVote.save();
-    // res.status(200).json(result);
   } catch (err) {
     res.status(404).json(err);
   }

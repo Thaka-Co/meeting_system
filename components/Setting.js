@@ -38,6 +38,7 @@ export const Setting = (props) => {
   const { data: session } = useSession();
   useEffect(() => {
     getUserData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getUserData = async () => {
