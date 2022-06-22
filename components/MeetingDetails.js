@@ -7,19 +7,20 @@ import { Attendance } from "./Attendance.js";
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
-import {FaFilePdf} from 'react-icons/fa'
+import { FaFilePdf } from "react-icons/fa";
 import { MeetingInfo } from "./MeetingInfo";
 // import {VscTriangleDown,VscTriangleUp} from 'react-icons/vsc'
 import { VscTriangleUp, VscTriangleDown } from "react-icons/vsc";
+import { MdTableRows } from "react-icons/md";
+import { DisplayComments } from "./Comments/DisplayComments";
 function MeetingDetails(props) {
   const textColor = useColorModeValue("gray.700", "white");
   const [meeting, setMeetings] = useState();
-  const [items, setItems] = useState('');
+  const [items, setItems] = useState("");
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
   useEffect(() => {
-    getMeetingDetails();
     getMeetingItems();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -33,45 +34,36 @@ function MeetingDetails(props) {
       setItems(data);
     });
   };
-  const getMeetingDetails = async () => {
-    const id = props.meetingId; // meeting id
-    console.log(props.meetingId);
-    fetch(`/api/meetings/${id}`).then(async (res) => {
-      const data = await res.json();
-      console.log(data);
-      setMeetings(data);
-    });
-  };
+
   return (
     <Box bg={useColorModeValue("gray.50", "inherit")}>
       <MeetingInfo />
       <Heading m="10">{t.meetingItems}</Heading>
-      {items.length && items.map((row, index) => {
-        return (
-          // <Box
-          //   key={index}
-          //   bg={useColorModeValue("white", "gray.800")}
-          //   p={15}
-          //   m={5}
-          //   borderRadius={7}
-          // >
-          <ItemDetails
-            key={index}
-            date={row.title}
-            votes={row.votes}
-            downArrow={VscTriangleDown}
-            upArrow={VscTriangleUp}
-            up={row.up}
-            down={row.down}
-            price={row.price}
-            logo={FaFilePdf}
-            format={"PDF"}
-            isDelayed={row.isDelayed}
-            status={row.status.value}
-          />
-          // </Box>
-        );
-      })}
+      {items.length &&
+        items.map((row, index) => {
+          return (
+            // <Box
+            //   key={index}
+            //   bg={useColorModeValue("white", "gray.800")}
+            //   p={15}
+            //   m={5}
+            //   borderRadius={7}
+            // >
+            <ItemDetails
+              key={index}
+              date={row.title}
+              up={row.up}
+              down={row.down}
+              price={row.price}
+              logo={FaFilePdf}
+              format={"PDF"}
+              isDelayed={row.isDelayed}
+              status={row.status.value}
+              itemId={row._id}
+            />
+            // </Box>
+          );
+        })}
       <Heading m="10">{t.attendance}</Heading>
       {/* <Box bgColor={"white"} p={15} m={5} borderRadius={7}> */}
       {/* <Card overflowX={{ sm: "scroll", xl: "hidden" }}> */}
@@ -84,6 +76,7 @@ function MeetingDetails(props) {
       {/* </Box> */}
       {/* <MeetingItems /> */}
       {/* <AddItems /> */}
+      <DisplayComments id={props.meetingId}/>
     </Box>
   );
 }

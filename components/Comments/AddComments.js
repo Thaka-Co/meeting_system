@@ -42,7 +42,7 @@ export const AddComments = (props) => {
             {t.reply}
           </Button>
         </form>
-        <DisplayComments meetingId={props.meetingId}/>
+        {/* <DisplayComments meetingId={props.meetingId}/> */}
       </Box>
     </Box>
   );

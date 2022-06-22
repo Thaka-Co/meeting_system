@@ -11,7 +11,7 @@ export default function SeatPiker(props) {
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
-  const [users, setUsers] = useState("");
+  // const [users, setUsers] = useState("");
   const [sortedUsers, setSortedUsers] = useState("");
   useEffect(() => {
     getUserData();
@@ -20,7 +20,7 @@ export default function SeatPiker(props) {
     const id = props.id;
     const data = await fetch(`${server}/api/meetings/${id}`);
     const result = await data.json();
-    setUsers(result.memebers);
+    // setUsers(result.memebers);
     console.log(result);
     sortUsers(result.memebers);
   };
@@ -54,16 +54,19 @@ export default function SeatPiker(props) {
       // });
       // console.log(swapped);
       // setSortedUsers(swapped);
-     const swapped= [sortedUsers[swap[0]], sortedUsers[swap[1]]] = [sortedUsers[swap[1]], sortedUsers[swap[0]]];
-    //  setSortedUsers(swapped);
+      const swapped = ([sortedUsers[swap[0]], sortedUsers[swap[1]]] = [
+        sortedUsers[swap[1]],
+        sortedUsers[swap[0]],
+      ]);
+      //  setSortedUsers(swapped);
       swap.length = 0;
-      console.log(swap,swapped, sortedUsers,"swap2");
+      console.log(swap, swapped, sortedUsers, "swap2");
+      setSortedUsers(sortedUsers);
     } else {
       swap.push(id);
       console.log(swap, "swap1");
     }
   };
-  console.log(swap, "swap");
   return (
     <div>
       <Heading m="10">{t.meetingTable}</Heading>{" "}
@@ -75,7 +78,7 @@ export default function SeatPiker(props) {
               return (
                 <div
                   className={
-                    index === 0 || index === users.length - 1
+                    index === 0 || index === sortedUsers.length - 1
                       ? classes.block
                       : classes.card
                   }
