@@ -10,10 +10,10 @@ export default async function getall(req, res) {
        1 inprogress 
       2 completed */
     // add new property
-    // const new_property = await itemModel.updateMany({}, [{ $set: { status: "0" } }]);
+    const new_property = await itemModel.updateMany({}, [{ $set: { status: "62b356189a8fedf769bb4082" } }]);
     // })
     // await items.save;
-    // res.status(200).json(new_property);
+    res.status(200).json(new_property);
     res.status(200).json(update_limited_documents);
     // } else {
     //   res.status(200).json("delayedItems not found");

@@ -1,3 +1,4 @@
+import "../styles/globals.css";
 // pages/_app.js
 import { SessionProvider } from "next-auth/react"; // version 4 /react version 3 /client
 import { ChakraProvider, Box, useColorModeValue } from "@chakra-ui/react";

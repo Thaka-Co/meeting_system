@@ -1,10 +1,13 @@
 import * as React from "react";
 import TaskDetails from "./../components/TaskDetails";
 import { getCsrfToken, getSession } from "next-auth/react";
+import NavBar from "../../components/navBar/navbar";
 export const taskDetails = (props) => {
   return (
     <div>
-      <TaskDetails />
+      <NavBar>
+        <TaskDetails />
+      </NavBar>
     </div>
   );
 };

@@ -51,10 +51,10 @@ export default {
   monthly: "شهري",
   recordMeetingType: "نوع محضر الاجتماع",
   //item details
-  delayed: "تاجيل",
+  // delayed: "تاجيل",
   // buttons
   addVote: "أضافة تصويت",
-  delay: "تأجيل",
+  notDelay: "غير مؤجل",
   progress: "مكتمل",
   cost: "التكلفه",
   Like: "أعجبني",
@@ -85,6 +85,7 @@ export default {
   cancel: "إلغاء",
   next: "التالي",
   delayed: "مؤجل",
+  delay: "تأجيل",
   delayedItemNotFound: "لا يوجد بنود مؤجله",
   // seat picker
   meetingTable:"طاولة الأجتماع"

@@ -3,13 +3,17 @@ import MeetingDetails from "../../components/MeetingDetails";
 import {server} from '../../config';
 import { getCsrfToken, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import  NavBar  from "../../components/navBar/navbar";
 function meetingDetailss({ meeting }) {
   // const router = useRouter();
   // const { meetingId } = router.query;
   console.log(meeting);
   return (
     <div>
+      <NavBar>
       <MeetingDetails meetingId={meeting._id} />
+      </NavBar>
+      
     </div>
   );
 }

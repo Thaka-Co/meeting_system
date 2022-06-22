@@ -7,10 +7,14 @@ import { Attendance } from "./Attendance.js";
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
+import {FaFilePdf} from 'react-icons/fa'
 import { MeetingInfo } from "./MeetingInfo";
+// import {VscTriangleDown,VscTriangleUp} from 'react-icons/vsc'
+import { VscTriangleUp, VscTriangleDown } from "react-icons/vsc";
 function MeetingDetails(props) {
   const textColor = useColorModeValue("gray.700", "white");
   const [meeting, setMeetings] = useState();
+  const [items, setItems] = useState('');
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
@@ -26,7 +30,7 @@ function MeetingDetails(props) {
     fetch(`/api/items/${id}`).then(async (res) => {
       const data = await res.json();
       console.log(data);
-      setMeetings(data);
+      setItems(data);
     });
   };
   const getMeetingDetails = async () => {
@@ -42,7 +46,7 @@ function MeetingDetails(props) {
     <Box bg={useColorModeValue("gray.50", "inherit")}>
       <MeetingInfo />
       <Heading m="10">{t.meetingItems}</Heading>
-      {invoicesData.map((row, index) => {
+      {items.length && items.map((row, index) => {
         return (
           // <Box
           //   key={index}
@@ -53,15 +57,17 @@ function MeetingDetails(props) {
           // >
           <ItemDetails
             key={index}
-            date={row.date}
+            date={row.title}
             votes={row.votes}
-            downArrow={row.downArrow}
-            upArrow={row.upArrow}
+            downArrow={VscTriangleDown}
+            upArrow={VscTriangleUp}
             up={row.up}
             down={row.down}
             price={row.price}
-            logo={row.logo}
-            format={row.format}
+            logo={FaFilePdf}
+            format={"PDF"}
+            isDelayed={row.isDelayed}
+            status={row.status.value}
           />
           // </Box>
         );

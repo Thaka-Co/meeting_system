@@ -1,3 +1,4 @@
+import classes from './status.module.css';
 import {
   Box,
   Button,
@@ -7,14 +8,28 @@ import {
   Text,
   useColorModeValue,
   HStack,
+  Badge,
+  VStack,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
+import { VscTriangleDown } from "react-icons/vsc";
 function ItemDetails(props) {
   const textColor = useColorModeValue("gray.700", "white");
-  const { date, upArrow, downArrow, up, down, votes, format, logo } = props;
+  const {
+    date,
+    upArrow,
+    downArrow,
+    up,
+    down,
+    votes,
+    format,
+    logo,
+    isDelayed,
+    status,
+  } = props;
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
@@ -57,7 +72,7 @@ function ItemDetails(props) {
                   </Text>
                   <HStack>
                     <Icon
-                      as={upArrow}
+                      as={VscTriangleDown}
                       w="20px"
                       h="auto"
                       me="5px"
@@ -72,7 +87,7 @@ function ItemDetails(props) {
                       {up}
                     </Text>
                     <Icon
-                      as={downArrow}
+                      as={VscTriangleDown}
                       w="20px"
                       h="auto"
                       me="5px"
@@ -90,9 +105,9 @@ function ItemDetails(props) {
                 </Box>
               );
             })}
-            <Button mt={4} bg={"#add8e6"}>
-              {" "}
-              {t.delayed}
+            <Button mt={4} bg={"#add8e6"} disabled>
+              {isDelayed ? t.delayed : t.notDelay}
+              {/* {t.delayed} */}
             </Button>
           </Box>
         </Flex>
@@ -103,12 +118,22 @@ function ItemDetails(props) {
         </Text> */}
         </Box>
         <Button p="0px" bg="transparent" variant="no-hover">
-          <Flex alignItems="center" p="34px">
-            <Icon as={logo} w="20px" h="auto" me="5px" />
-            <Text fontSize="md" color={textColor} fontWeight="bold">
-              {format}
-            </Text>
-          </Flex>
+          <VStack>
+            {" "}
+            <div
+              borderRadius="full"
+              px="2"
+              className={classes[`${status}`]}
+            >
+              {status}
+            </div>
+            <Flex alignItems="center" p="34px">
+              <Icon as={logo} w="20px" h="auto" me="5px" />
+              <Text fontSize="md" color={textColor} fontWeight="bold">
+                {format}
+              </Text>
+            </Flex>
+          </VStack>
         </Button>
       </Flex>
     </Box>

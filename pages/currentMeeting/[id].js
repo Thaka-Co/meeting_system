@@ -3,6 +3,7 @@ import * as React from "react";
 import CurrentMeeting from "../../components/CurrentMeeting";
 import { getCsrfToken, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import  NavBar  from "../../components/navBar/navbar";
 import { server } from "../../config";
 function currentMeeting({ meeting }) {
   // const router = useRouter();
@@ -10,7 +11,9 @@ function currentMeeting({ meeting }) {
   console.log(meeting);
   return (
     <div>
-      <CurrentMeeting id={meeting._id} />{" "}
+      <NavBar>
+        <CurrentMeeting id={meeting._id} />{" "}
+      </NavBar>
     </div>
   );
 }

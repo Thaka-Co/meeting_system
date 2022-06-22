@@ -3,10 +3,13 @@ import * as React from "react";
 import { VoteDetails } from "../components/VoteDetails";
 import { invoicesData } from "../Faker/general";
 import { getCsrfToken, getSession } from "next-auth/react";
+import NavBar from "../../components/navBar/navbar";
 function voteDetails(props) {
   return (
     <div>
-      <VoteDetails votes={invoicesData[0].votes[0]} />
+      <NavBar>
+        <VoteDetails votes={invoicesData[0].votes[0]} />
+      </NavBar>
     </div>
   );
 }

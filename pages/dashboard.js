@@ -9,6 +9,7 @@ import ar from "../locales/ar";
 import { useEffect, useState } from "react";
 import { signIn } from "../reducers/login";
 import { useDispatch } from "react-redux";
+import Navbar from "../components/navBar/navbar";
 function Dashboard() {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -31,11 +32,13 @@ function Dashboard() {
   };
   return (
     <>
-      <Status />
-      <Heading m="10">{t.ToDayMeetings}</Heading>
-      <TodayMeetings />
-      <Heading m="10">{t.MyMeetings}</Heading>
-      <MyMeeting />
+      <Navbar>
+        <Status />
+        <Heading m="10">{t.ToDayMeetings}</Heading>
+        <TodayMeetings />
+        <Heading m="10">{t.MyMeetings}</Heading>
+        <MyMeeting />
+      </Navbar>
     </>
   );
 }

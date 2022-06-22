@@ -29,12 +29,12 @@ import { useEffect } from "react";
 export const Setting = (props) => {
   const [user, setUser] = React.useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  let ditLang = locale == "en" ? "ltr" : "rtl";
   // const [enablePassword, setEnablePassword] = React.useState(true);
   // const [enableEm, setEnableEm] = React.useState(true);
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
+  let ditLang = locale == "en" ? "ltr" : "rtl";
   const { data: session } = useSession();
   useEffect(() => {
     getUserData();

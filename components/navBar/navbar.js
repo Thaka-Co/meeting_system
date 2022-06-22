@@ -39,8 +39,10 @@ import { useRouter } from "next/router";
 import en from "../../locales/en";
 import ar from "../../locales/ar";
 import { signOut } from "next-auth/react";
+import { logout } from "../../reducers/login";
 import { useDispatch } from "react-redux";
 export default function MainNavBar(props) {
+  const dispatch = useDispatch();
   const { toggleColorMode: toggleMode } = useColorMode();
   const text = useColorModeValue("dark", "light");
   const SwitchIcon = useColorModeValue(FaMoon, FaSun);
@@ -57,7 +59,6 @@ export default function MainNavBar(props) {
     // localStorage.setItem("language", e.target.value);
   };
   const clickHandler = () => {
-    const dispatch = useDispatch();
     dispatch(logout({ token: "", id: "" }));
     signOut({ callbackUrl: "/signin" });
   };
@@ -232,8 +233,8 @@ export default function MainNavBar(props) {
           ></InputGroup>
 
           <Flex align="center">
-            <Menu>
-              <MenuButton>
+              <Menu>
+            {/* <MenuButton> */}
               <IconButton
                 size="md"
                 fontSize="lg"
@@ -243,7 +244,7 @@ export default function MainNavBar(props) {
                 ml={{ base: "0", md: "3" }}
                 onClick={toggleMode}
                 icon={<SwitchIcon />}
-              />
+                />
               <Select
                 w={100}
                 m={4}
@@ -253,42 +254,43 @@ export default function MainNavBar(props) {
                 <option value={"en"}>English</option>
                 <option value={"ar"}>Arabic</option>
               </Select>
-              </MenuButton>
-              {/* <MenuButton>
+              {/* </MenuButton> */}
+              <MenuButton>
                 <Icon color="gray.500" as={FaBell} cursor="pointer" />
-              </MenuButton> */}
+              </MenuButton>
               {/* <MenuList p="16px 8px">
                 <Flex flexDirection="column">
-                  <MenuItem borderRadius="8px" mb="10px">
-                    <ItemContent
-                      time="13 minutes ago"
-                      info="AT 12 PM"
-                      boldInfo="Meeting"
-                      aName="Alicia"
-                      aSrc={"avatar1"}
-                    />
-                  </MenuItem>
-                  <MenuItem borderRadius="8px" mb="10px">
-                    <ItemContent
-                      time="2 days ago"
-                      info="Due Date"
-                      boldInfo="Task"
-                      aName="Josh Henry"
-                      aSrc={"avatar2"}
-                    />
-                  </MenuItem>
-                  <MenuItem borderRadius="8px">
-                    <ItemContent
-                      time="3 days ago"
-                      info="you missing a task"
-                      boldInfo="Uncomplated Task"
-                      aName="Kara"
-                      aSrc={"avatar3"}
-                    />
-                  </MenuItem>
+                <MenuItem borderRadius="8px" mb="10px">
+                <ItemContent
+                time="13 minutes ago"
+                info="AT 12 PM"
+                boldInfo="Meeting"
+                aName="Alicia"
+                aSrc={"avatar1"}
+                />
+                </MenuItem>
+                <MenuItem borderRadius="8px" mb="10px">
+                <ItemContent
+                time="2 days ago"
+                info="Due Date"
+                boldInfo="Task"
+                aName="Josh Henry"
+                aSrc={"avatar2"}
+                />
+                </MenuItem>
+                <MenuItem borderRadius="8px">
+                <ItemContent
+                time="3 days ago"
+                info="you missing a task"
+                boldInfo="Uncomplated Task"
+                aName="Kara"
+                aSrc={"avatar3"}
+                />
+                </MenuItem>
                 </Flex>
               </MenuList> */}
-            </Menu>
+              </Menu>
+            {/* </Menu> */}
             <Avatar ml="4" size="sm" name="Solid" src="" cursor="pointer" />
           </Flex>
         </Flex>

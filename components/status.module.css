@@ -1,0 +1,15 @@
+.Open {
+  background-color: #b2f5ea;
+  border-radius: 10px;
+  padding: 4px;
+}
+.Inprogress {
+  background-color: #fc8181;
+  padding: 4px;
+  border-radius: 10px;
+}
+.Completed {
+  padding: 4px;
+  border-radius: 10px;
+  background-color: #fbd38d;
+}

@@ -5,12 +5,15 @@ import MeetingItems from "../../components/MeetingItems";
 import { MeetingMinutes } from "../../components/MeetingMinutes";
 import { server } from "../../config";
 import { useRouter } from "next/router";
+import  NavBar  from "../../components/navBar/navbar";
 export default function nextStep({ meeting }) {
   console.log(meeting);
   return (
     <div>
+      <NavBar>
       <MeetingMinutes id={meeting._id} />
       <AddItems id={meeting._id} />
+      </NavBar>
     </div>
   );
 }
