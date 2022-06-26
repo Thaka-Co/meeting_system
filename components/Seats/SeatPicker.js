@@ -13,6 +13,7 @@ export default function SeatPiker(props) {
   let t = locale == "en" ? en : ar;
   // const [users, setUsers] = useState("");
   const [sortedUsers, setSortedUsers] = useState("");
+  const [userSort, setUserSort] = useState("");
   useEffect(() => {
     getUserData();
   }, []);
@@ -61,6 +62,7 @@ export default function SeatPiker(props) {
       //  setSortedUsers(swapped);
       swap.length = 0;
       console.log(swap, swapped, sortedUsers, "swap2");
+      setUserSort(sortedUsers);
       setSortedUsers(sortedUsers);
     } else {
       swap.push(id);
@@ -70,15 +72,20 @@ export default function SeatPiker(props) {
   return (
     <div>
       <Heading m="10">{t.meetingTable}</Heading>{" "}
-      <div className={classes.container}>
-        {sortedUsers.length
-          ? sortedUsers.map((seats, index) => {
+      {userSort.length ? (
+        <>
+          <div className={classes.container}>
+            {sortedUsers.map((seats, index) => {
               // return seats.map((seat, index) => {
               //index % 2 == 0 ? classes.block : classes.card
               return (
                 <div
                   className={
-                    index === 0 || index === sortedUsers.length - 1
+                    sortedUsers.length % 2 == 1
+                      ? index === 0
+                        ? classes.block
+                        : classes.card
+                      : index === 0 || index === sortedUsers.length - 1
                       ? classes.block
                       : classes.card
                   }
@@ -97,9 +104,49 @@ export default function SeatPiker(props) {
               );
 
               // });
-            })
-          : ""}
-      </div>
+            })}
+          </div>
+        </>
+      ) : (
+        <>
+          {" "}
+          <div className={classes.container}>
+            {sortedUsers.length
+              ? sortedUsers.map((seats, index) => {
+                  // return seats.map((seat, index) => {
+                  //index % 2 == 0 ? classes.block : classes.card
+                  return (
+                    <div
+                      // اذا عدد القروب فردي يخلي اخر اثنين متقابلين اذا زوجي يصفهم دائره
+                      className={
+                        sortedUsers.length % 2 == 1
+                          ? index === 0
+                            ? classes.block
+                            : classes.card
+                          : index === 0 || index === sortedUsers.length - 1
+                          ? classes.block
+                          : classes.card
+                      }
+                    >
+                      <div
+                        className={classes.inside}
+                        key={index}
+                        onClick={() => {
+                          selected(index);
+                        }}
+                      >
+                        <p>{seats.position}</p>
+                        <p>{seats.name}</p>
+                      </div>
+                    </div>
+                  );
+
+                  // });
+                })
+              : ""}
+          </div>
+        </>
+      )}
     </div>
   );
 }

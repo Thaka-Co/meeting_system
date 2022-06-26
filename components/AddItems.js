@@ -19,9 +19,7 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  Select,
   Checkbox,
-  HStack,
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
 import { useRouter } from "next/router";
@@ -300,6 +298,7 @@ function AddItems(props) {
                   type={"submit"}
                   onClose={onClose}
                   onClick={addItem}
+                  disabled={delayedItems.length == 0 ? true : false}
                 >
                   {t.addItem}
                 </Button>

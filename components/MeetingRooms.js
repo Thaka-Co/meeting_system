@@ -11,7 +11,6 @@ import {
 import { IoLocationOutline } from "react-icons/io5";
 import { BsPeople } from "react-icons/bs";
 import { CgToolbox } from "react-icons/cg";
-import { roomsData } from "../Faker/general";
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
@@ -19,7 +18,6 @@ function MeetingRooms({ rooms }) {
   const selectRoom = (e) => {
     console.log(e);
   };
-  // console.log(getStaticProps);
   console.log(rooms, "popopop");
   const router = useRouter();
   const { locale } = router;
@@ -33,9 +31,6 @@ function MeetingRooms({ rooms }) {
         m={5}
         borderRadius={7}
       >
-        {/* <Text fontSize="lg" color={textColor} fontWeight="bold">
-          Select the meeting room
-        </Text> */}
         <RadioGroup onChange={selectRoom}>
           {rooms &&
             rooms.map((item, index) => {

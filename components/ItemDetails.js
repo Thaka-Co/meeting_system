@@ -25,9 +25,9 @@ function ItemDetails(props) {
   const { locale } = router;
   let t = locale == "en" ? en : ar;
   useEffect(() => {
-    getMeetingDetails();
+    getItemsDetails();
   }, []);
-  const getMeetingDetails = async () => {
+  const getItemsDetails = async () => {
     // const id = props.meetingId; // meeting id
     // console.log(props.meetingId);
     fetch(`${server}/api/votes/${itemId}`).then(async (res) => {
@@ -64,7 +64,6 @@ function ItemDetails(props) {
                     >
                       {item.title}
                     </Text>
-
                     <Text
                       display={"block"}
                       fontSize="md"
@@ -121,20 +120,20 @@ function ItemDetails(props) {
           {price}
         </Text> */}
         </Box>
-          <VStack>
-            {" "}
-            <div borderRadius="full" px="2" className={classes[`${status}`]}>
-              {status}
-            </div>
-        <Button p="0px" bg="transparent" variant="no-hover">
+        <VStack>
+          {" "}
+          <div borderRadius="full" px="2" className={classes[`${status}`]}>
+            {status}
+          </div>
+          <Button p="0px" bg="transparent" variant="no-hover">
             <Flex alignItems="center" p="34px">
               <Icon as={logo} w="20px" h="auto" me="5px" />
               <Text fontSize="md" color={textColor} fontWeight="bold">
                 {format}
               </Text>
             </Flex>
-        </Button>
-          </VStack>
+          </Button>
+        </VStack>
       </Flex>
     </Box>
   );
