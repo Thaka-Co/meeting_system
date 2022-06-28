@@ -17,7 +17,7 @@ export default async function postType(req, res) {
     }
     // const result = await newRoom.save();
     // res.status(200).json(result);
-  } catch (err) { 
+  } catch (err) {
     console.log(err);
     res.status(404).json(err);
   }

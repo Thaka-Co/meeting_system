@@ -2,12 +2,12 @@
 import * as React from "react";
 import { Setting } from "../components/Setting";
 import { getCsrfToken, getSession } from "next-auth/react";
-import  NavBar  from "../components/navBar/navbar";
+import NavBar from "../components/navBar/navbar";
 export default function setting(props) {
   return (
     <div>
       <NavBar>
-      <Setting />
+        <Setting />
       </NavBar>
     </div>
   );

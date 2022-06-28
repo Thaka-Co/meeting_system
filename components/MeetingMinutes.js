@@ -52,7 +52,7 @@ export const MeetingMinutes = (props) => {
   };
   return (
     <div>
-       <SeatPiker  id={props.id}/>
+      <SeatPiker id={props.id} />
       <Table>
         <Thead>
           <tr>

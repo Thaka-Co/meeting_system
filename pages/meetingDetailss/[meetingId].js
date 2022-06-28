@@ -1,9 +1,9 @@
 import React from "react";
 import MeetingDetails from "../../components/MeetingDetails";
-import {server} from '../../config';
+import { server } from "../../config";
 import { getCsrfToken, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import  NavBar  from "../../components/navBar/navbar";
+import NavBar from "../../components/navBar/navbar";
 function meetingDetailss({ meeting }) {
   // const router = useRouter();
   // const { meetingId } = router.query;
@@ -11,9 +11,8 @@ function meetingDetailss({ meeting }) {
   return (
     <div>
       <NavBar>
-      <MeetingDetails meetingId={meeting._id} />
+        <MeetingDetails meetingId={meeting._id} />
       </NavBar>
-      
     </div>
   );
 }
@@ -37,9 +36,7 @@ export default meetingDetailss;
 //   };
 // }
 export const getServerSideProps = async (context) => {
-  const res = await fetch(
-    `${server}/api/meetings/${context.params.meetingId}`
-  );
+  const res = await fetch(`${server}/api/meetings/${context.params.meetingId}`);
   const meeting = await res.json();
   return {
     props: { meeting },

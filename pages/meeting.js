@@ -1,12 +1,12 @@
 import React from "react";
 import AddMeeting from "../components/AddMeeting";
 import { getCsrfToken, getSession } from "next-auth/react";
-import  NavBar  from "../components/navBar/navbar";
+import NavBar from "../components/navBar/navbar";
 function meeting(props) {
   return (
     <div>
       <NavBar>
-      <AddMeeting />
+        <AddMeeting />
       </NavBar>
     </div>
   );

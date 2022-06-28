@@ -76,7 +76,7 @@ function MeetingDetails(props) {
       {/* </Box> */}
       {/* <MeetingItems /> */}
       {/* <AddItems /> */}
-      <DisplayComments id={props.meetingId}/>
+      <DisplayComments id={props.meetingId} />
     </Box>
   );
 }

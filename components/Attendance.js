@@ -33,7 +33,7 @@ export const Attendance = (props) => {
     const data = await fetch(`${server}/api/meetings/${id}`);
     console.log(data);
     const result = await data.json();
-    if(result==='there is something wrong !!')return setUsers([]);
+    if (result === "there is something wrong !!") return setUsers([]);
     setUsers(result.memebers);
     console.log(result);
   };

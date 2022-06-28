@@ -10,7 +10,9 @@ export default async function getall(req, res) {
        1 inprogress 
       2 completed */
     // add new property
-    const new_property = await itemModel.updateMany({}, [{ $set: { status: "62b356189a8fedf769bb4082" } }]);
+    const new_property = await itemModel.updateMany({}, [
+      { $set: { status: "62b356189a8fedf769bb4082" } },
+    ]);
     // })
     // await items.save;
     res.status(200).json(new_property);
