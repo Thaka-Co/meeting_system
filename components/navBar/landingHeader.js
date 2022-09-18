@@ -226,20 +226,25 @@ export default function Header() {
         justifySelf="self-start"
         onClick={mobileNav.onClose}
       />
-      <Button w="full" variant="ghost" leftIcon={<AiFillHome />}>
-        Dashboard
-      </Button>
-      <Button
-        w="full"
-        variant="solid"
-        colorScheme="brand"
-        leftIcon={<AiOutlineInbox />}
-      >
-        Inbox
-      </Button>
-      <Button w="full" variant="ghost" leftIcon={<BsFillCameraVideoFill />}>
-        Videos
-      </Button>
+      {
+        session ?
+
+          <Button colorScheme="brand" variant="ghost" size="sm" onClick={clickHandler} >
+            Sign Out
+          </Button>
+          : <>
+            <Link href="/signin">
+              <Button colorScheme="brand" variant="ghost" size="sm">
+                Sign in
+              </Button>
+            </Link>
+            <Link href="/signup">
+              <Button colorScheme="brand" variant="ghost" size="sm">
+                Sign up
+              </Button>
+            </Link>
+          </>
+      }
     </VStack>
   );
   return (

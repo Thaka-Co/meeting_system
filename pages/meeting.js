@@ -1,9 +1,9 @@
 import React from "react";
 import AddMeeting from "../components/AddMeeting";
 import MainNavBar from "../components/navBar/navbar";
-import { useSession } from "next-auth/react";
+import { getCsrfToken, getSession } from "next-auth/react";
 function meeting(props) {
-  const { data: session } = useSession();
+  console.log(props, "props");
   return (
     <div>
       {session ? (
@@ -16,3 +16,32 @@ function meeting(props) {
   );
 }
 export default meeting;
+export async function getServerSideProps(context) {
+  const { req, res } = context;
+  const session = await getSession({ req });
+  console.log(session);
+  if (!session && res) {
+    console.log("working");
+    res.writeHead(302, {
+      Location: "/signin",
+    });
+    res.end();
+  }
+  const result = await fetch("http://localhost:3000/api/rooms/getRoom");
+  const rooms = await result.json();
+  return {
+    props: {
+      csrfToken: await getCsrfToken(context),
+      rooms,
+    },
+  };
+}
+// export const getStaticProps = async () => {
+//   const res = await fetch('http://localhost:3000/api/rooms/getRoom')
+//   const rooms = await res.json()
+//   return {
+//     props: {
+//       rooms,
+//     },
+//   };
+// };

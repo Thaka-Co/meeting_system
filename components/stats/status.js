@@ -6,9 +6,9 @@ import {
   useColorModeValue as mode,
 } from "@chakra-ui/react";
 import * as React from "react";
-import { Stat } from "./Stat";
-import { StatLabel } from "./StatLabel";
-import { StatNumber } from "./StatNumber";
+import { Stat } from "./stat";
+import { StatLabel } from "./statLabel";
+import { StatNumber } from "./statNumber";
 import {
   FaCalendarAlt,
   FaRegCalendarCheck,
@@ -23,7 +23,7 @@ export default function Status() {
   const { locale } = router;
   let t = locale == "en" ? en : ar;
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [show, setShow] = React.useState(false);
+  const [show, setShow] = React.useState(true);
   const open = () => {
     show ? setShow(false) : setShow(true);
     const btn = document.querySelector(".btn");
@@ -35,7 +35,8 @@ export default function Status() {
   console.log(show);
   return (
     <>
-      <Box as="section" bg={mode("gray.50", "gray.800")} p="">
+      {/* <Box bg={mode("gray.50", "inherit")}> */}
+      <Box as="section" p="">
         <Box
           maxW="9xl"
           mx="auto"
@@ -55,25 +56,25 @@ export default function Status() {
               }}
               spacing="6"
             >
-              <Stat key="Meetings">
+              <Stat key="Meetings" bg={mode("white", "gray.800")}>
                 <StatLabel>{t.Meetings}</StatLabel>
                 <FaCalendarAlt />
                 <StatNumber>10</StatNumber>
               </Stat>
 
-              <Stat key="CompletedMeetings">
+              <Stat key="CompletedMeetings" bg={mode("white", "gray.800")}>
                 <StatLabel>{t.CompletedMeetings}</StatLabel>
                 <FaRegCalendarCheck />
                 <StatNumber>10</StatNumber>
               </Stat>
 
-              <Stat key="Tasks">
+              <Stat key="Tasks" bg={mode("white", "gray.800")}>
                 <StatLabel>{t.Tasks}</StatLabel>
                 <FaClipboardList />
                 <StatNumber>10</StatNumber>
               </Stat>
 
-              <Stat key="Complated Ta">
+              <Stat key="Complated Ta" bg={mode("white", "gray.800")}>
                 <StatLabel>{t.complatedTasks}</StatLabel>
                 <FaClipboardCheck />
                 <StatNumber>10</StatNumber>
@@ -84,6 +85,7 @@ export default function Status() {
           )}
         </Box>
       </Box>
+      {/* </Box> */}
     </>
   );
 }

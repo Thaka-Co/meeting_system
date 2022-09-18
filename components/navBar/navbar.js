@@ -1,7 +1,7 @@
 import {
   Avatar,
   Box,
-  Collapse,
+  Button,
   Drawer,
   DrawerContent,
   DrawerOverlay,
@@ -15,9 +15,10 @@ import {
   MenuList,
   Text,
   useColorModeValue,
-  useDisclosure,
+  useDisclosure,useColorMode,
   Select,
 } from "@chakra-ui/react";
+import { FaMoon, FaSun } from "react-icons/fa";
 import {
   AutoComplete,
   AutoCompleteInput,
@@ -27,7 +28,7 @@ import {
 import React from "react";
 import { AiFillGift } from "react-icons/ai";
 import { BsGearFill } from "react-icons/bs";
-import { FaBell, FaClipboardCheck, FaRss } from "react-icons/fa";
+import { FaBell, FaSignOutAlt, FaRss } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import { HiCode, HiCollection } from "react-icons/hi";
 import { MdDashboard, MdKeyboardArrowRight } from "react-icons/md";
@@ -37,11 +38,19 @@ import { dashboardTableData } from "../../Faker/general";
 import { useRouter } from "next/router";
 import en from "../../locales/en";
 import ar from "../../locales/ar";
+import { signOut } from "next-auth/react";
+
+
+
+
+
 export default function MainNavBar(props) {
-  const sidebar = useDisclosure();
-  const integrations = useDisclosure();
-  const options = ["apple", "appoint", "zap", "cap", "japan"];
+  const { toggleColorMode: toggleMode } = useColorMode();
+  const text = useColorModeValue("dark", "light");
+  const SwitchIcon = useColorModeValue(FaMoon, FaSun);
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const router = useRouter();
+  const sidebar = useDisclosure();
   const { locale } = router;
   const t = locale == "en" ? en : ar;
   let ditLang = locale == "en" ? "ltr" : "rtl";
@@ -51,21 +60,32 @@ export default function MainNavBar(props) {
     router.push(router.pathname, router.asPath, { locale });
     // localStorage.setItem("language", e.target.value);
   };
+  const clickHandler = () => { signOut({ callbackUrl: '/signin' }) }
+
+
+  const bg = useColorModeValue("gray.100", "gray.900");
+  const color = useColorModeValue("gray.900", "gray.200");
+  const iconHover = useColorModeValue("gray.600", "gray.300");
+  const sidebarBg = useColorModeValue("white", "gray.800");
+  const borderColor = useColorModeValue("inherit", "gray.700");
+  const textColor = useColorModeValue("brand.500", "white");
+  const flexColor = useColorModeValue("inherit", "gray.400");
   const NavItem = (props) => {
     const { icon, children, ...rest } = props;
     // sidebar icons and text style left nav
     return (
       <Flex
+        color={flexColor}
         dir={ditLang}
         align="center"
         px="4"
         pl="4"
         py="3"
         cursor="pointer"
-        color={useColorModeValue("inherit", "gray.400")}
         _hover={{
-          bg: useColorModeValue("gray.100", "gray.900"),
-          color: useColorModeValue("gray.900", "gray.200"),
+          bg: bg,
+          color: color,
+
         }}
         role="group"
         fontWeight="semibold"
@@ -77,7 +97,8 @@ export default function MainNavBar(props) {
             mx="2"
             boxSize="4"
             _groupHover={{
-              color: useColorModeValue("gray.600", "gray.300"),
+              color: iconHover,
+
             }}
             as={icon}
           />
@@ -99,19 +120,16 @@ export default function MainNavBar(props) {
       pb="10"
       overflowX="hidden"
       overflowY="auto"
-      bg={useColorModeValue("white", "gray.800")}
-      borderColor={useColorModeValue("inherit", "gray.700")}
+      bg={sidebarBg}
+      borderColor={borderColor}
+
       borderRightWidth="1px"
       w="60"
       {...props}
     >
       <Flex px="4" py="5" align="center">
-        <Text
-          fontSize="2xl"
-          ml="2"
-          color={useColorModeValue("brand.500", "white")}
-          fontWeight="semibold"
-        >
+        <Text fontSize="2xl" ml="2" color={textColor} fontWeight="semibold">
+
           حوكمة
         </Text>
       </Flex>
@@ -122,13 +140,13 @@ export default function MainNavBar(props) {
         color="gray.600"
         aria-label="Main Navigation"
       >
-        <Link href="/dashbord">
+        <Link href="/dashboard" passHref>
           <NavItem icon={MdDashboard}>{t.dashboard}</NavItem>
         </Link>
-        <Link href="/meeting">
+        <Link href="/meeting" passHref>
           <NavItem icon={FaRss}>{t.addMeeting}</NavItem>
         </Link>
-        <NavItem icon={HiCollection}>Collections</NavItem>
+        {/* <NavItem icon={HiCollection}>Collections</NavItem>
         <NavItem icon={FaClipboardCheck}>Checklists</NavItem>
         <NavItem icon={HiCode} onClick={integrations.onToggle}>
           Integrations
@@ -149,8 +167,12 @@ export default function MainNavBar(props) {
             Zapier
           </NavItem>
         </Collapse>
-        <NavItem icon={AiFillGift}>Changelog</NavItem>
-        <NavItem icon={BsGearFill}>{t.setting}</NavItem>
+        <NavItem icon={AiFillGift}>Changelog</NavItem> */}
+        <Link href="/setting" passHref>
+          <NavItem icon={BsGearFill}>{t.setting}</NavItem>
+        </Link>
+
+        <NavItem onClick={clickHandler} icon={FaSignOutAlt}>{t.signout}</NavItem>
       </Flex>
     </Box>
   );
@@ -159,13 +181,13 @@ export default function MainNavBar(props) {
     <Box
       dir={ditLang}
       as="section"
-      bg={useColorModeValue("gray.50", "gray.700")}
+      // bg={useColorModeValue("gray.50", "gray.700")}
       minH="100vh"
     >
       <SidebarContent display={{ base: "none", md: "unset" }} />
       <Drawer
-        isOpen={sidebar.isOpen}
-        onClose={sidebar.onClose}
+        isOpen={isOpen}
+        onClose={onClose}
         placement="left"
       >
         <DrawerOverlay />
@@ -180,15 +202,16 @@ export default function MainNavBar(props) {
           justify="space-between"
           w="full"
           px="4"
-          bg={useColorModeValue("white", "gray.800")}
+          bg={sidebarBg}
           borderBottomWidth="1px"
-          borderColor={useColorModeValue("inherit", "gray.700")}
+          borderColor={borderColor}
+
           h="14"
         >
           <AutoComplete rollNavigation>
             <AutoCompleteInput
               variant="filled"
-              placeholder="Search..."
+              placeholder={t.search}
               autoFocus
             />
             <AutoCompleteList>
@@ -207,7 +230,7 @@ export default function MainNavBar(props) {
           <IconButton
             aria-label="Menu"
             display={{ base: "inline-flex", md: "none" }}
-            onClick={sidebar.onOpen}
+            onClick={onOpen}
             icon={<FiMenu />}
             size="sm"
           />
@@ -219,6 +242,16 @@ export default function MainNavBar(props) {
           <Flex align="center">
             <Menu>
               {/* <MenuButton> */}
+              <IconButton
+              size="md"
+              fontSize="lg"
+              aria-label={`Switch to ${text} mode`}
+              variant="ghost"
+              color="current"
+              ml={{ base: "0", md: "3" }}
+              onClick={toggleMode}
+              icon={<SwitchIcon />}
+            />
               <Select
                 w={100}
                 m={4}

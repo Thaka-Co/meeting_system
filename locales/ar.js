@@ -66,7 +66,7 @@ export default {
   password: "كلمة المرور",
   confirmPassword: "تأكيد كلمة المرور",
   endTime: "وقت الأنتهاء",
-  startDate: "وقت البداية",
+  startDate: "مدة الاجتماع",
   selectDate: " التاريخ",
   // save:'حفظ',
   downlodas: "تنزيل",
@@ -80,4 +80,6 @@ export default {
   dashboard: "لوحة تحكم",
   addMeeting: "أضافة أجتماع",
   setting: "أعدادات",
+  search: 'بحث',
+  signout: 'تسجيل خروج'
 };

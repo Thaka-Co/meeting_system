@@ -24,7 +24,7 @@ import ar from "../locales/ar";
 import DatePicker from "react-datepicker";
 // import "../styles/calendar.css";
 import { AiOutlineClockCircle } from "react-icons/ai";
-function addMeeting(props) {
+function AddMeeting(props) {
   const [date, setDate] = useState("");
   const [startH, setStartH] = useState("");
   const [startMin, setStartMin] = useState("");
@@ -51,7 +51,12 @@ function addMeeting(props) {
   console.log(cyclic);
   return (
     <Box bg={useColorModeValue("gray.50", "inherit")}>
-      <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
+      <Box
+        bg={useColorModeValue("white", "gray.800")}
+        p={15}
+        m={5}
+        borderRadius={7}
+      >
         {/* <Datetime
           onChange={selectDate}
           isValidDate={valid}
@@ -104,12 +109,17 @@ function addMeeting(props) {
           ""
         )}
       </Box>
-      <MeetingRooms />
+      <MeetingRooms rooms={props.rooms} />
       <>
         <UserData />
         <MeetingItems />
         <AddItems />
-        <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
+        <Box
+          bg={useColorModeValue("white", "gray.800")}
+          p={15}
+          m={5}
+          borderRadius={7}
+        >
           <Text mb={4}>{t.recordMeetingType}</Text>
           <Select>
             <option>type 1</option>
@@ -122,4 +132,4 @@ function addMeeting(props) {
   );
 }
 
-export default addMeeting;
+export default AddMeeting;

@@ -22,6 +22,8 @@ function MyMeeting(props) {
   const textColor = useColorModeValue("gray.700", "white");
   return (
     <div>
+      
+     <Box bg={useColorModeValue("white", "gray.800")} p={15} m={5} borderRadius={7}>
       {dashboardTableData.length != 0 ? (
         <Table variant="simple" color={textColor}>
           <Thead>
@@ -35,9 +37,10 @@ function MyMeeting(props) {
             </Tr>
           </Thead>
           <Tbody>
-            {dashboardTableData.map((row) => {
+            {dashboardTableData.map((row, index) => {
               return (
                 <DashboardTableRow
+                  key={index}
                   name={row.name}
                   logo={row.logo}
                   members={row.members}
@@ -52,10 +55,11 @@ function MyMeeting(props) {
         <Box borderWidth="4px" borderStyle="dashed" rounded="md" h="96" m="10">
           <Center>
             {" "}
-            <Heading m="10">You Don't Have Any Meetings</Heading>
+            <Heading m="10">You Do not &#39; Have Any Meetings</Heading>
           </Center>
         </Box>
       )}
+      </Box>
     </div>
   );
 }

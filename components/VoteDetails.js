@@ -22,7 +22,7 @@ export const VoteDetails = (props) => {
   return (
     <div>
       <Box bg={useColorModeValue("gray.50", "inherit")}>
-        <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
+        <Box bg={useColorModeValue("white", "gray.800")} p={15} m={5} borderRadius={7}>
           <Input value={votes.title} disabled mb={4} />
           <Textarea disabled resize={"none"}>
             {votes.desc}

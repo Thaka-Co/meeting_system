@@ -7,6 +7,7 @@ import { Attendance } from "./Attendance.js";
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
+
 function MeetingDetails(props) {
   const textColor = useColorModeValue("gray.700", "white");
   const router = useRouter();
@@ -14,7 +15,12 @@ function MeetingDetails(props) {
   let t = locale == "en" ? en : ar;
   return (
     <Box bg={useColorModeValue("gray.50", "inherit")}>
-      <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
+      <Box
+        bg={useColorModeValue("white", "gray.800")}
+        p={15}
+        m={5}
+        borderRadius={7}
+      >
         <Text fontSize="xl" color={textColor} fontWeight="bold">
           Meeting title
         </Text>
@@ -32,21 +38,28 @@ function MeetingDetails(props) {
         </HStack>
       </Box>
       <Heading m="10">{t.meetingItems}</Heading>
-      {invoicesData.map((row) => {
+      {invoicesData.map((row, index) => {
         return (
-          <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
-            <ItemDetails
-              date={row.date}
-              votes={row.votes}
-              downArrow={row.downArrow}
-              upArrow={row.upArrow}
-              up={row.up}
-              down={row.down}
-              price={row.price}
-              logo={row.logo}
-              format={row.format}
-            />
-          </Box>
+          // <Box
+          //   key={index}
+          //   bg={useColorModeValue("white", "gray.800")}
+          //   p={15}
+          //   m={5}
+          //   borderRadius={7}
+          // >
+          <ItemDetails
+            key={index}
+            date={row.date}
+            votes={row.votes}
+            downArrow={row.downArrow}
+            upArrow={row.upArrow}
+            up={row.up}
+            down={row.down}
+            price={row.price}
+            logo={row.logo}
+            format={row.format}
+          />
+          // </Box>
         );
       })}
       <Heading m="10">{t.attendance}</Heading>

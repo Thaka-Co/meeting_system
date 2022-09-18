@@ -26,15 +26,20 @@ function MeetingRooms({ rooms }) {
   return (
     <div>
       <Heading m="10">{t.meetingRoom}</Heading>
-      <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
+      <Box
+        bg={useColorModeValue("white", "gray.800")}
+        p={15}
+        m={5}
+        borderRadius={7}
+      >
         {/* <Text fontSize="lg" color={textColor} fontWeight="bold">
           Select the meeting room
         </Text> */}
         <RadioGroup onChange={selectRoom}>
-          {roomsData.map((item, index) => {
+          {rooms.map((item, index) => {
             return (
               <Box
-                key={item.id}
+                key={item._id}
                 m={3}
                 p={4}
                 borderWidth={3}
@@ -67,20 +72,5 @@ function MeetingRooms({ rooms }) {
       </Box>
     </div>
   );
-}
-
-export async function getStaticProps(context) {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
-  const res = await fetch("http://localhost:3000/api/hello");
-  const rooms = await res.json();
-
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
-  return {
-    props: {
-      rooms,
-    },
-  };
 }
 export default MeetingRooms;

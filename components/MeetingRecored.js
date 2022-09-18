@@ -34,11 +34,12 @@ export const MeetingRecored = (props) => {
   return (
     <div>
       <Box bg={useColorModeValue("gray.50", "inherit")}>
-        <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
+        <Box bg={useColorModeValue("white", "gray.800")} p={15} m={5} borderRadius={7}>
           {/* <MeetingItems /> */}
-          {invoicesData.map((row) => {
+          {invoicesData.map((row, index) => {
             return (
               <InvoicesRow
+                key={index}
                 date={row.date}
                 code={row.downArrow}
                 downArrow={row.downArrow}

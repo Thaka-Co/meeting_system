@@ -30,11 +30,14 @@ export default function TodayMeetings() {
     { name: "Add the New Pricing Page", created: "5 PM" },
     { name: "Redesign New Online Shop", created: "3 PM" },
   ];
+  const bg = useColorModeValue("white", "gray.800");
+  const color = useColorModeValue("gray.400", "gray.400");
+  const tdColor = useColorModeValue("gray.500");
   const header = [t.topic, t.time, t.actions];
   return data.length != 0 ? (
     <Table
       w="full"
-      bg={useColorModeValue("white", "gray.800")}
+      bg={bg}
       display={{
         base: "block",
         md: "table",
@@ -102,7 +105,7 @@ export default function TodayMeetings() {
                           display: "none",
                         },
                         textTransform: "uppercase",
-                        color: useColorModeValue("gray.400", "gray.400"),
+                        color: color,
                         fontSize: "xs",
                         fontWeight: "bold",
                         letterSpacing: "wider",
@@ -111,38 +114,16 @@ export default function TodayMeetings() {
                     >
                       {x}
                     </Td>
-                    <Td
-                      color={useColorModeValue("gray.500")}
-                      fontSize="md"
-                      fontWeight="hairline"
-                    >
+                    <Td color={tdColor} fontSize="md" fontWeight="hairline">
                       {token[x]}
                     </Td>
                   </React.Fragment>
                 );
               })}
-              <Td
-                display={{
-                  base: "table-cell",
-                  md: "none",
-                }}
-                sx={{
-                  "@media print": {
-                    display: "none",
-                  },
-                  textTransform: "uppercase",
-                  color: useColorModeValue("gray.400", "gray.400"),
-                  fontSize: "xs",
-                  fontWeight: "bold",
-                  letterSpacing: "wider",
-                  fontFamily: "heading",
-                }}
-              >
-                {/* {t.actions} */}
-              </Td>
+
               <Td>
                 <ButtonGroup variant="solid" size="sm" spacing={3}>
-                  <Link href="/meetingSession">
+                  <Link href="/currentMeeting">
                     <IconButton
                       colorScheme="blue"
                       icon={<BsBoxArrowUpRight />}

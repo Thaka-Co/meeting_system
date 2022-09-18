@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Box, Heading } from "@chakra-ui/react";
+import { Flex, Box, Heading, useColorModeValue } from "@chakra-ui/react";
 import Card from "../components/Card/Card.js";
 import CardHeader from "../components/Card/CardHeader.js";
 import CardBody from "../components/Card/CardBody.js";
@@ -15,7 +15,12 @@ function MeetingItems(props) {
   return (
     <div>
       <Heading m="10">{t.meetingItems}</Heading>
-      <Box bgColor={"white"} p={15} m={5} borderRadius={7}>
+      <Box
+        bg={useColorModeValue("white", "gray.800")}
+        p={15}
+        m={5}
+        borderRadius={7}
+      >
         <Card>
           <CardHeader p="0px 0px 0px 0px">
             <Flex justify="space-between" align="center" mb="1rem" w="90%">
@@ -36,9 +41,10 @@ function MeetingItems(props) {
           </CardHeader>
           <CardBody>
             <Flex direction="column" w="90%">
-              {invoicesData.map((row) => {
+              {invoicesData.map((row, index) => {
                 return (
                   <InvoicesRow
+                    key={index}
                     date={row.date}
                     code={row.downArrow}
                     downArrow={row.downArrow}
