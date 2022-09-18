@@ -10,8 +10,7 @@ function meeting(props) {
         <MainNavBar>
           <AddMeeting />
         </MainNavBar>
-      ) : (
-       ''
+      ) : (<></>
       )} 
     </div>
   );

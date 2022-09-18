@@ -15,10 +15,11 @@ import { roomsData } from "../Faker/general";
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import ar from "../locales/ar";
-function MeetingRooms(rooms) {
+function MeetingRooms({ rooms }) {
   const selectRoom = (e) => {
     console.log(e);
   };
+  console.log(rooms);
   const router = useRouter();
   const { locale } = router;
   let t = locale == "en" ? en : ar;
